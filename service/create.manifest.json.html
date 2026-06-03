@@ -1,496 +1,140 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سازنده فایل manifest.json برای ریسورس پک || خدمات PvPPacks</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
-    <style>
-        * {
-            font-family: 'Vazirmatn', sans-serif;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
-            color: #5a3714;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(255, 102, 0, 0.15);
-            padding: 30px;
-            border: 1px solid #ffcc80;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px dashed #ff9800;
-        }
-
-        h1 {
-            color: #e65100;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            color: #ff9800;
-            font-size: 16px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #bf360c;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #ffcc80;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s;
-            background-color: #fffaf0;
-        }
-
-        input[type="text"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #ff9800;
-            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .uuid-section {
-            background: #fff3e0;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border: 1px solid #ffcc80;
-        }
-
-        .uuid-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .uuid-input-group {
-            flex: 1;
-        }
-
-        .uuid-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .button-primary {
-            background-color: #ff9800;
-            color: white;
-        }
-
-        .button-primary:hover:not(:disabled) {
-            background-color: #f57c00;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
-        }
-
-        .button-secondary {
-            background-color: #ffcc80;
-            color: #5a3714;
-        }
-
-        .button-secondary:hover {
-            background-color: #ffb74d;
-        }
-
-        .button:disabled {
-            background-color: #cccccc;
-            color: #666;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        .download-section {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 2px dashed #ff9800;
-        }
-
-        .validation-error {
-            color: #d32f2f;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .field-required {
-            color: #d32f2f;
-            margin-right: 5px;
-        }
-
-        .uuid-info {
-            font-size: 14px;
-            color: #ff9800;
-            margin-bottom: 15px;
-            text-align: center;
-            background: #fff8e1;
-            padding: 10px;
-            border-radius: 8px;
-            border-right: 4px solid #ff9800;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #ff9800;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .uuid-row {
-                flex-direction: column;
-            }
-            
-            .container {
-                padding: 20px;
-                margin: 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manifest Generator + Subpacks</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<style>
+*{font-family:'Vazirmatn',sans-serif;box-sizing:border-box}
+body{background:linear-gradient(135deg,#fff5e6 0%,#ffe8cc 100%);color:#5a3714;margin:0;padding:20px}
+.container{max-width:800px;margin:30px auto;background:#fff;border-radius:16px;padding:30px;border:1px solid #ffcc80}
+.header{text-align:center;border-bottom:2px dashed #ff9800;margin-bottom:20px}
+input[type=text],input[type=number],textarea{width:100%;padding:12px;border:2px solid #ffcc80;border-radius:10px;background:#fffaf0}
+.uuid-section,.subpack-section{background:#fff3e0;padding:20px;border-radius:10px;margin:20px 0;border:1px solid #ffcc80}
+.button{padding:12px 20px;border:none;border-radius:10px;cursor:pointer}
+.button-primary{background:#ff9800;color:#fff}
+.button-secondary{background:#ffcc80}
+.subpack-card{background:#fff8f0;border:1px solid #ffcc80;padding:15px;border-radius:10px;margin-top:10px}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🛠️ ساخت فایل منی‌فست برای ریسورس پک</h1>
-            <p class="subtitle">فایل مورد نیاز برای پک منابع ماینکرافت</p>
-        </div>
+<div class="container">
+<div class="header">
+<h1>🛠️ ساخت فایل منی‌فست برای ریسورس پک</h1>
+<p>نسخه دارای Subpacks</p>
+</div>
 
-        <form id="manifestForm">
-            <div class="form-group">
-                <label>
-                    <span class="field-required">*</span>نام پک (Pack Name):
-                </label>
-                <input type="text" id="packName" placeholder="مثال: ریسورس فانتزی من..">
-                <div class="validation-error" id="packNameError">لطفاً نام پک را وارد کنید</div>
-            </div>
+<label>نام پک</label>
+<input id="packName">
 
-            <div class="form-group">
-                <label>
-                    <span class="field-required">*</span>توضیحات پک (Pack Description):
-                </label>
-                <textarea id="packDescription" placeholder="توضیحات درباره پک منابع..."></textarea>
-                <div class="validation-error" id="packDescriptionError">لطفاً توضیحات پک را وارد کنید</div>
-            </div>
+<label>توضیحات</label>
+<textarea id="packDescription"></textarea>
 
-            <div class="uuid-section">
-                <p class="uuid-info">
-                    برای تولید UUID مناسب، روی دکمه‌های زیر کلیک کنید. هر دو UUID باید متفاوت باشند.
-                </p>
-                
-                <div class="uuid-row">
-                    <div class="uuid-input-group">
-                        <label>
-                            <span class="field-required">*</span>UUID اول:
-                        </label>
-                        <input type="text" id="uuid1" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
-                        <div class="validation-error" id="uuid1Error">لطفاً UUID اول را وارد کنید (فرمت صحیح: 8-4-4-4-12)</div>
-                    </div>
+<div class="uuid-section">
+<label>UUID اول</label>
+<input id="uuid1">
+<label>UUID دوم</label>
+<input id="uuid2">
+<br><br>
+<button class="button button-secondary" onclick="genBoth()">تولید UUID ها</button>
+</div>
 
-                    <div class="uuid-input-group">
-                        <label>
-                            <span class="field-required">*</span>UUID دوم:
-                        </label>
-                        <input type="text" id="uuid2" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
-                        <div class="validation-error" id="uuid2Error">لطفاً UUID دوم را وارد کنید (فرمت صحیح: 8-4-4-4-12)</div>
-                    </div>
-                </div>
+<div class="subpack-section">
+<label><input type="checkbox" id="enableSubpacks"> فعال کردن Subpacks</label>
 
-                <div class="uuid-buttons">
-                    <button type="button" class="button button-secondary" id="generateUuid1Btn">
-                        🔄 تولید UUID اول
-                    </button>
-                    <button type="button" class="button button-secondary" id="generateUuid2Btn">
-                        🔄 تولید UUID دوم
-                    </button>
-                    <button type="button" class="button button-secondary" id="generateBothBtn">
-                        🔄 تولید هر دو UUID
-                    </button>
-                </div>
-                
-                <div class="validation-error" id="uuidSameError" style="text-align: center; margin-top: 15px;">
-                    UUID اول و دوم نباید یکسان باشند!
-                </div>
-            </div>
+<div id="subpacksContainer" style="display:none">
+<br>
+<label>تعداد Subpack ها (حداقل 2)</label>
+<input type="number" id="subpackCount" min="2" value="2">
+<div id="subpackFields"></div>
+</div>
+</div>
 
-            <div class="download-section">
-                <button type="button" class="button button-primary" id="downloadBtn">
-                    ⬇️ دانلود فایل manifest.json
-                </button>
-                <p style="color: #ff9800; margin-top: 10px; font-size: 14px;">
-                    پس از پر کردن همه فیلدها، فایل شما آماده دانلود خواهد شد
-                </p>
-            </div>
-        </form>
+<button class="button button-primary" onclick="generateManifest()">دانلود manifest.json</button>
+</div>
 
-        <div class="footer">
-       <p>‌‌ساخته شده  برای جامعه ماینکرافت ایران‌زمین</p>
-        </div>
-    </div>
+<script>
+function generateRandomUUID(){
+return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
+const r=Math.random()*16|0,v=c==='x'?r:(r&0x3|0x8);
+return v.toString(16);
+});
+}
 
-    <script>
-        // تعریف توابع در سطح جهانی
-        function generateRandomUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0;
-                const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
+function genBoth(){
+let a=generateRandomUUID(),b=generateRandomUUID();
+while(a===b)b=generateRandomUUID();
+uuid1.value=a; uuid2.value=b;
+}
 
-        // اعتبارسنجی فرمت UUID
-        function isValidUUID(uuid) {
-            if (!uuid) return false;
-            const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-            return uuidRegex.test(uuid);
-        }
+function createSubpackFields(){
+const count=Math.max(2,parseInt(document.getElementById('subpackCount').value)||2);
+const c=document.getElementById('subpackFields');
+c.innerHTML='';
+for(let i=1;i<=count;i++){
+c.innerHTML+=`
+<div class="subpack-card">
+<label>Folder Name ${i}</label>
+<input type="text" class="subpack-folder">
+<label>Display Name ${i}</label>
+<input type="text" class="subpack-name">
+</div>`;
+}
+}
 
-        // اعتبارسنجی یک فیلد
-        function validateField(fieldId) {
-            const input = document.getElementById(fieldId);
-            const errorElement = document.getElementById(fieldId + 'Error');
-            const sameErrorElement = document.getElementById('uuidSameError');
-            let isValid = true;
-            let errorMessage = '';
+document.getElementById('enableSubpacks').addEventListener('change',e=>{
+subpacksContainer.style.display=e.target.checked?'block':'none';
+if(e.target.checked) createSubpackFields();
+});
 
-            if (!input.value.trim()) {
-                errorMessage = 'لطفاً این فیلد را پر کنید';
-                isValid = false;
-            } else if (fieldId === 'uuid1' || fieldId === 'uuid2') {
-                if (!isValidUUID(input.value.trim())) {
-                    errorMessage = 'فرمت UUID صحیح نیست (مثال: 12345678-1234-1234-1234-123456789abc)';
-                    isValid = false;
-                }
-            }
+document.getElementById('subpackCount').addEventListener('input',createSubpackFields);
 
-            if (errorMessage) {
-                errorElement.textContent = errorMessage;
-                errorElement.style.display = 'block';
-            } else {
-                errorElement.style.display = 'none';
-            }
+function generateManifest(){
+const manifest={
+format_version:2,
+header:{
+name:packName.value.trim(),
+description:packDescription.value.trim(),
+uuid:uuid1.value.trim(),
+version:[1,0,0],
+min_engine_version:[1,20,0]
+},
+modules:[{
+type:"resources",
+uuid:uuid2.value.trim(),
+version:[1,0,0]
+}]
+};
 
-            // بررسی یکسان نبودن UUIDها
-            const uuid1 = document.getElementById('uuid1').value.trim();
-            const uuid2 = document.getElementById('uuid2').value.trim();
-            if (uuid1 && uuid2 && uuid1 === uuid2 && uuid1 !== '' && uuid2 !== '') {
-                sameErrorElement.style.display = 'block';
-                isValid = false;
-            } else {
-                sameErrorElement.style.display = 'none';
-            }
+if(enableSubpacks.checked){
+const folders=document.querySelectorAll('.subpack-folder');
+const names=document.querySelectorAll('.subpack-name');
+const subs=[];
+for(let i=0;i<folders.length;i++){
+if(folders[i].value.trim()&&names[i].value.trim()){
+subs.push({
+folder_name:folders[i].value.trim(),
+name:names[i].value.trim(),
+memory_tier:0
+});
+}
+}
+if(subs.length<2){
+alert('حداقل دو Subpack کامل وارد کنید.');
+return;
+}
+manifest.subpacks=subs;
+}
 
-            return isValid;
-        }
+const blob=new Blob([JSON.stringify(manifest,null,4)],{type:'application/json'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='manifest.json';
+a.click();
+}
 
-        // بررسی وضعیت همه فیلدها
-        function checkAllFields() {
-            const fields = ['packName', 'packDescription', 'uuid1', 'uuid2'];
-            let allValid = true;
-
-            for (const field of fields) {
-                if (!validateField(field)) {
-                    allValid = false;
-                }
-            }
-
-            // بررسی نهایی یکسان نبودن UUIDها
-            const uuid1 = document.getElementById('uuid1').value.trim();
-            const uuid2 = document.getElementById('uuid2').value.trim();
-            if (uuid1 && uuid2 && uuid1 === uuid2) {
-                allValid = false;
-                document.getElementById('uuidSameError').style.display = 'block';
-            }
-
-            const downloadBtn = document.getElementById('downloadBtn');
-            downloadBtn.disabled = !allValid;
-            
-            return allValid;
-        }
-
-        // تولید فایل manifest.json
-        function generateManifest() {
-            if (!checkAllFields()) {
-                alert('لطفاً همه فیلدها را به درستی پر کنید!\n\nبررسی کنید:\n1. همه فیلدها پر شده باشند\n2. UUIDها فرمت صحیح داشته باشند\n3. UUIDها یکسان نباشند');
-                return;
-            }
-
-            const packName = document.getElementById('packName').value.trim();
-            const packDescription = document.getElementById('packDescription').value.trim();
-            const uuid1 = document.getElementById('uuid1').value.trim();
-            const uuid2 = document.getElementById('uuid2').value.trim();
-
-            // ساخت آبجکت manifest
-            const manifest = {
-                format_version: 2,
-                header: {
-                    name: packName,
-                    description: packDescription,
-                    uuid: uuid1,
-                    version: [1, 0, 0],
-                    min_engine_version: [1, 20, 0]
-                },
-                modules: [
-                    {
-                        type: "resources",
-                        uuid: uuid2,
-                        version: [1, 0, 0]
-                    }
-                ]
-            };
-
-            // تبدیل به JSON با فرمت زیبا
-            const manifestJSON = JSON.stringify(manifest, null, 4);
-
-            // ایجاد فایل برای دانلود
-            const blob = new Blob([manifestJSON], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'manifest.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            // پیام موفقیت
-            alert('✅ فایل manifest.json با موفقیت دانلود شد!');
-        }
-
-        // مقداردهی اولیه و افزودن رویدادها
-        document.addEventListener('DOMContentLoaded', function() {
-            // غیرفعال کردن دکمه دانلود در ابتدا
-            document.getElementById('downloadBtn').disabled = true;
-
-            // رویدادهای تولید UUID
-            document.getElementById('generateUuid1Btn').addEventListener('click', function() {
-                const newUUID = generateRandomUUID();
-                document.getElementById('uuid1').value = newUUID;
-                validateField('uuid1');
-                checkAllFields();
-            });
-
-            document.getElementById('generateUuid2Btn').addEventListener('click', function() {
-                const newUUID = generateRandomUUID();
-                document.getElementById('uuid2').value = newUUID;
-                validateField('uuid2');
-                checkAllFields();
-            });
-
-            document.getElementById('generateBothBtn').addEventListener('click', function() {
-                let uuid1 = generateRandomUUID();
-                let uuid2 = generateRandomUUID();
-                
-                // اطمینان از متفاوت بودن UUIDها
-                while (uuid1 === uuid2) {
-                    uuid2 = generateRandomUUID();
-                }
-                
-                document.getElementById('uuid1').value = uuid1;
-                document.getElementById('uuid2').value = uuid2;
-                
-                validateField('uuid1');
-                validateField('uuid2');
-                checkAllFields();
-            });
-
-            // رویداد کلیک برای دکمه دانلود
-            document.getElementById('downloadBtn').addEventListener('click', generateManifest);
-
-            // رویدادهای تغییر مقدار برای اعتبارسنجی لحظه‌ای
-            document.getElementById('packName').addEventListener('input', function() {
-                validateField('packName');
-                checkAllFields();
-            });
-
-            document.getElementById('packDescription').addEventListener('input', function() {
-                validateField('packDescription');
-                checkAllFields();
-            });
-
-            document.getElementById('uuid1').addEventListener('input', function() {
-                validateField('uuid1');
-                checkAllFields();
-            });
-
-            document.getElementById('uuid2').addEventListener('input', function() {
-                validateField('uuid2');
-                checkAllFields();
-            });
-
-            // تولید دو UUID متفاوت به طور خودکار هنگام بارگذاری صفحه
-            setTimeout(function() {
-                let uuid1 = generateRandomUUID();
-                let uuid2 = generateRandomUUID();
-                
-                // اطمینان از متفاوت بودن UUIDها
-                while (uuid1 === uuid2) {
-                    uuid2 = generateRandomUUID();
-                }
-                
-                document.getElementById('uuid1').value = uuid1;
-                document.getElementById('uuid2').value = uuid2;
-                
-                // اطلاع به کاربر
-                document.getElementById('packName').focus();
-                checkAllFields();
-            }, 500);
-        });
-
-        // جلوگیری از ارسال فرم
-        document.getElementById('manifestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-    </script>
+genBoth();
+</script>
 </body>
-</html>
+    </html>

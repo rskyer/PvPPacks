@@ -1,5 +1,17 @@
 /* استایل‌های اختصاصی صفحه جستجو */
 
+
+@font-face {
+    font-family: 'pelak';
+    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+font-family: 'pelak'; }
+body { 
+font-family: 'pelak' }
+
 .search-container {
     max-width: 800px;
     margin: 0 auto;
@@ -17,7 +29,7 @@
     flex: 1;
     padding: 18px 25px;
     font-size: 18px;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     border: 3px solid #ff7e00;
     border-radius: 35px;
     outline: none;
@@ -35,7 +47,7 @@
 
 #searchInput::placeholder {
     color: #aaa;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
 }
 
 .search-btn {
@@ -47,7 +59,7 @@
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     box-shadow: 0 6px 20px rgba(255, 126, 0, 0.2);
 }
 
@@ -89,7 +101,7 @@
 }
 
 .option span {
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     font-size: 16px;
     color: #333;
 }
@@ -113,7 +125,7 @@
     border: 2px solid #ff7e00;
     border-radius: 25px;
     padding: 12px 25px;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     font-size: 16px;
     color: #333;
     cursor: pointer;
@@ -168,7 +180,7 @@
     padding: 20px;
     margin: 20px 0;
     text-align: center;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     color: #d32f2f;
 }
 
@@ -195,7 +207,7 @@
     padding: 12px 30px;
     border-radius: 25px;
     text-decoration: none;
-    font-family: 'Mikhak', sans-serif;
+    font-family: 'pelak', sans-serif;
     font-weight: bold;
     transition: all 0.3s ease;
 }

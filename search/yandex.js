@@ -1,4 +1,4 @@
-// فایل duck.js - مدیریت جستجو و اعتبارسنجی کاربر
+⁹// فایل duck.js - مدیریت جستجو و اعتبارسنجی کاربر
 
 document.addEventListener('DOMContentLoaded', function() {
     // بررسی لاگین کاربر
@@ -24,7 +24,7 @@ function checkUserLogin() {
             <div class="guest-warning">
                 <h3>⚠️ برای استفاده از جستجو باید وارد شوید</h3>
                 <p>لطفاً ابتدا در سایت ثبت‌نام کرده و وارد حساب کاربری خود شوید.</p>
-                <a href="https://rskyer.github.io/PvPPacks786/login.html" class="login-btn">
+                <a href="https://rskyer.github.io/PvPPacks/login.html" class="login-btn">
                     ورود / ثبت‌نام
                 </a>
             </div>

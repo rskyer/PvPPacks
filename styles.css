@@ -1,8 +1,20 @@
-   * {
+
+
+@font-face {
+    font-family: 'pelak';
+    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+font-family: 'pelak'; }
+body { 
+font-family: 'pelak' }
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-    font-family: 'Mehr', sans-serif;
+    font-family: 'pelak', sans-serif;
         }
 @font-face {
 font-family: 'mcbold';
@@ -46,13 +58,13 @@ font-family: 'mcbold';
         }
 
         body {
-            font-family: "Mikhak";
+            font-family: "pelak";
             line-height: 1.6;
         
       
         }
       .tro  {
-        font-family: 'Mikhak';
+        font-family: 'pelak';
         text-align: center;
         font-size: 17px;
       }
@@ -74,7 +86,7 @@ font-family: 'mcbold';
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Mikhak", "Mehr", sans-serif;
+  font-family: "pelak", "Mehr", sans-serif;
   font-size: 20px;
   font-weight: 100%;
   box-shadow: 
@@ -251,7 +263,7 @@ font-family: 'mcbold';
       #end  {
         border-radius: 30px;
         border-color: orange;
-        font-family: "Mikhak";
+        font-family: "pelak";
         background-color: #B97B1E;
         font-color: withe;
         webkit-text-fill-color: white;
@@ -262,7 +274,7 @@ font-family: 'mcbold';
 }
 
 p  {
-  font-family: "Mikhak";
+  font-family: "pelak";
 .packs-help-row {
   display: flex;
   gap: 12px;
@@ -285,7 +297,7 @@ p  {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: "Mikhak", "Mehr", sans-serif;
+  font-family: "pelak", "Mehr", sans-serif;
   font-size: 20px;
   font-weight: 700;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);

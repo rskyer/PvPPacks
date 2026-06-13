@@ -24,6 +24,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'mcbold';
+    src: url('https://rskyer.github.io/PvPPacks/fonts/Minecraft-blold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 *{
     margin:0;
@@ -122,6 +128,11 @@ body{
 }
 
 .title{
+    color:var(--title-color);
+    font-size:3rem;
+    font-weight:800;
+}
+.title-down{
     color:var(--title-color);
     font-size:3rem;
     font-weight:800;
@@ -307,7 +318,7 @@ body{
 <div class="divider"></div>
 
 </div>
-
+<h1 class="title-down">PvPPacks</h1>
 <script>
 const defaults = {
     titleColor:"#ff9d2f",

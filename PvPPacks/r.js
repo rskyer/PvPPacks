@@ -15,27 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (user && user.name) {
             // کاربر لاگین کرده → صفحه خدمات
-            window.location.href = "https://s786mc.github.io/PvPPacks/service/start.html";
+            window.location.href = "https://rskyer.github.io/PvPPacks/service/start.html";
         } else {
             // کاربر مهمان → صفحه لاگین
-            window.location.href = "https://s786mc.github.io/PvPPacks/login.html";
+            window.location.href = "https://rskyer.github.io/PvPPacks/login.html";
         }
     };
 });
 
-// تابع ساده برای نمایش کاربر
+
 function updateUserBox(box) {
     const user = JSON.parse(localStorage.getItem("pp-user") || "null");
     
     if (user && user.name) {
-        // حالت: کاربر لاگین کرده
+       
         box.innerHTML = `
             <div class="icon">👤</div>
             <div class="name">${user.name}</div>
         `;
         box.title = "${user.name} - کلیک برای خدمات";
     } else {
-        // حالت: کاربر مهمان
+       
         box.innerHTML = `
             <div class="icon">👤</div>
             <div class="name">ورود</div>
@@ -44,13 +44,13 @@ function updateUserBox(box) {
     }
 }
 
-// تابع برای به‌روزرسانی بعد از تغییرات
+
 function refreshUserDisplay() {
     const box = document.getElementById("pp-user-mini");
     if (box) updateUserBox(box);
 }
 
-// تابع کمکی برای چک کردن لاگین (اختیاری)
+
 function checkLogin() {
     const user = JSON.parse(localStorage.getItem("pp-user") || "null");
     return !!(user && user.name);

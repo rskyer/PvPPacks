@@ -1,0 +1,15 @@
+<div class="cr4">
+
+    <h3 class="cr4-title">
+        تایتل
+    </h3>
+
+    <p class="cr4-des">
+      متن
+    </p>
+
+    <a href="./VPNs.2026" class="cr4-button">
+        مشاهده
+    </a>
+
+</div>

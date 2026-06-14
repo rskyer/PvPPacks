@@ -239,3 +239,49 @@ text-align: center;
     background:rgba(255,255,255,.15);
     transform:translateY(-2px);
   }
+
+.image-frame {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.blog-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 0 3px var(--title-color),
+                0 10px 30px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.blog-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 5px var(--title-color),
+                0 15px 35px rgba(0,0,0,0.4);
+}
+
+
+.video-frame {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.blog-video {
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 0 3px var(--title-color),
+                0 10px 30px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.blog-video:hover {
+    box-shadow: 0 0 0 5px var(--title-color),
+                0 15px 35px rgba(0,0,0,0.4);
+}
+.media-title {
+    color: var(--title-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+}

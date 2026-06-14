@@ -3,261 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
-تایتل
-</title>
-  <link href="https://fonts.cdnfonts.com/css/samsungone" rel="stylesheet">
-
-<style>
-:root{
-    --title-color:#ff9d2f;
-    --bg1:#ff8c00;
-    --bg2:#ff5500;
-    --button-color:#ff7b1f;
-    --button-text-color:#ffffff;
-}
-
-
-@font-face {
-    font-family: 'pelak';
-    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'mcbold';
-    src: url('https://rskyer.github.io/PvPPacks/fonts/Minecraft-blold.otf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"pelak","SamsungOne";
-}
-
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    color:white;
-    background:
-    radial-gradient(circle at top left,var(--bg1) 0%,transparent 30%),
-    radial-gradient(circle at bottom right,var(--bg2) 0%,transparent 30%),
-    #0f0f12;
-}
-
-.menu-button{
-    position:fixed;
-    top:20px;
-    right:20px;
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:rgba(255,255,255,.1);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.15);
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    user-select:none;
-    z-index:1000;
-}
-
-.menu{
-    position:fixed;
-    top:80px;
-    right:20px;
-    width:320px;
-    padding:20px;
-    border-radius:20px;
-    background:rgba(20,20,25,.9);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.1);
-    display:none;
-    z-index:999;
-}
-
-.menu.show{
-    display:block;
-}
-
-.menu h3{
-    margin-bottom:15px;
-    color:var(--title-color);
-}
-
-.menu label{
-    display:block;
-    margin-bottom:15px;
-    font-size:13px;
-    color:#ddd;
-}
-
-.menu input[type="color"]{
-    width:100%;
-    height:45px;
-    border:none;
-    border-radius:10px;
-    margin-top:6px;
-    cursor:pointer;
-}
-
-.blog-card{
-    width:100%;
-    max-width:800px;
-
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:30px;
-
-    padding:40px;
-
-    box-shadow:
-    0 8px 32px rgba(0,0,0,.35),
-    0 0 40px rgba(255,140,0,.15);
-}
-
-.title{
-    color:var(--title-color);
-    font-size:3rem;
-    font-weight:800;
-}
-.title-down{
-    color:#ff9d2f;
-    font-size:1rem;
-    font-weight:800;
-font-family:"mcbold";
-text-align: center;
-}
-
-.subtitle{
-    color:#cfcfcf;
-    margin-top:10px;
-}
-
-.divider{
-    height:1px;
-    margin:30px 0;
-    background:linear-gradient(
-    to right,
-    transparent,
-    var(--title-color),
-    transparent);
-}
-
-.text{
-    color:#e6e6e6;
-    line-height:1.8;
-}
-
-.btn{
-    margin-top:25px;
-    display:inline-block;
-    padding:14px 28px;
-    border-radius:14px;
-    text-decoration:none;
-    background:var(--button-color);
-    color:var(--button-text-color);
-    font-weight:bold;
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-}
-
-@media(max-width:600px){
-    .title{
-        font-size:2rem;
-    }
-
-    .menu{
-        width:90%;
-        right:5%;
-    }
-}
-  .cr4{
-    margin:30px 0;
-
-    background:rgba(255,255,255,.04);
-
-    backdrop-filter:blur(30px);
-    -webkit-backdrop-filter:blur(30px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:24px;
-
-    box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 10px 30px rgba(0,0,0,.15);
-
-    transition:.3s;
-}
-
-.cr4:hover{
-    transform:translateY(-2px);
-}
-
-.cr4-title{
-    font-size:1.2rem;
-    font-weight:700;
-    color:var(--title-color);
-    margin-bottom:10px;
-}
-
-.cr4-des{
-    color:#d0d0d0;
-    line-height:1.7;
-    font-size:.95rem;
-    margin-bottom:18px;
-}
-
-.cr4-button{
-    display:inline-block;
-
-    padding:10px 18px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    color:white;
-
-    font-size:.9rem;
-    font-weight:600;
-
-    transition:.25s;
-}
-
-.cr4-button:hover{
-    background:rgba(255,255,255,.15);
-    transform:translateY(-2px);
-  }
-</style>
+<title>تایتل</title>
+<link href="https://fonts.cdnfonts.com/css/samsungone" rel="stylesheet">
+<link rel="stylesheet" href="https://rskyer.github.io/PvPPacks/b/FA.css">
 </head>
 <body>
 
 <div class="menu-button" id="menuBtn">⋮</div>
 
 <div class="menu" id="menu">
-
 <h3>◆شخصی‌سازی بلاگ◆</h3>
 
 <label>
@@ -291,139 +45,25 @@ text-align: center;
 
 <h1 class="title">تایتل</h1>
 
-<p class="subtitle">
-ساب تایتل
-</p>
+<p class="subtitle">ساب تایتل</p>
 
 <div class="divider"></div>
 
-<p class="text">
-متن یا پراگراف
-</p>
+<p class="text">متن یا پراگراف</p>
+
 <div class="cr4">
-
-    <h3 class="cr4-title">
-        تایتل کارت
-    </h3>
-
-    <p class="cr4-des">
-        دیسکریپشن  کارت
-    </p>
-
-    <a href="#" class="cr4-button">
-        دکمه کارت
-    </a>
-
+    <h3 class="cr4-title">تایتل کارت</h3>
+    <p class="cr4-des">دیسکریپشن کارت</p>
+    <a href="#" class="cr4-button">دکمه کارت</a>
 </div>
+
 <a href="#" class="btn">دکمه</a>
 
 <div class="divider"></div>
 <h1 class="title-down">PvPPacks</h1>
+
 </div>
 
-<script>
-const defaults = {
-    titleColor:"#ff9d2f",
-    bg1:"#ff8c00",
-    bg2:"#ff5500",
-    buttonColor:"#ff7b1f",
-    buttonTextColor:"#ffffff"
-};
-
-let settings =
-JSON.parse(localStorage.getItem("blogSettings"))
-|| defaults;
-
-function applySettings(){
-
-document.documentElement.style.setProperty(
-"--title-color",
-settings.titleColor
-);
-
-document.documentElement.style.setProperty(
-"--bg1",
-settings.bg1
-);
-
-document.documentElement.style.setProperty(
-"--bg2",
-settings.bg2
-);
-
-document.documentElement.style.setProperty(
-"--button-color",
-settings.buttonColor
-);
-
-document.documentElement.style.setProperty(
-"--button-text-color",
-settings.buttonTextColor
-);
-
-titleColor.value=settings.titleColor;
-bg1.value=settings.bg1;
-bg2.value=settings.bg2;
-buttonColor.value=settings.buttonColor;
-buttonTextColor.value=settings.buttonTextColor;
-}
-
-function saveSettings(){
-localStorage.setItem(
-"blogSettings",
-JSON.stringify(settings)
-);
-}
-
-applySettings();
-
-const menuBtn=document.getElementById("menuBtn");
-const menu=document.getElementById("menu");
-
-menuBtn.onclick=()=>{
-menu.classList.toggle("show");
-};
-
-titleColor.oninput=e=>{
-settings.titleColor=e.target.value;
-applySettings();
-saveSettings();
-};
-
-bg1.oninput=e=>{
-settings.bg1=e.target.value;
-applySettings();
-saveSettings();
-};
-
-bg2.oninput=e=>{
-settings.bg2=e.target.value;
-applySettings();
-saveSettings();
-};
-
-buttonColor.oninput=e=>{
-settings.buttonColor=e.target.value;
-applySettings();
-saveSettings();
-};
-
-buttonTextColor.oninput=e=>{
-settings.buttonTextColor=e.target.value;
-applySettings();
-saveSettings();
-};
-
-window.addEventListener("click",e=>{
-if(
-!menu.contains(e.target)
-&&
-!menuBtn.contains(e.target)
-){
-menu.classList.remove("show");
-}
-});
-</script>
-
+<script src="https://rskyer.github.io/PvPPacks/b/FA.js"></script>
 </body>
 </html>

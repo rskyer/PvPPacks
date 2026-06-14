@@ -285,3 +285,79 @@ text-align: center;
     margin-bottom: 15px;
     text-align: center;
 }
+/* استایل بخش عکس - رسپانسیو و داخل صفحه */
+.image-frame {
+    margin: 30px 0;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.blog-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+/* حلقه دور عکس با استفاده از outline یا border */
+.blog-image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.blog-image-wrapper.has-border {
+    box-shadow: 0 0 0 3px var(--title-color);
+    border-radius: 24px;
+}
+
+.blog-image-wrapper.has-border:hover {
+    box-shadow: 0 0 0 5px var(--title-color);
+}
+
+/* استایل ویدیو - با رنگ تایتل */
+.video-frame {
+    margin: 30px 0;
+    width: 100%;
+    border-radius: 24px;
+}
+
+.blog-video {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+/* حلقه دور ویدیو */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.video-wrapper.has-border {
+    box-shadow: 0 0 0 3px var(--title-color);
+    border-radius: 24px;
+}
+
+.video-wrapper.has-border:hover {
+    box-shadow: 0 0 0 5px var(--title-color);
+}
+
+/* عنوان بخش‌ها */
+.media-title {
+    color: var(--title-color);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: right;
+    font-weight: 600;
+}

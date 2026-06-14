@@ -129,3 +129,44 @@ applySettings = function() {
 };
 
 updateMediaBorders();
+// آپدیت رنگ دور عکس و ویدیو با رنگ تایتل
+function updateMediaBorders() {
+    const titleColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--title-color').trim();
+    
+    // آپدیت عکس‌ها
+    const imageWrappers = document.querySelectorAll('.blog-image-wrapper');
+    imageWrappers.forEach(wrapper => {
+        wrapper.style.boxShadow = `0 0 0 3px ${titleColor}`;
+        wrapper.addEventListener('mouseenter', function() {
+            this.style.boxShadow = `0 0 0 5px ${titleColor}`;
+        });
+        wrapper.addEventListener('mouseleave', function() {
+            this.style.boxShadow = `0 0 0 3px ${titleColor}`;
+        });
+    });
+    
+    // آپدیت ویدیوها
+    const videoWrappers = document.querySelectorAll('.video-wrapper');
+    videoWrappers.forEach(wrapper => {
+        wrapper.style.boxShadow = `0 0 0 3px ${titleColor}`;
+        wrapper.addEventListener('mouseenter', function() {
+            this.style.boxShadow = `0 0 0 5px ${titleColor}`;
+        });
+        wrapper.addEventListener('mouseleave', function() {
+            this.style.boxShadow = `0 0 0 3px ${titleColor}`;
+        });
+    });
+}
+
+// ترکیب با تابع applySettings قبلی
+const originalApplySettings = window.applySettings || function() {};
+window.applySettings = function() {
+    if (originalApplySettings) originalApplySettings();
+    updateMediaBorders();
+};
+
+// فراخوانی اولیه
+if (typeof updateMediaBorders === 'function') {
+    updateMediaBorders();
+}

@@ -92,3 +92,40 @@ window.addEventListener("click", e => {
         menu.classList.remove("show");
     }
 });
+
+function updateMediaBorders() {
+    const titleColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--title-color').trim();
+    
+    const images = document.querySelectorAll('.blog-image');
+    const videos = document.querySelectorAll('.blog-video');
+    
+    images.forEach(img => {
+        img.style.boxShadow = `0 0 0 3px ${titleColor}, 0 10px 30px rgba(0,0,0,0.3)`;
+        img.addEventListener('mouseenter', function() {
+            this.style.boxShadow = `0 0 0 5px ${titleColor}, 0 15px 35px rgba(0,0,0,0.4)`;
+        });
+        img.addEventListener('mouseleave', function() {
+            this.style.boxShadow = `0 0 0 3px ${titleColor}, 0 10px 30px rgba(0,0,0,0.3)`;
+        });
+    });
+    
+    videos.forEach(video => {
+        video.style.boxShadow = `0 0 0 3px ${titleColor}, 0 10px 30px rgba(0,0,0,0.3)`;
+        video.addEventListener('mouseenter', function() {
+            this.style.boxShadow = `0 0 0 5px ${titleColor}, 0 15px 35px rgba(0,0,0,0.4)`;
+        });
+        video.addEventListener('mouseleave', function() {
+            this.style.boxShadow = `0 0 0 3px ${titleColor}, 0 10px 30px rgba(0,0,0,0.3)`;
+        });
+    });
+}
+
+
+const originalApplySettings = applySettings;
+applySettings = function() {
+    originalApplySettings();
+    updateMediaBorders();
+};
+
+updateMediaBorders();

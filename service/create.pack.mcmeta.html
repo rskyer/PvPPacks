@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pack.mcmeta Generator</title>
+
+<style>
+@font-face{
+  font-family:"Minecraft";
+  src:url("https://rskyer.github.io/PvPPacks/fonts/Minecraft-blold.otf") format("opentype");
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Minecraft",sans-serif}
+body{
+ min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff;
+ background:
+ radial-gradient(circle at top right,#ff9d0025,transparent 40%),
+ radial-gradient(circle at bottom left,#ff6b0020,transparent 40%),#090909;
+}
+.container{
+ width:100%;max-width:820px;padding:28px;border-radius:28px;
+ background:rgba(255,255,255,.08);
+ backdrop-filter:blur(22px);
+ border:1px solid rgba(255,255,255,.12);
+}
+h1{text-align:center;margin-bottom:8px}
+.sub{text-align:center;color:#bbb;margin-bottom:22px}
+label{display:block;margin:12px 0 6px}
+input,textarea{
+ width:100%;padding:14px;border-radius:14px;
+ background:rgba(255,255,255,.05);color:#fff;
+ border:1px solid rgba(255,255,255,.12);
+}
+textarea{min-height:110px}
+.preview-title{margin:18px 0 10px}
+.mc-card{
+ display:flex;gap:14px;align-items:center;
+ background:#2b2b2b;border:2px solid #555;padding:12px;border-radius:12px;
+}
+.mc-icon{width:64px;height:64px;image-rendering:pixelated}
+.mc-name{font-size:18px}
+.mc-desc{font-size:14px;color:#aaa;margin-top:4px}
+.buttons{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+button{
+ flex:1;padding:14px;border:none;border-radius:14px;color:#fff;cursor:pointer;
+}
+.primary{background:linear-gradient(135deg,#ff9d00,#ff6b00)}
+.secondary{background:rgba(255,255,255,.08)}
+pre{
+ margin-top:16px;background:#050505;padding:14px;border-radius:14px;
+ color:#55ff55;white-space:pre-wrap
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>pack.mcmeta Generator</h1>
+<div class="sub">Minecraft Java 1.8.8</div>
+
+<label>Pack Name (Preview only)</label>
+<input id="packName" placeholder="§cSkyer §6PvP §ePack">
+
+<label>Description</label>
+<textarea id="description" placeholder="§7Best PvP Experience"></textarea>
+
+<div class="preview-title">Minecraft Preview</div>
+<div class="mc-card">
+<img class="mc-icon" src="https://rskyer.github.io/PvPPacks/image/icon.png">
+<div>
+<div id="previewTitle" class="mc-name">Resource Pack</div>
+<div id="previewDesc" class="mc-desc">Description...</div>
+</div>
+</div>
+
+<div class="buttons">
+<button class="primary" onclick="downloadMcmeta()">Download pack.mcmeta</button>
+<button class="secondary" onclick="copyJson()">Copy JSON</button>
+</div>
+
+</div>
+
+<script>
+const nameEl=document.getElementById("packName");
+const descEl=document.getElementById("description");
+
+function mcColor(t){
+ const c={0:"#000",1:"#00A",2:"#0A0",3:"#0AA",4:"#A00",5:"#A0A",6:"#FA0",7:"#AAA",8:"#555",9:"#55F",a:"#5F5",b:"#5FF",c:"#F55",d:"#F5F",e:"#FF5",f:"#FFF"};
+ let col="#FFF",out="";
+ for(let i=0;i<t.length;i++){
+   if(t[i]=="§"&&i+1<t.length&&c[t[i+1].toLowerCase()]){col=c[t[++i].toLowerCase()];continue;}
+   out+=`<span style="color:${col}">${t[i].replace(/</g,"&lt;")}</span>`;
+ }
+ return out;
+}
+
+function getJson(){
+ return {pack:{pack_format:1,description:descEl.value.trim()||"Resource Pack"}};
+}
+
+function updatePreview(){
+ document.getElementById("previewTitle").innerHTML=mcColor(nameEl.value||"Resource Pack");
+ document.getElementById("previewDesc").innerHTML=mcColor(descEl.value||"Description...");
+ document.getElementById("jsonPreview").textContent=JSON.stringify(getJson(),null,2);
+}
+
+function downloadMcmeta(){
+ const blob=new Blob([JSON.stringify(getJson(),null,2)],{type:"application/json"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="pack.mcmeta";
+ a.click();
+}
+
+async function copyJson(){
+ await navigator.clipboard.writeText(JSON.stringify(getJson(),null,2));
+ alert("Copied!");
+}
+
+nameEl.addEventListener("input",updatePreview);
+descEl.addEventListener("input",updatePreview);
+updatePreview();
+</script>
+</body>
+  </html>

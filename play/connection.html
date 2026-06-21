@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اتصال به سرور | FriendsPvP</title>
+
+<link rel="stylesheet" href="https://rskyer.github.io/PvPPacks/play/all.css">
+
+<style>
+
+.connect{
+    max-width:900px;
+    margin:auto;
+    padding:50px 15px;
+}
+
+.server-card{
+    text-align:center;
+}
+
+.ip-box{
+    margin:25px 0;
+    padding:18px;
+    border-radius:20px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.ip-title{
+    opacity:.8;
+    margin-bottom:10px;
+}
+
+.ip{
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.btn{
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:18px;
+    font-size:1rem;
+}
+
+.btn-main{
+    background:linear-gradient(135deg,#ff9f1c,#ff6b00);
+    color:white;
+}
+
+.btn-copy{
+    background:rgba(255,255,255,.08);
+    color:white;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.server-status{
+    margin-top:25px;
+    display:inline-block;
+    padding:14px 20px;
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.note{
+    margin-top:20px;
+    opacity:.8;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+<div class="container navbar">
+
+<div class="brand">
+<img
+src="https://rskyer.github.io/PvPPacks/image/server_icon.png"
+alt="FriendsPvP">
+
+<h1>FriendsPvP</h1>
+</div>
+
+<nav class="menu">
+<a href="index.html">صفحه اصلی</a>
+<a href="rules.html">قوانین</a>
+<a href="learn.html">یادگیری</a>
+<a href="connection.html">اتصال</a>
+</nav>
+
+</div>
+</header>
+
+<section class="connect">
+
+<div class="card server-card">
+
+<h2 class="section-title">
+🎮 اتصال به سرور
+</h2>
+
+<div class="ip-box">
+
+<div class="ip-title">
+آدرس سرور جاوا
+</div>
+
+<div class="ip">
+FriendsPVPMC.aternos.me:39971
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="btn btn-main"
+onclick="joinBedrock()">
+📱 ورود خودکار به سرور بدراک
+</button>
+
+<button class="btn btn-copy"
+onclick="copyIP()">
+📋 کپی IP
+</button>
+
+</div>
+
+<div id="serverStatus" class="server-status">
+درحال بررسی وضعیت سرور...
+</div>
+
+<div class="note">
+وضعیت سرور هر ۳۰ ثانیه بروزرسانی می‌شود.
+</div>
+
+</div>
+
+</section>
+
+<footer>
+PvPPacks 2026 COPYRIGHT
+</footer>
+
+<script>
+
+function copyIP(){
+
+navigator.clipboard.writeText(
+"FriendsPVPMC.aternos.me:39971"
+);
+
+alert("IP کپی شد.");
+}
+
+function joinBedrock(){
+
+window.location.href =
+"minecraft://?addExternalServer=FriendsPvP|FriendsPVPMC.aternos.me:39971";
+
+}
+
+async function checkServer(){
+
+const box =
+document.getElementById("serverStatus");
+
+try{
+
+const response = await fetch(
+"https://api.mcsrvstat.us/3/FriendsPVPMC.aternos.me:39971"
+);
+
+const data = await response.json();
+
+if(data.online){
+
+box.innerHTML =
+"🟢 سرور آنلاین<br>👥 بازیکنان: "
++ data.players.online +
+"/" +
+data.players.max;
+
+}else{
+
+box.innerHTML =
+"🔴 سرور آفلاین";
+
+}
+
+}catch{
+
+box.innerHTML =
+"⚠️ خطا در دریافت وضعیت سرور";
+
+}
+
+}
+
+checkServer();
+
+setInterval(
+checkServer,
+30000
+);
+
+</script>
+
+</body>
+</html>

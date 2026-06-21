@@ -1,0 +1,260 @@
+@font-face{
+    font-family:"Pelak";
+    src:url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf") format("truetype");
+}
+
+@font-face{
+    font-family:"Minecraft";
+    src:url("https://rskyer.github.io/PvPPacks/fonts/Minecraft-blold.otf") format("opentype");
+}
+
+:root{
+    --orange:#ff9f1c;
+    --orange2:#ff6b00;
+    --bg:#0f172a;
+    --card:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.12);
+    --text:#ffffff;
+    --muted:#cfcfcf;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Pelak",sans-serif;
+    color:var(--text);
+    background:
+    radial-gradient(circle at top right,#ff7b0030,transparent 35%),
+    radial-gradient(circle at bottom left,#ffae0030,transparent 35%),
+    linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+}
+
+.container{
+    width:min(1150px,95%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(20px);
+    background:rgba(0,0,0,.25);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    height:85px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.brand img{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+    border-radius:16px;
+    box-shadow:0 0 25px rgba(255,153,0,.4);
+}
+
+.brand h1{
+    font-family:"Minecraft",sans-serif;
+    font-size:1.3rem;
+    letter-spacing:1px;
+}
+
+.menu{
+    display:flex;
+    gap:25px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    transition:.25s;
+    font-size:1rem;
+}
+
+.menu a:hover{
+    color:var(--orange);
+}
+
+/* HERO */
+
+.hero{
+    padding:90px 20px 70px;
+    text-align:center;
+}
+
+.hero h2{
+    font-family:"Minecraft",sans-serif;
+    font-size:3rem;
+    margin-bottom:15px;
+    color:white;
+    text-shadow:0 0 25px rgba(255,170,0,.4);
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:var(--muted);
+    line-height:2;
+    font-size:1.05rem;
+}
+
+.buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.btn{
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+    padding:14px 24px;
+    border-radius:18px;
+    font-size:1rem;
+    transition:.25s;
+    font-family:"Pelak",sans-serif;
+}
+
+.btn-main{
+    background:linear-gradient(135deg,var(--orange),var(--orange2));
+    box-shadow:0 10px 30px rgba(255,136,0,.35);
+}
+
+.btn-main:hover{
+    transform:translateY(-3px);
+}
+
+.btn-glass{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    border:1px solid var(--border);
+}
+
+.btn-glass:hover{
+    background:rgba(255,255,255,.12);
+}
+
+.ip-box{
+    margin-top:20px;
+    display:none;
+    padding:14px 22px;
+    border-radius:16px;
+    background:var(--card);
+    border:1px solid var(--border);
+    font-family:"Minecraft",sans-serif;
+}
+
+/* FAQ */
+
+.section{
+    padding:20px 0 70px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+.faq{
+    display:grid;
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:25px;
+}
+
+.card h3{
+    color:#ffb347;
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.card p{
+    line-height:2;
+    color:#ddd;
+}
+
+.command{
+    display:inline-block;
+    background:#00000055;
+    padding:6px 10px;
+    border-radius:10px;
+    margin:5px 0;
+    direction:ltr;
+    font-family:"Minecraft",sans-serif;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    border-top:1px solid var(--border);
+    color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    height:auto;
+    gap:15px;
+    padding:15px 0;
+}
+
+.menu{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero h2{
+    font-size:2rem;
+}
+
+.brand h1{
+    font-size:1rem;
+}
+
+}
+  .server-status{
+    margin-top:25px;
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    font-size:1rem;
+      }

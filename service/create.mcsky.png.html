@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sky Converter</title>
+
+<link href="https://fonts.cdnfonts.com/css/samsungone" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<style>
+:root{
+    --glass: rgba(255,255,255,.08);
+    --border: rgba(255,255,255,.15);
+    --text: #ffffff;
+    --accent: #7d8cff;
+    --accent2: #6be0ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'SamsungOne',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:var(--text);
+
+    background:
+    radial-gradient(circle at top left,#6b6eff55,transparent 40%),
+    radial-gradient(circle at bottom right,#00d0ff33,transparent 40%),
+    linear-gradient(135deg,#090b16,#101728,#131b31);
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    backdrop-filter:blur(30px);
+    pointer-events:none;
+}
+
+.card{
+    width:min(700px,92vw);
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:28px;
+    backdrop-filter:blur(20px);
+    box-shadow:
+    0 0 40px rgba(0,0,0,.3),
+    0 0 60px rgba(100,130,255,.15);
+}
+
+.title{
+    font-size:32px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    opacity:.75;
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.mode-select{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.mode{
+    border:none;
+    cursor:pointer;
+    padding:14px;
+    border-radius:18px;
+    color:white;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.25s;
+}
+
+.mode.active{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+}
+
+.dropzone{
+    border:2px dashed rgba(255,255,255,.18);
+    border-radius:24px;
+    min-height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    cursor:pointer;
+    transition:.25s;
+    background:rgba(255,255,255,.03);
+}
+
+.dropzone:hover{
+    border-color:var(--accent2);
+    transform:translateY(-2px);
+}
+
+.dropzone.drag{
+    border-color:#fff;
+    background:rgba(255,255,255,.08);
+}
+
+input{
+    display:none;
+}
+
+.info{
+    margin-top:16px;
+    text-align:center;
+    opacity:.8;
+}
+
+.convert{
+    margin-top:20px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:18px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:700;
+    background:linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent2)
+    );
+}
+
+.convert:hover{
+    filter:brightness(1.1);
+}
+.backBtn{
+    margin-top:20px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:18px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:700;
+    background:linear-gradient(
+        
+    );
+}
+
+.backBtn:hover{
+    filter:brightness(1.1);
+                         }
+
+.status{
+    margin-top:18px;
+    text-align:center;
+    font-weight:600;
+}
+
+.footer{
+    margin-top:20px;
+    text-align:center;
+    opacity:.5;
+    font-size:12px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+    <div class="title">Sky Converter</div>
+    <div class="subtitle">
+        Java ↔ Bedrock Sky Converter
+    </div>
+
+    <div class="mode-select">
+        <button class="mode active" id="javaBtn">
+            Java → Bedrock ZIP
+        </button>
+
+        <button class="mode" id="bedrockBtn">
+            Bedrock → Java PNG
+        </button>
+    </div>
+
+    <label class="dropzone" id="dropzone">
+        <div>
+            Drop files here<br>
+            or click to select
+        </div>
+    </label>
+
+    <input type="file" id="fileInput">
+
+    <div class="info" id="info">
+        Select a Java sky PNG
+    </div>
+
+    <button class="convert" id="convertBtn">
+        Convert
+    </button><br><br>
+<a href="../index" class="backBtn">Back to Main Page</a>
+    <div class="status" id="status"></div>
+
+    <div class="footer">
+        PvPPacks 2026 C.
+    </div>
+
+</div>
+
+<script>
+let mode="java";
+let selectedFiles=[];
+
+const dropzone=document.getElementById("dropzone");
+const fileInput=document.getElementById("fileInput");
+const statusEl=document.getElementById("status");
+const info=document.getElementById("info");
+
+const javaBtn=document.getElementById("javaBtn");
+const bedrockBtn=document.getElementById("bedrockBtn");
+
+javaBtn.onclick=()=>{
+    mode="java";
+
+    javaBtn.classList.add("active");
+    bedrockBtn.classList.remove("active");
+
+    fileInput.multiple=false;
+    fileInput.accept=".png";
+
+    info.textContent="Select a Java sky PNG";
+};
+
+bedrockBtn.onclick=()=>{
+    mode="bedrock";
+
+    bedrockBtn.classList.add("active");
+    javaBtn.classList.remove("active");
+
+    fileInput.multiple=true;
+    fileInput.accept=".png";
+
+    info.textContent="Select 6 cubemap PNG files";
+};
+
+dropzone.onclick=()=>{
+    fileInput.click();
+};
+
+fileInput.onchange=(e)=>{
+    selectedFiles=[...e.target.files];
+    info.textContent=
+        selectedFiles.length+" file(s) selected";
+};
+
+dropzone.addEventListener("dragover",e=>{
+    e.preventDefault();
+    dropzone.classList.add("drag");
+});
+
+dropzone.addEventListener("dragleave",()=>{
+    dropzone.classList.remove("drag");
+});
+
+dropzone.addEventListener("drop",e=>{
+    e.preventDefault();
+
+    dropzone.classList.remove("drag");
+
+    selectedFiles=[...e.dataTransfer.files];
+
+    info.textContent=
+        selectedFiles.length+" file(s) selected";
+});
+
+function uuid(){
+    return crypto.randomUUID().slice(0,8);
+}
+
+function loadImage(file){
+    return new Promise(resolve=>{
+        const img=new Image();
+
+        img.onload=()=>resolve(img);
+
+        img.src=URL.createObjectURL(file);
+    });
+}
+
+function canvasToBlob(canvas){
+    return new Promise(resolve=>{
+        canvas.toBlob(resolve,"image/png");
+    });
+}
+
+document.getElementById("convertBtn").onclick=async()=>{
+
+    try{
+
+        statusEl.textContent="Processing...";
+
+        if(mode==="java"){
+
+            if(selectedFiles.length!==1){
+                throw "Select one Java PNG.";
+            }
+
+            const img=
+            await loadImage(selectedFiles[0]);
+
+            const partW=img.width/3;
+            const partH=img.height/2;
+
+            if(partW!==partH){
+                throw "Invalid Java Sky Layout";
+            }
+
+            const zip=new JSZip();
+
+            let index=0;
+
+            for(let y=0;y<2;y++){
+
+                for(let x=0;x<3;x++){
+
+                    const c=document.createElement("canvas");
+
+                    c.width=partW;
+                    c.height=partH;
+
+                    const ctx=c.getContext("2d");
+
+                    ctx.drawImage(
+                        img,
+                        x*partW,
+                        y*partH,
+                        partW,
+                        partH,
+                        0,
+                        0,
+                        partW,
+                        partH
+                    );
+
+                    const blob=
+                    await canvasToBlob(c);
+
+                    zip.file(
+                        `cubemap_${index}.png`,
+                        blob
+                    );
+
+                    index++;
+                }
+            }
+
+            const out=
+            await zip.generateAsync({
+                type:"blob"
+            });
+
+            saveAs(
+                out,
+                selectedFiles[0].name.replace(
+                    ".png",
+                    ""
+                )+
+                "-"+
+                uuid()+
+                ".zip"
+            );
+
+            statusEl.textContent=
+            "ZIP created successfully!";
+        }
+
+        else{
+
+            if(selectedFiles.length!==6){
+                throw "Select exactly 6 cubemap files.";
+            }
+
+            const imgs=
+            await Promise.all(
+                selectedFiles.map(loadImage)
+            );
+
+            const size=imgs[0].width;
+
+            const canvas=
+            document.createElement("canvas");
+
+            canvas.width=size*3;
+            canvas.height=size*2;
+
+            const ctx=
+            canvas.getContext("2d");
+
+            for(let i=0;i<6;i++){
+
+                const x=(i%3)*size;
+                const y=Math.floor(i/3)*size;
+
+                ctx.drawImage(
+                    imgs[i],
+                    x,
+                    y,
+                    size,
+                    size
+                );
+            }
+
+            const blob=
+            await canvasToBlob(canvas);
+
+            saveAs(
+                blob,
+                "sky-"+uuid()+".png"
+            );
+
+            statusEl.textContent=
+            "PNG created successfully!";
+        }
+
+    }catch(err){
+
+        statusEl.textContent=
+        "Error: "+err;
+    }
+};
+</script>
+
+</body>
+</html>

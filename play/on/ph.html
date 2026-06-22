@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1,user-scalable=no">
+
+<title>Minecraft Lite v3</title>
+
+<style>
+html,body{
+margin:0;
+padding:0;
+overflow:hidden;
+background:#000;
+touch-action:none;
+}
+
+canvas{
+display:block;
+}
+
+#fps{
+position:fixed;
+top:10px;
+left:10px;
+color:white;
+font-family:monospace;
+font-size:18px;
+z-index:999;
+text-shadow:0 0 5px black;
+}
+
+#crosshair{
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+color:white;
+font-size:30px;
+font-weight:bold;
+z-index:999;
+pointer-events:none;
+}
+
+.btn{
+position:fixed;
+width:70px;
+height:70px;
+background:rgba(255,255,255,.25);
+border:1px solid rgba(255,255,255,.5);
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:28px;
+font-weight:bold;
+user-select:none;
+z-index:999;
+}
+
+#forward{
+left:90px;
+bottom:150px;
+}
+
+#back{
+left:90px;
+bottom:0;
+}
+
+#left{
+left:10px;
+bottom:75px;
+}
+
+#right{
+left:170px;
+bottom:75px;
+}
+
+#jump{
+right:20px;
+bottom:90px;
+width:90px;
+height:90px;
+border-radius:50%;
+}
+
+#break{
+right:120px;
+bottom:10px;
+width:90px;
+}
+
+#place{
+right:220px;
+bottom:10px;
+width:90px;
+}
+
+#hotbar{
+position:fixed;
+bottom:5px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:4px;
+z-index:999;
+}
+
+.slot{
+width:48px;
+height:48px;
+border:2px solid #888;
+background:#222;
+background-size:cover;
+background-position:center;
+}
+
+.slot.selected{
+border-color:yellow;
+box-shadow:0 0 10px yellow;
+}
+</style>
+</head>
+<body>
+
+<div id="fps">FPS: 0</div>
+
+<div id="crosshair">+</div>
+
+<div id="forward" class="btn">↑</div>
+<div id="back" class="btn">↓</div>
+<div id="left" class="btn">←</div>
+<div id="right" class="btn">→</div>
+
+<div id="jump" class="btn">J</div>
+
+<div id="break" class="btn">⛏</div>
+<div id="place" class="btn">+</div>
+
+<div id="hotbar"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x87CEEB);
+
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+500
+);
+
+const renderer = new THREE.WebGLRenderer({
+antialias:false,
+powerPreference:"high-performance"
+});
+
+renderer.setSize(
+window.innerWidth,
+window.innerHeight
+);
+
+document.body.appendChild(
+renderer.domElement
+);
+
+scene.add(
+new THREE.AmbientLight(
+0xffffff,
+0.8
+)
+);
+
+const sun =
+new THREE.DirectionalLight(
+0xffffff,
+1
+);
+
+sun.position.set(
+20,
+40,
+20
+);
+
+scene.add(sun);
+
+const texturePath =
+"https://rskyer.github.io/PvPPacks/play/textures/";
+
+const loader =
+new THREE.TextureLoader();
+
+function loadTex(name){
+
+const tex =
+loader.load(
+texturePath + name
+);
+
+tex.magFilter =
+THREE.NearestFilter;
+
+tex.minFilter =
+THREE.NearestFilter;
+
+return tex;
+
+}
+
+const TEX = {
+
+grass_top:
+loadTex("grass_top.png"),
+
+grass_side:
+loadTex("grass_side.png"),
+
+dirt:
+loadTex("dirt.png"),
+
+sand:
+loadTex("sand.png"),
+
+wood:
+loadTex("oak_wood.png"),
+
+leaves:
+loadTex("g.png"),
+
+stone:
+loadTex("stone.png")
+
+};
+
+const materials = {
+
+grass:[
+new THREE.MeshLambertMaterial({
+map:TEX.grass_side
+}),
+new THREE.MeshLambertMaterial({
+map:TEX.grass_side
+}),
+new THREE.MeshLambertMaterial({
+map:TEX.grass_top
+}),
+new THREE.MeshLambertMaterial({
+map:TEX.dirt
+}),
+new THREE.MeshLambertMaterial({
+map:TEX.grass_side
+}),
+new THREE.MeshLambertMaterial({
+map:TEX.grass_side
+})
+],
+
+dirt:new THREE.MeshLambertMaterial({
+map:TEX.dirt
+}),
+
+sand:new THREE.MeshLambertMaterial({
+map:TEX.sand
+}),
+
+wood:new THREE.MeshLambertMaterial({
+map:TEX.wood
+}),
+
+leaves:new THREE.MeshLambertMaterial({
+map:TEX.leaves
+}),
+
+stone:new THREE.MeshLambertMaterial({
+map:TEX.stone
+})
+
+};
+
+const blockGeo =
+new THREE.BoxGeometry(
+1,1,1
+);
+
+const blocks = [];
+
+function createBlock(
+x,y,z,type
+){
+
+let mat;
+
+if(type==="grass"){
+mat=materials.grass;
+}else{
+mat=materials[type];
+}
+
+const mesh =
+new THREE.Mesh(
+blockGeo,
+mat
+);
+
+mesh.position.set(
+x,y,z
+);
+
+mesh.userData.type =
+type;
+
+scene.add(mesh);
+
+blocks.push(mesh);
+
+return mesh;
+}
+
+/*
+==========================
+16x16 CHUNK
+==========================
+*/
+
+for(
+let x=0;
+x<16;
+x++
+){
+
+for(
+let z=0;
+z<16;
+z++
+){
+
+createBlock(
+x,
+0,
+z,
+"grass"
+);
+
+createBlock(
+x,
+-1,
+z,
+"dirt"
+);
+
+}
+
+}
+
+/*
+==========================
+TREE
+==========================
+*/
+
+for(
+let y=1;
+y<5;
+y++
+){
+
+createBlock(
+8,
+y,
+8,
+"wood"
+);
+
+}
+
+for(
+let x=7;
+x<=9;
+x++
+){
+
+for(
+let y=4;
+y<=6;
+y++
+){
+
+for(
+let z=7;
+z<=9;
+z++
+){
+
+createBlock(
+x,
+y,
+z,
+"leaves"
+);
+
+}
+
+}
+
+}
+
+/*
+==========================
+STONE HILL
+==========================
+*/
+
+for(
+let x=2;
+x<5;
+x++
+){
+
+for(
+let z=2;
+z<5;
+z++
+){
+
+createBlock(
+x,
+1,
+z,
+"stone"
+);
+
+}
+
+}
+
+camera.position.set(
+8,
+2,
+20
+);
+
+let yaw =
+Math.PI;
+
+let pitch = 0;
+
+let velY = 0;
+
+let onGround = true;
+/*
+==========================
+MOVEMENT
+==========================
+*/
+
+const move = {
+forward:false,
+back:false,
+left:false,
+right:false
+};
+
+function bindButton(
+id,
+key
+){
+
+const btn =
+document.getElementById(id);
+
+btn.addEventListener(
+"touchstart",
+e=>{
+e.preventDefault();
+move[key]=true;
+}
+);
+
+btn.addEventListener(
+"touchend",
+e=>{
+e.preventDefault();
+move[key]=false;
+}
+);
+
+}
+
+bindButton(
+"forward",
+"forward"
+);
+
+bindButton(
+"back",
+"back"
+);
+
+bindButton(
+"left",
+"left"
+);
+
+bindButton(
+"right",
+"right"
+);
+
+/*
+==========================
+JUMP
+==========================
+*/
+
+document
+.getElementById("jump")
+.addEventListener(
+"touchstart",
+e=>{
+
+e.preventDefault();
+
+if(onGround){
+
+velY = 0.18;
+
+onGround = false;
+
+}
+
+}
+);
+
+/*
+==========================
+LOOK
+==========================
+*/
+
+let dragging =
+false;
+
+let lastX = 0;
+let lastY = 0;
+
+renderer.domElement
+.addEventListener(
+"touchstart",
+e=>{
+
+dragging=true;
+
+lastX=
+e.touches[0].clientX;
+
+lastY=
+e.touches[0].clientY;
+
+}
+);
+
+renderer.domElement
+.addEventListener(
+"touchmove",
+e=>{
+
+if(!dragging)
+return;
+
+const dx =
+e.touches[0].clientX
+-
+lastX;
+
+const dy =
+e.touches[0].clientY
+-
+lastY;
+
+lastX =
+e.touches[0].clientX;
+
+lastY =
+e.touches[0].clientY;
+
+yaw -= dx*0.005;
+
+pitch -= dy*0.005;
+
+pitch =
+Math.max(
+-1.4,
+Math.min(
+1.4,
+pitch
+)
+);
+
+}
+);
+
+renderer.domElement
+.addEventListener(
+"touchend",
+()=>{
+dragging=false;
+}
+);
+
+/*
+==========================
+FPS COUNTER
+==========================
+*/
+
+let fpsFrames = 0;
+
+let fpsTime =
+performance.now();
+
+function updateFPS(){
+
+fpsFrames++;
+
+const now =
+performance.now();
+
+if(
+now-fpsTime
+>=1000
+){
+
+document
+.getElementById("fps")
+.textContent =
+"FPS: "
++
+fpsFrames;
+
+fpsFrames=0;
+
+fpsTime=now;
+
+}
+
+}
+
+/*
+==========================
+PLAYER UPDATE
+==========================
+*/
+
+function updatePlayer(){
+
+const speed =
+0.09;
+
+/*
+Forward fixed
+(previous bug fixed)
+*/
+
+const fx =
+-Math.sin(yaw);
+
+const fz =
+-Math.cos(yaw);
+
+if(move.forward){
+
+camera.position.x +=
+fx*speed;
+
+camera.position.z +=
+fz*speed;
+
+}
+
+if(move.back){
+
+camera.position.x -=
+fx*speed;
+
+camera.position.z -=
+fz*speed;
+
+}
+
+if(move.left){
+
+camera.position.x +=
+Math.sin(
+yaw-Math.PI/2
+)
+*
+speed;
+
+camera.position.z +=
+Math.cos(
+yaw-Math.PI/2
+)
+*
+speed;
+
+}
+
+if(move.right){
+
+camera.position.x +=
+Math.sin(
+yaw+Math.PI/2
+)
+*
+speed;
+
+camera.position.z +=
+Math.cos(
+yaw+Math.PI/2
+)
+*
+speed;
+
+}
+
+/*
+Gravity
+*/
+
+velY -= 0.01;
+
+camera.position.y +=
+velY;
+
+if(
+camera.position.y < 2
+){
+
+camera.position.y=2;
+
+velY=0;
+
+onGround=true;
+
+}
+
+camera.rotation.order =
+"YXZ";
+
+camera.rotation.y =
+yaw;
+
+camera.rotation.x =
+pitch;
+
+}
+/*
+==========================
+HOTBAR
+==========================
+*/
+
+const hotbar = [
+"grass",
+"dirt",
+"sand",
+"wood",
+"leaves",
+"stone"
+];
+
+let selectedBlock =
+"grass";
+
+const hotbarDiv =
+document.getElementById(
+"hotbar"
+);
+
+hotbar.forEach(
+(block,index)=>{
+
+const slot =
+document.createElement(
+"div"
+);
+
+slot.className =
+"slot";
+
+if(index===0){
+slot.classList.add(
+"selected"
+);
+}
+
+let img="";
+
+switch(block){
+
+case "grass":
+img="grass_top.png";
+break;
+
+case "wood":
+img="oak_wood.png";
+break;
+
+case "leaves":
+img="g.png";
+break;
+
+default:
+img=
+block+".png";
+
+}
+
+slot.style.backgroundImage =
+`url(${texturePath}${img})`;
+
+slot.addEventListener(
+"click",
+()=>{
+
+selectedBlock=
+block;
+
+document
+.querySelectorAll(
+".slot"
+)
+.forEach(
+s=>
+s.classList.remove(
+"selected"
+)
+);
+
+slot.classList.add(
+"selected"
+);
+
+}
+);
+
+hotbarDiv.appendChild(
+slot
+);
+
+}
+);
+
+/*
+==========================
+RAYCAST
+==========================
+*/
+
+const raycaster =
+new THREE.Raycaster();
+
+function getTargetBlock(){
+
+raycaster.setFromCamera(
+new THREE.Vector2(
+0,
+0
+),
+camera
+);
+
+const hits =
+raycaster.intersectObjects(
+blocks
+);
+
+if(
+hits.length>0
+){
+return hits[0];
+}
+
+return null;
+
+}
+
+/*
+==========================
+BREAK BLOCK
+==========================
+*/
+
+document
+.getElementById(
+"break"
+)
+.addEventListener(
+"click",
+()=>{
+
+const hit =
+getTargetBlock();
+
+if(!hit)
+return;
+
+scene.remove(
+hit.object
+);
+
+const index =
+blocks.indexOf(
+hit.object
+);
+
+if(index!==-1){
+
+blocks.splice(
+index,
+1
+);
+
+}
+
+}
+);
+
+/*
+==========================
+PLACE BLOCK
+==========================
+*/
+
+document
+.getElementById(
+"place"
+)
+.addEventListener(
+"click",
+()=>{
+
+const hit =
+getTargetBlock();
+
+if(!hit)
+return;
+
+const pos =
+hit.object.position
+.clone()
+.add(
+hit.face.normal
+);
+
+createBlock(
+
+Math.round(pos.x),
+Math.round(pos.y),
+Math.round(pos.z),
+
+selectedBlock
+
+);
+
+}
+);
+
+/*
+==========================
+WINDOW RESIZE
+==========================
+*/
+
+window.addEventListener(
+"resize",
+()=>{
+
+camera.aspect =
+window.innerWidth
+/
+window.innerHeight;
+
+camera.updateProjectionMatrix();
+
+renderer.setSize(
+window.innerWidth,
+window.innerHeight
+);
+
+}
+);
+
+/*
+==========================
+GAME LOOP
+==========================
+*/
+
+function animate(){
+
+requestAnimationFrame(
+animate
+);
+
+updatePlayer();
+
+updateFPS();
+
+renderer.render(
+scene,
+camera
+);
+
+}
+
+animate();
+
+</script>
+</body>
+</html>

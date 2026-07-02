@@ -1,1 +1,31 @@
-هرکی اینو میبینی باید بگم زوری اینو نوشتم تو ایرانم نت قطعه
+<!DOCTYPE html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anonymous Support</title><style>
+body{font-family:"pelak";background:#111;color:#fff;display:flex;justify-content:center;padding:30px}
+.card{max-width:700px;width:100%;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:24px;border-radius:18px}
+input,textarea{width:100%;padding:12px;margin:8px 0 16px;border-radius:10px;border:1px solid #555;background:#1d1d1d;color:#fff}
+button{padding:12px 18px;border:0;border-radius:10px;background:#ff8a00;color:#fff}
+small{color:#bbb}
+
+@font-face {
+    font-family: 'pelak';
+    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style><div class="card"><h2>پیام ناشناس</h2>
+<form action="https://formspree.io/f/xlgyonyj" method="POST">
+<label>نام مستعار (اختیاری)</label><input name="nickname">
+<label>پیام*</label><textarea required name="message"></textarea>
+<label>اگر خواستید میتونید یک لینک رو برام ارسال کنید:</label><input id=url name=url>
+<label>درباره لینک:</label><textarea id=about name=url_about dir="ltr"></textarea>
+<input type=hidden id=checker name=url_checker>
+<button id=send>ارسال به PvPPacks</button></form><pre id=info></pre></div>
+<script>
+const u=document.getElementById('url'),a=document.getElementById('about'),i=document.getElementById('info'),c=document.getElementById('checker'),b=document.getElementById('send');
+function ext(p){p=p.toLowerCase();if(p.endsWith('.html')||p.endsWith('.htm'))return'HTML';if(p.endsWith('.js'))return'JS';if(p.endsWith('.pdf'))return'PDF';if(/\.(png|jpg|jpeg|gif|webp)$/.test(p))return'IMAGE';if(/\.(mp4|webm|mov)$/.test(p))return'VID';if(p.endsWith('.py'))return'PYTHON-FILE';if(p.endsWith('.php'))return'PHP';return'UNKNOWN'}
+function upd(){let v=u.value.trim();if(!v){a.required=false;i.textContent='';c.value='';b.disabled=false;return;}
+try{let x=new URL(v);a.required=true;let sec=x.protocol==='https:'?'HTTPS':'HTTP';let t=ext(x.pathname);let txt=`Domain: ${x.hostname}
+Security: ${sec}
+Type: ${t}`;i.textContent=txt;c.value=txt;b.disabled=!a.value.trim();}
+catch(e){i.textContent='Cannot Find URL';b.disabled=true;}}
+u.oninput=upd;a.oninput=upd;upd();
+</script>

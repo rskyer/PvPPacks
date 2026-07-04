@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IR Minecraft Servers</title>
+
+<style>
+@font-face {
+  font-family: 'pl';
+  src: url('https://rskyer.github.io/PvPPacks/fonts/plusma.ttf') format('truetype');
+}
+
+:root {
+  --a: #4f8cff;
+  --bg: #09111f;
+  --card: rgba(255,255,255,.06);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'pl';
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #172554, #09111f 60%);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* background animation */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  background: radial-gradient(#3b82f622, transparent 60%);
+  animation: f 10s linear infinite;
+}
+
+@keyframes f {
+  to { transform: rotate(360deg); }
+}
+
+.wrap {
+  max-width: 980px;
+  margin: auto;
+  padding: 40px 18px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.sub {
+  text-align: center;
+  color: #9ca3af;
+}
+
+.switch {
+  margin: 30px auto;
+  display: flex;
+  width: 280px;
+  background: #111827;
+  border-radius: 999px;
+  padding: 6px;
+  position: relative;
+}
+
+.ind {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 134px;
+  height: 44px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  border-radius: 999px;
+  transition: .35s;
+}
+
+.switch button {
+  flex: 1;
+  height: 44px;
+  background: none;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.list {
+  display: grid;
+  gap: 20px;
+  transition: .35s;
+}
+
+.hide {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  position: absolute;
+  width: min(980px, calc(100% - 36px));
+}
+
+.card {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid #ffffff14;
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 0 25px #2563eb55;
+}
+
+img {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+}
+
+.ip {
+  margin: 12px 0;
+  position: relative;
+  padding: 14px;
+  border-radius: 14px;
+  background: #0f172a;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6, #38bdf8);
+  background-size: 200%;
+  animation: b 2s linear infinite;
+
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+@keyframes b {
+  to { background-position: 200%; }
+}
+
+a {
+  display: inline-block;
+  background: var(--a);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+  <h2>سرور های ماینکرافت ایران🇮🇷</h2>
+  <div class="sub"></div>
+
+  <div class="switch">
+    <div class="ind" id="i"></div>
+    <button onclick="sw(0)">بدراک</button>
+    <button onclick="sw(1)">جاوا</button>
+  </div>
+
+  <div id="j" class="list">
+    <div class="card">
+      <img src="./image/trexmine.png">
+      <div>
+        <h2> تیرکس ماین</h2>
+        <div class="ip">PLAY.TREXMINE.COM</div>
+      
+        <a href="https://trexmine.com">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/gameup.png">
+      <div>
+        <h2>گیم آپ</h2>
+        <div class="ip">MC.GAMEUP.IR</div>
+      
+        <a href="https://mc.gameup.ir">بازکردن سایت</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./image/coldgame.png">
+      <div>
+        <h2>کولد گیم</h2>
+<div class='ip'>play.coldgame.ir</div>
+      
+        <a href="https://coldgame.ir">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/bedwars.ir.png">
+      <div>
+        <h2>اینفرنو گیمینگ</h2>
+        <div class="ip">Bedwars.ir</div>
+      
+        <a href="https://InfernoGaming.ir">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/eternul.png">
+      <div>
+        <h2>اترنال ام‌سی</h2>
+        <div class="ip">EternullMC.Net</div>
+      
+        <a href="https://EternullMC.Net">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/bighanoonabad.png">
+      <div>
+        <h2>بی قانون آباد</h2>
+        <div class="ip">mc.bigmc.ir</div>
+      
+        <a href="https://bighanoonabad.com">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/xcraft.png">
+      <div>
+        <h2>ایکس کرفت</h2>
+        <div class="ip">xcraft.ir</div>
+      
+        <a href="https://www.xcraft.ir">بازکردن سایت</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="b" class="list hide">
+    <div class="card">
+      <img src="./image/apexmine.png">
+      <div>
+        <h2>اپکس ماین</h2>
+        <div class="ip">Play.apexgaming.ir</div>
+        <p></p>
+        <a href="apexgaming.ir">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/rlmc.png">
+      <div>
+        <h2> رویال لند</h2>
+        <div class="ip">play.rlmc.ir</div>
+      
+        <a href="https://royallandmc.ir">بازکردن سایت</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./image/topland.png">
+      <div>
+        <h2> تاپ لند</h2>
+        <div class="ip">play.toplandmc.ir</div>
+      
+        <a href="https://TopLandmc.ir">بازکردن سایت</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ind = document.getElementById('i');
+const J = document.getElementById('j');
+const B = document.getElementById('b');
+
+function sw(n) {
+  ind.style.transform = `translateX(${n * 134}px)`;
+  [J, B].forEach((e, i) => e.classList.toggle('hide', i !== n));
+}
+</script>
+
+</body>
+</html>

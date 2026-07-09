@@ -76,38 +76,6 @@ font-family: 'mcbold';
 
 .dokme-row { algin-items: center; display:flex; }
 /* دکمه‌ها: هر کدام ۱۰۰٪ عرض */
-.dokme {
-  color: #B97B1E;
-  background: linear-gradient(145deg, #FFC05A, #FFB848);
-  border-radius: 16px;
-  border: 3px solid #FFA41C;
-  padding: 18px 24px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "pelak", "Mehr", sans-serif;
-  font-size: 20px;
-  font-weight: 100%;
-  box-shadow: 
-    0 8px 20px rgba(185, 123, 30, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 58px;
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
-  
-  /* افکت نور لبه */
-  position: relative;
-  z-index: 1;
-}
 
 /* افکت نور لبه */
 .dokme::before {
@@ -139,7 +107,83 @@ font-family: 'mcbold';
   background: linear-gradient(145deg, #FFCC6A, #FFC050);
   border-color: #FF8C00;
 }
+.dokme {
+  /* رنگ‌ها و گرادیان */
+  color: #B97B1E;
+  background: linear-gradient(145deg, #FFC05A, #FFB848);
+  
+  /* شکل و حاشیه */
+  border-radius: 16px;
+  border: 3px solid #FFA41C;
+  padding: 18px 24px;
+  
+  /* چیدمان داخلی - تغییر برای پشتیبانی از متن چندخطه */
+  display: flex;
+  align-items: center;      /* وسط‌چین عمودی */
+  justify-content: center;  /* وسط‌چین افقی */
+  text-align: center;       /* متن وسط‌چین شود */
+  
+  /* فونت */
+  font-family: "pelak", "Mehr", sans-serif;
+  font-size: 20px;
+  font-weight: 600;         /* وزن مشخص (100% معتبر نیست) */
+  line-height: 1.6;         /* فاصله خطوط برای خوانایی بهتر */
+  
+  /* سایه‌ها */
+  box-shadow: 
+    0 8px 20px rgba(185, 123, 30, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  
+  /* انیمیشن */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  
+  /* حذف nowrap - اجازه شکستن خط */
+  white-space: normal;      /* ← کلید اصلی برای پشتیبانی از <br> */
+  word-wrap: break-word;    /* شکستن کلمات طولانی */
+  overflow-wrap: break-word;
+  
+  /* اندازه */
+  min-height: 58px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  /* موقعیت برای افکت‌های اضافی */
+  position: relative;
+  z-index: 1;
+  
+  /* تنظیمات نمایش متن */
+  display: flex;
+  flex-direction: column;   /* برای چندخطه شدن بهتر */
+  gap: 2px;                 /* فاصله بین خطوط */
+}
 
+/* حالت هاور برای تعامل بهتر */
+.dokme:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 
+    0 12px 28px rgba(185, 123, 30, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: #FFB428;
+}
+
+/* حالت اکتیو */
+.dokme:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 12px rgba(185, 123, 30, 0.2);
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 480px) {
+  .dokme {
+    font-size: 16px;
+    padding: 14px 18px;
+    min-height: 48px;
+    border-radius: 12px;
+  }
+}
 .dokme:hover::before {
   opacity: 1;
 }

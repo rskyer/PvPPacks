@@ -1,83 +1,115 @@
-
-
 @font-face {
-    font-family: 'pelak';
-    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'pelak';
+  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
-* {
-font-family: 'pelak'; }
-body { 
-font-family: 'pelak' }
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-    font-family: 'pelak', sans-serif;
-        }
+
 @font-face {
-font-family: 'mcbold';
-src: url('../fonts/Minecraft-blold.otf')
-format('truetype'); }
-        .header {
-            background: linear-gradient(135deg, #ff7e00, #ff5500);
-            height: 200px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+  font-family: 'mcbold';
+  src: url('../fonts/Minecraft-blold.otf') format('truetype');
+}
 
-        .header-text {
-            color: #FFC05A;
-            font-size: 2.5em;
-            font-weight: bold;
-            text-align: center;
-            z-index: 2;
-            position: relative;
-font-family: 'mcbold';
-        }
+@font-face {
+  font-family: 'Mikhak';
+  src: url('./fonts/Mikhak.ttf') format('truetype');
+}
 
-        .diagonal-section {
-            background: linear-gradient(135deg, #ff7e00, #ff5500);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
-            min-height: 400px;
-            padding: 100px 20px 20px 20px;
-            margin-top: -100px;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'pelak', sans-serif;
+}
 
-        .content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+body {
+  font-family: 'pelak', sans-serif;
+  line-height: 1.6;
+}
 
-        body {
-            font-family: "pelak";
-            line-height: 1.6;
-        
-      
-        }
-      .tro  {
-        font-family: 'pelak';
-        text-align: center;
-        font-size: 17px;
-      }
-      .p-center  {
-        text-align: center;
-      }
-      /* کانتینر ردیف دکمه‌ها */
-/* کانتینر دکمه‌ها */
+.header {
+  background: linear-gradient(135deg, #ff7e00, #ff5500);
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-.dokme-row { algin-items: center; display:flex; }
-/* دکمه‌ها: هر کدام ۱۰۰٪ عرض */
+.header-text {
+  color: #FFC05A;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  font-family: 'mcbold';
+}
 
-/* افکت نور لبه */
+.diagonal-section {
+  background: linear-gradient(135deg, #ff7e00, #ff5500);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
+  min-height: 400px;
+  padding: 100px 20px 20px 20px;
+  margin-top: -100px;
+}
+
+.content {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tro {
+  text-align: center;
+  font-size: 17px;
+}
+
+.p-center {
+  text-align: center;
+}
+
+.dokme-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.dokme {
+  color: #B97B1E;
+  background: linear-gradient(145deg, #FFC05A, #FFB848);
+  border-radius: 16px;
+  border: 3px solid #FFA41C;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "pelak", "Mehr", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.6;
+  box-shadow: 0 8px 20px rgba(185, 123, 30, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-height: 58px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  gap: 2px;
+}
+
 .dokme::before {
   content: '';
   position: absolute;
@@ -88,136 +120,52 @@ font-family: 'mcbold';
   border-radius: 14px;
   padding: 3px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-/* افکت ها هنگام هاور */
 .dokme:hover {
   transform: translateY(-4px) scale(1.01);
-  box-shadow: 
-    0 14px 30px rgba(185, 123, 30, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 30px rgba(185, 123, 30, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   background: linear-gradient(145deg, #FFCC6A, #FFC050);
   border-color: #FF8C00;
 }
-.dokme {
-  /* رنگ‌ها و گرادیان */
-  color: #B97B1E;
-  background: linear-gradient(145deg, #FFC05A, #FFB848);
-  
-  /* شکل و حاشیه */
-  border-radius: 16px;
-  border: 3px solid #FFA41C;
-  padding: 18px 24px;
-  
-  /* چیدمان داخلی - تغییر برای پشتیبانی از متن چندخطه */
-  display: flex;
-  align-items: center;      /* وسط‌چین عمودی */
-  justify-content: center;  /* وسط‌چین افقی */
-  text-align: center;       /* متن وسط‌چین شود */
-  
-  /* فونت */
-  font-family: "pelak", "Mehr", sans-serif;
-  font-size: 20px;
-  font-weight: 600;         /* وزن مشخص (100% معتبر نیست) */
-  line-height: 1.6;         /* فاصله خطوط برای خوانایی بهتر */
-  
-  /* سایه‌ها */
-  box-shadow: 
-    0 8px 20px rgba(185, 123, 30, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  
-  /* انیمیشن */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  user-select: none;
-  
-  /* حذف nowrap - اجازه شکستن خط */
-  white-space: normal;      /* ← کلید اصلی برای پشتیبانی از <br> */
-  word-wrap: break-word;    /* شکستن کلمات طولانی */
-  overflow-wrap: break-word;
-  
-  /* اندازه */
-  min-height: 58px;
-  width: 100%;
-  box-sizing: border-box;
-  
-  /* موقعیت برای افکت‌های اضافی */
-  position: relative;
-  z-index: 1;
-  
-  /* تنظیمات نمایش متن */
-  display: flex;
-  flex-direction: column;   /* برای چندخطه شدن بهتر */
-  gap: 2px;                 /* فاصله بین خطوط */
-}
 
-/* حالت هاور برای تعامل بهتر */
-.dokme:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 
-    0 12px 28px rgba(185, 123, 30, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border-color: #FFB428;
-}
-
-/* حالت اکتیو */
-.dokme:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 12px rgba(185, 123, 30, 0.2);
-}
-
-/* ریسپانسیو برای موبایل */
-@media (max-width: 480px) {
-  .dokme {
-    font-size: 16px;
-    padding: 14px 18px;
-    min-height: 48px;
-    border-radius: 12px;
-  }
-}
 .dokme:hover::before {
   opacity: 1;
 }
 
-/* افکت فشردن */
 .dokme:active {
   transform: translateY(-1px) scale(0.99);
-  box-shadow: 
-    0 4px 12px rgba(185, 123, 30, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(185, 123, 30, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.1s ease;
 }
 
-/* افکت فوکوس */
 .dokme:focus {
   outline: none;
-  box-shadow: 
-    0 0 0 4px rgba(185, 123, 30, 0.2),
-    0 8px 20px rgba(185, 123, 30, 0.15);
+  box-shadow: 0 0 0 4px rgba(185, 123, 30, 0.2), 0 8px 20px rgba(185, 123, 30, 0.15);
 }
 
-/* افکت ضربه‌ای هنگام کلیک */
 @keyframes dokme-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(185, 123, 30, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(185, 123, 30, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(185, 123, 30, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(185, 123, 30, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(185, 123, 30, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(185, 123, 30, 0);
+  }
 }
 
 .dokme:active {
   animation: dokme-pulse 0.3s ease-out;
 }
 
-/* استایل برای دکمه‌های غیرفعال */
 .dokme.disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -227,62 +175,31 @@ font-family: 'mcbold';
   color: #808080;
 }
 
-/* استایل برای دکمه‌های موفقیت */
 .dokme.success {
   background: linear-gradient(145deg, #4CAF50, #45A049);
   border-color: #388E3C;
   color: white;
 }
 
-/* استایل برای دکمه‌های هشدار */
 .dokme.warning {
   background: linear-gradient(145deg, #FF9800, #F57C00);
   border-color: #EF6C00;
   color: white;
 }
 
-/* استایل برای دکمه‌های خطا */
 .dokme.error {
   background: linear-gradient(145deg, #F44336, #D32F2F);
   border-color: #C62828;
   color: white;
 }
 
-/* استایل برای موبایل */
-@media (max-width: 768px) {
-  .dokme-row {
-    gap: 12px;
-    margin: 15px 0;
-  }
-  
-  .dokme {
-    padding: 16px 20px;
-    font-size: 18px;
-    min-height: 52px;
-    border-radius: 14px;
-  }
-}
-
-/* استایل برای نمایش‌های بسیار کوچک */
-@media (max-width: 480px) {
-  .dokme {
-    padding: 14px 16px;
-    font-size: 16px;
-    min-height: 48px;
-    border-radius: 12px;
-    white-space: normal;
-    text-align: center;
-  }
-}
-
-/* افکت‌های مدرن اضافی */
-.dokme i, .dokme svg {
+.dokme i,
+.dokme svg {
   margin-right: 10px;
   font-size: 1.2em;
   vertical-align: middle;
 }
 
-/* افکت‌های لودینگ */
 .dokme.loading {
   position: relative;
   color: transparent;
@@ -300,25 +217,11 @@ font-family: 'mcbold';
 }
 
 @keyframes dokme-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* در صورت نیاز می‌توان breakpoint خیلی کوچک اضافه کرد؛ فعلاً موبایل هم نصف می‌ماند */
-      #end  {
-        border-radius: 30px;
-        border-color: orange;
-        font-family: "pelak";
-        background-color: #B97B1E;
-        font-color: withe;
-        webkit-text-fill-color: white;
-      }
-@font-face {
-    font-family: 'Mikhak';
-    src: url('./fonts/Mikhak.ttf') format('truetype');
-}
-
-p  {
-  font-family: "pelak";
 .packs-help-row {
   display: flex;
   gap: 12px;
@@ -326,11 +229,10 @@ p  {
   justify-content: center;
   width: 100%;
   margin: 10px 0;
-  flex-wrap: nowrap; /* مهم: کنار هم بمانند */
+  flex-wrap: nowrap;
   box-sizing: border-box;
 }
 
-/* دکمه‌ها: هر کدام دقیقاً نصف عرض کانتینر */
 .packs-help {
   color: #B97B1E;
   background-color: #FFC05A;
@@ -344,36 +246,86 @@ p  {
   font-family: "pelak", "Mehr", sans-serif;
   font-size: 20px;
   font-weight: 700;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-height: 48px;
-
-  /* این دو خط باعث می‌شود دقیقاً نصف شوند */
   flex: 0 0 50%;
   max-width: 50%;
   box-sizing: border-box;
 }
 
-/* افکت ها هنگام هاور و فوکوس */
 .packs-help:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   background-color: #ffdf8f;
 }
-.packs-help:active { transform: translateY(-1px); }
+
+.packs-help:active {
+  transform: translateY(-1px);
+}
+
 .packs-help:focus {
-  outline: 3px solid rgba(185,123,30,0.18);
+  outline: 3px solid rgba(185, 123, 30, 0.18);
   outline-offset: 3px;
 }
 
-/* اگر فقط یک دکمه داخل کانتینر باشد، آن را جمع و جورتر کن */
 .packs-help-row.single .packs-help {
   max-width: 360px;
   flex: 0 0 auto;
 }
 
+#end {
+  border-radius: 30px;
+  border-color: orange;
+  font-family: "pelak";
+  background-color: #B97B1E;
+  -webkit-text-fill-color: white;
+}
+
+p {
+  font-family: "pelak";
+}
+
+@media (max-width: 768px) {
+  .dokme-row {
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  .dokme {
+    padding: 16px 20px;
+    font-size: 18px;
+    min-height: 52px;
+    border-radius: 14px;
+  }
+  
+  .packs-help {
+    font-size: 17px;
+    padding: 10px 14px;
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dokme {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 48px;
+    border-radius: 12px;
+    white-space: normal;
+    text-align: center;
+  }
+  
+  .packs-help {
+    font-size: 15px;
+    padding: 8px 12px;
+    min-height: 38px;
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+}

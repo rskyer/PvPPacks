@@ -41,7 +41,7 @@ body {
 /* ===== HEADER ===== */
 .header {
   background: linear-gradient(135deg, #ff7e00, #ff5500);
-  height: 200px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;

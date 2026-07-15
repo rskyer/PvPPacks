@@ -98,8 +98,8 @@ alt="FriendsPvP">
 
 <nav class="menu">
 <a href="index.html">صفحه اصلی</a>
-<a href="../rules.html">قوانین</a>
-<a href="../learn.html">یادگیری</a>
+<a href="./rules.html">قوانین</a>
+<a href="./learn.html">یادگیری</a>
 <a href="connection.html">اتصال</a>
 </nav>
 
@@ -121,7 +121,7 @@ alt="FriendsPvP">
 </div>
 
 <div class="ip">
-FriendsPVPMCB.aternos.me
+FriendsPVPMC.aternos.me
 </div>
 
 </div>
@@ -130,7 +130,7 @@ FriendsPVPMCB.aternos.me
 
 <button class="btn btn-main"
 onclick="joinBedrock()">
-📱 ورود خودکار به سرور بدراک
+📱 QJ
 </button>
 
 <button class="btn btn-copy"
@@ -170,7 +170,7 @@ alert("IP کپی شد.");
 function joinBedrock(){
 
 window.location.href =
-"minecraft://?addExternalServer=FriendsPvP|FriendsPVPMCB.aternos.me:32670";
+"minecraft://?addExternalServer=FriendsPvP|FriendsPVPMC.aternos.me";
 
 }
 
@@ -182,7 +182,7 @@ document.getElementById("serverStatus");
 try{
 
 const response = await fetch(
-"https://api.mcsrvstat.us/3/FriendsPVPMCB.aternos.me:32670"
+"https://api.mcsrvstat.us/3/FriendsPVPMC.aternos.me"
 );
 
 const data = await response.json();

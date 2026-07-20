@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Launcher · Turbo</title>
+    <style>
+        /* Performance-first style – minimal GPU-accelerated transitions, no heavy filters */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0b0e14;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: #eef2f6;
+        }
+
+        .container {
+            background: #141a24;
+            border: 1px solid #2a3344;
+            border-radius: 1.5rem;
+            padding: 2.8rem 3rem;
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+            transition: transform 0.15s ease, border-color 0.2s ease;
+            will-change: transform;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+            border-color: #4f7dff;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b7c9ff, #4f7dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .subtitle {
+            color: #8896b0;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            padding-left: 0.2rem;
+            border-left: 3px solid #4f7dff;
+            padding-left: 1rem;
+            font-weight: 400;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #1e2633;
+            border: 2px solid #2f3a4b;
+            border-radius: 1rem;
+            padding: 0.2rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            will-change: border-color;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #4f7dff;
+            box-shadow: 0 0 0 4px rgba(79, 125, 255, 0.2);
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            background: transparent;
+            color: #eef2f6;
+            outline: none;
+            font-weight: 500;
+            min-width: 0;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #5c6a82;
+            font-weight: 400;
+        }
+
+        .input-wrapper button {
+            background: #4f7dff;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            margin: 0.2rem;
+            border-radius: 0.9rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.15s ease, transform 0.1s ease;
+            will-change: transform;
+            white-space: nowrap;
+        }
+
+        .input-wrapper button:hover {
+            background: #6a8eff;
+            transform: scale(1.02);
+        }
+
+        .input-wrapper button:active {
+            transform: scale(0.96);
+            background: #3b66e0;
+        }
+
+        .hint {
+            margin-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #5c6a82;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a222e;
+            padding: 0.5rem 1rem;
+            border-radius: 0.6rem;
+            border: 1px solid #2a3344;
+        }
+
+        .hint kbd {
+            background: #2f3a4b;
+            color: #b7c9ff;
+            padding: 0.1rem 0.6rem;
+            border-radius: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.8rem 1.2rem;
+                border-radius: 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .input-wrapper {
+                flex-direction: column;
+                background: transparent;
+                border: none;
+                padding: 0;
+                gap: 0.75rem;
+            }
+            .input-wrapper input {
+                background: #1e2633;
+                border: 2px solid #2f3a4b;
+                border-radius: 1rem;
+                padding: 0.9rem 1.2rem;
+                width: 100%;
+            }
+            .input-wrapper input:focus {
+                border-color: #4f7dff;
+                box-shadow: 0 0 0 4px rgba(79, 125, 255, 0.2);
+            }
+            .input-wrapper button {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem;
+                border-radius: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4f7dff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Quick URL
+        </h1>
+        <p class="subtitle">for opening anyurl need a web-page, quickly.</p>
+        <div class="input-wrapper">
+            <input type="url" id="urlInput" placeholder="https:// or domain.com" autofocus>
+            <button id="launchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                Open
+            </button>
+        </div>
+        <div class="hint">
+            <kbd>⏎</kbd><kbd>by skyer</kbd>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var input = document.getElementById('urlInput');
+            var button = document.getElementById('launchBtn');
+
+            function launchUrl() {
+                var raw = input.value.trim();
+                if (!raw) {
+                    alert('Please enter a URL.');
+                    return;
+                }
+                var url = raw;
+                if (!/^https?:\/\//i.test(url)) {
+                    url = 'https://' + url;
+                }
+                window.open(url, '_blank');
+            }
+
+            button.addEventListener('click', launchUrl);
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    launchUrl();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

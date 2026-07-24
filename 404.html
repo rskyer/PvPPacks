@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link rel="stylesheet" href="./the.css">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>url = ERR404!</title>
+</head>
+<body>
+  <div class="app-continer" dir="ltr">
+    <ul class="dropdown-menu">
+      <li><button onclick="farsi()" class="btn" id="langBut">فارسی</button></li>
+    </ul>
+  <h1 id="title">
+    Your URL isnt defind!
+  </h1><br>
+  <h3 id="h3">No links on the site match the entered link.</h3>
+  <p id="pa">Are you sure you entered the link correctly?</p> 
+    <br>
+    <a class="btn" href="https://rskyer.github.io/PvPPacks" id="backBut">Back to main page</a>
+    <br><br><br>
+    
+    <div class="inline-text">
+      <span id="hint1">1: check the url</span><br>
+      <span id="hint2">2: check your network</span>
+      <span id="hint3">3: ask from skyer(creator)</span>
+    </div>
+    
+  </div>
+  <script>
+  let title = document.getElementById("title")
+  let h3 = document.getElementById("h3")
+  let p = document.getElementById("pa")
+  let backBut = document.getElementById("backBut")
+  let langBut = document.getElementById("langBut")
+  
+  let hints = ["۱: لینک رو چک کن", "۲: اینترنت خودت رو چک کن", "۳: از سازنده بپرس"]
+  let texts = {
+    title: "لینک شما تعریف نشده است!",
+    h3: "داخل سایت هیچ لینکی مثل لینک وارد شده وجود نداره.",
+    p: 'مطمعنی لینکو درست وارد کردی؟',
+    backBut: "برگشت به صفحه اصلی",
+    langBut: "English"
+  }
+  function farsi() {
+    title.textContent = texts.title
+    h3.textContent = texts.h3
+    p.textContent = texts.p
+    backBut.textContent = texts.backBut
+    langBut.textContent = texts.langBut
+    
+    document.getElementById("hint1").textContent = hints[0]
+    document.getElementById("hint2").textContent = hints[1]
+    document.getElementById("hint3").textContent = hints[2]
+    
+    langBut.onclick = function() {
+      english()
+    }
+    
+    document.getElementByClass("app-continer").dir = "rtl"
+    
+  }
+  let e = {
+    title: "Your url is wrong!",
+    h3: "check the url",
+    p: "Are you sure you entered the link correctly?",
+    backBut: "Back to MainPage",
+    langBut: "فارسی",
+    
+    hint1: "1: check the url",
+    hint2: "2: check your net",
+    hint3: "3: ask from skyer just"
+  }
+  function english() {
+    title.textContent = e.title
+    h3.textContent = e.h3
+    p.textContent = e.p
+    backBut.textContent = e.backBut
+    langBut.textContent = e.langBut
+    
+    document.getElementById("hint1").textContent = e.hint1
+    document.getElementById("hint2").textContent = e.hint2
+    document.getElementById("hint3").textContent = e.hint3
+    
+    langBut.onclick = function() {
+      farsi();
+    }
+  }
+  </script>
+</body>
+</html>

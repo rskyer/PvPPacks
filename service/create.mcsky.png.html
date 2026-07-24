@@ -162,13 +162,18 @@ input{
     font-size:16px;
     font-weight:700;
     background:linear-gradient(
-        
+        135deg,
+        #4a4a6a,
+        #6a4a8a
     );
+    display:block;
+    text-align:center;
+    text-decoration:none;
 }
 
 .backBtn:hover{
     filter:brightness(1.1);
-                         }
+}
 
 .status{
     margin-top:18px;
@@ -219,7 +224,7 @@ input{
     <button class="convert" id="convertBtn">
         Convert
     </button><br><br>
-<a href="../index" class="backBtn">Back to Main Page</a>
+    <a href="../index" class="backBtn">Back to Main Page</a>
     <div class="status" id="status"></div>
 
     <div class="footer">
@@ -338,41 +343,48 @@ document.getElementById("convertBtn").onclick=async()=>{
 
             const zip=new JSZip();
 
-            let index=0;
+            // نقشه تبدیل موقعیت‌ها در تصویر جاوا به ایندکس‌های فایل ZIP
+            // موقعیت 0 در جاوا → cubemap_5
+            // موقعیت 1 در جاوا → cubemap_4  
+            // موقعیت 2 در جاوا → cubemap_0
+            // موقعیت 3 در جاوا → cubemap_1
+            // موقعیت 4 در جاوا → cubemap_2
+            // موقعیت 5 در جاوا → cubemap_3
+            
+            const mapping = [5, 4, 0, 1, 2, 3];
 
-            for(let y=0;y<2;y++){
+            for(let i = 0; i < 6; i++){
 
-                for(let x=0;x<3;x++){
+                const pos = mapping[i];
+                const x = pos % 3;
+                const y = Math.floor(pos / 3);
 
-                    const c=document.createElement("canvas");
+                const c=document.createElement("canvas");
 
-                    c.width=partW;
-                    c.height=partH;
+                c.width=partW;
+                c.height=partH;
 
-                    const ctx=c.getContext("2d");
+                const ctx=c.getContext("2d");
 
-                    ctx.drawImage(
-                        img,
-                        x*partW,
-                        y*partH,
-                        partW,
-                        partH,
-                        0,
-                        0,
-                        partW,
-                        partH
-                    );
+                ctx.drawImage(
+                    img,
+                    x * partW,
+                    y * partH,
+                    partW,
+                    partH,
+                    0,
+                    0,
+                    partW,
+                    partH
+                );
 
-                    const blob=
-                    await canvasToBlob(c);
+                const blob=
+                await canvasToBlob(c);
 
-                    zip.file(
-                        `cubemap_${index}.png`,
-                        blob
-                    );
-
-                    index++;
-                }
+                zip.file(
+                    `cubemap_${i}.png`,
+                    blob
+                );
             }
 
             const out=
@@ -385,9 +397,9 @@ document.getElementById("convertBtn").onclick=async()=>{
                 selectedFiles[0].name.replace(
                     ".png",
                     ""
-                )+
-                "-"+
-                uuid()+
+                ) +
+                "-" +
+                uuid() +
                 ".zip"
             );
 
@@ -417,10 +429,21 @@ document.getElementById("convertBtn").onclick=async()=>{
             const ctx=
             canvas.getContext("2d");
 
-            for(let i=0;i<6;i++){
+            // برای تبدیل Bedrock → Java، عکس‌ها به ترتیب زیر قرار می‌گیرند:
+            // cubemap_0 → موقعیت 2
+            // cubemap_1 → موقعیت 3
+            // cubemap_2 → موقعیت 4
+            // cubemap_3 → موقعیت 5
+            // cubemap_4 → موقعیت 1
+            // cubemap_5 → موقعیت 0
+            
+            const reverseMapping = [2, 3, 4, 5, 1, 0];
 
-                const x=(i%3)*size;
-                const y=Math.floor(i/3)*size;
+            for(let i = 0; i < 6; i++){
+
+                const pos = reverseMapping[i];
+                const x = (pos % 3) * size;
+                const y = Math.floor(pos / 3) * size;
 
                 ctx.drawImage(
                     imgs[i],

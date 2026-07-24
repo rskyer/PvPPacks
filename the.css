@@ -1,0 +1,333 @@
+:root {
+  --bg-primary: #f0f7ff;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #1a2a4a;
+  --text-secondary: #2c3e6b;
+  --text-muted: #5a7a9a;
+  --blue-primary: #2b6cff;
+  --blue-secondary: #4a8aff;
+  --blue-light: #e8f0fe;
+  --blue-hover: #1a5adf;
+  --shadow: 0 8px 30px rgba(43, 108, 255, 0.15);
+  --border-color: #d4e0f0;
+  --dropdown-bg: #ffffff;
+  --dropdown-shadow: 0 12px 40px rgba(0, 20, 50, 0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@font-face {
+  font-family: 'pa';
+  src: url('https://rskyer.github.io/PvPPacks/fonts/plusma.ttf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'mc';
+  src: url('https://rskyer.github.io/PvPPacks/fonts/Minecraft-blold.otf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0a1628;
+    --bg-secondary: #111f3a;
+    --bg-card: #162a4a;
+    --text-primary: #e8f0ff;
+    --text-secondary: #b0caff;
+    --text-muted: #7a9ac0;
+    --blue-primary: #4a8aff;
+    --blue-secondary: #6ba0ff;
+    --blue-light: #1a2a5a;
+    --blue-hover: #5a9aff;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --border-color: #2a4a7a;
+    --dropdown-bg: #162a4a;
+    --dropdown-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: "mc", "pa";
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 1200px;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 28px;
+  padding: 40px 35px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.title::after {
+  content: "✨";
+  -webkit-text-fill-color: initial;
+  color: var(--blue-primary);
+  margin-left: 10px;
+  font-size: 0.8em;
+}
+
+.dropdown-menu {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 12px 0;
+  margin: 20px 0 30px 0;
+  box-shadow: var(--dropdown-shadow);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.dropdown-menu li {
+  padding: 10px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: var(--transition);
+  font-size: 0.95rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-menu li:hover {
+  background: var(--blue-light);
+  color: var(--blue-primary);
+  transform: translateY(-2px);
+}
+
+.dropdown-menu li:active {
+  transform: scale(0.96);
+}
+
+.center-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin: 30px 0;
+  padding: 25px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  min-height: 120px;
+  text-align: center;
+}
+
+.center-element p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: var(--blue-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 14px rgba(43, 108, 255, 0.3);
+  text-decoration: none;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: var(--blue-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(43, 108, 255, 0.4);
+}
+
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(43, 108, 255, 0.2);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--blue-primary);
+  border: 2px solid var(--blue-primary);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: var(--blue-light);
+  color: var(--blue-hover);
+  border-color: var(--blue-hover);
+  box-shadow: 0 8px 25px rgba(43, 108, 255, 0.15);
+}
+
+.inline-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 8px 16px;
+  background: var(--blue-light);
+  border-radius: 100px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.inline-text span {
+  color: var(--blue-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    padding: 30px 24px;
+    border-radius: 24px;
+  }
+  
+  .btn {
+    padding: 12px 28px;
+    min-width: 120px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .dropdown-menu {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+  }
+  
+  .dropdown-menu li {
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .center-element {
+    padding: 20px 16px;
+    min-height: 100px;
+  }
+  
+  .inline-text {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .app-container {
+    padding: 50px 60px;
+    border-radius: 32px;
+  }
+  
+  .btn {
+    padding: 16px 44px;
+    font-size: 1.05rem;
+    min-width: 160px;
+  }
+  
+  .dropdown-menu li {
+    padding: 12px 28px;
+    font-size: 1rem;
+  }
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+.mt-2 { margin-top: 10px; }
+.mb-2 { margin-bottom: 10px; }
+.gap-2 { gap: 10px; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--blue-primary);
+  color: #fff;
+}
+
+button:focus-visible,
+.dropdown-menu li:focus-visible {
+  outline: 3px solid var(--blue-primary);
+  outline-offset: 2px;
+}
+

@@ -28,6 +28,9 @@
     
   </div>
   <script>
+
+
+
   let title = document.getElementById("title")
   let h3 = document.getElementById("h3")
   let p = document.getElementById("pa")
@@ -49,6 +52,7 @@
     backBut.textContent = texts.backBut
     langBut.textContent = texts.langBut
     
+    document.dir = "rtl";
     document.getElementById("hint1").textContent = hints[0]
     document.getElementById("hint2").textContent = hints[1]
     document.getElementById("hint3").textContent = hints[2]
@@ -85,6 +89,7 @@
     langBut.onclick = function() {
       farsi();
     }
+    document.dir = "ltr";
   }
   </script>
 </body>

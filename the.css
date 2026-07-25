@@ -31,8 +31,8 @@
 
 @font-face {
   font-family: 'pa';
-  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-  font-weight: normal;
+  src: url('https://rskyer.github.io/PvPPacks/fonts/plusma.ttf') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -730,5 +730,67 @@ button:focus-visible,
     transition: none !important;
 
     animation: none !important;
+  }
+}
+
+
+@media (max-width: 640px) {
+  body {
+    padding: 10px;
+    display: block;
+    min-height: 100dvh;
+  }
+
+  .app-container {
+    width: 100%;
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+    margin: 18px 0 25px;
+  }
+
+  .dropdown-menu li {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  .center-element {
+    width: 100%;
+    padding: 20px 14px;
+    min-height: 100px;
+    margin: 22px 0;
+  }
+
+  .btn-group {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+    padding: 14px 20px;
+  }
+
+  .inline-text {
+    max-width: 100%;
+    font-size: 0.9rem;
+    padding: 7px 14px;
   }
 }

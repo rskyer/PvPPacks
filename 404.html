@@ -14,7 +14,7 @@
       <li><button onclick="farsi()" class="btn" id="langBut">فارسی</button></li>
     </ul>
   <h1 id="title">
-    Your URL isnt defind!
+    Your URL isnt defined 
   </h1><br>
   <h3 id="h3">No links on the site match the entered link.</h3>
   <p id="pa">Are you sure you entered the link correctly?</p> 
@@ -63,7 +63,7 @@
       english()
     }
     
-    
+    document.getElementById("app-container").style.alginItems = "right";
   }
   let e = {
     title: "Your url is wrong!",
@@ -91,7 +91,7 @@
       farsi();
     }
     document.documentElement.dir = "ltr";
-   
+   document.getElementById("app-container").style.alginItems = "left";
   }
   </script>
 </body>

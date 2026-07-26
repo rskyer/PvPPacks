@@ -54,7 +54,7 @@
     backBut.textContent = texts.backBut
     langBut.textContent = texts.langBut
     
-    document.dir = "rtl";
+    document.getElementById("html").dir = "rtl";
     document.getElementById("hint1").textContent = hints[0]
     document.getElementById("hint2").textContent = hints[1]
     document.getElementById("hint3").textContent = hints[2]
@@ -64,7 +64,7 @@
     }
     
     document.getElementByClass("app-continer").dir = "rtl"
-    
+    document.getElementById("app-container").dir = "ltr";
   }
   let e = {
     title: "Your url is wrong!",
@@ -91,7 +91,8 @@
     langBut.onclick = function() {
       farsi();
     }
-    document.dir = "ltr";
+    document.getElementByTag("html").dir = "ltr";
+       document.getElementById("app-container").dir = "ltr";
   }
   </script>
 </body>

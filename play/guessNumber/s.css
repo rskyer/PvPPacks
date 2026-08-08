@@ -4,13 +4,6 @@
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'parsi';
-  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
   width: 100%;
   min-height: 100%;
@@ -20,31 +13,29 @@ html {
 
 body {
   width: 100%;
-  max-width: 520px;
+  max-width: 680px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 10px 10px 16px;
-
+  padding: 8px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto auto repeat(4, minmax(0, 1fr)) auto auto;
   gap: 8px;
-
   align-content: start;
-
   font-family: 'parsi', system-ui, -apple-system, sans-serif;
-
-  background: linear-gradient(
-    145deg,
-    #d4edff 0%,
-    #f0faff 50%,
-    #ffffff 100%
-  );
-
+  background: linear-gradient(145deg, #d4edff 0%, #f0faff 50%, #ffffff 100%);
   background-attachment: fixed;
-
   overflow-x: hidden;
-  overscroll-behavior: none;
+  transition: background 0.3s ease;
   touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+@font-face {
+  font-family: 'parsi';
+  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 br,
@@ -55,18 +46,16 @@ hr {
 button {
   appearance: none;
   -webkit-appearance: none;
-
   width: 100%;
   min-width: 0;
-
+  min-height: 72px;
+  border: none;
+  outline: none;
   font-family: inherit;
   font-weight: 600;
-
   cursor: pointer;
-
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-
   user-select: none;
   -webkit-user-select: none;
 }
@@ -74,58 +63,39 @@ button {
 #title {
   grid-column: 1 / -1;
   grid-row: 1;
-
   width: 100%;
-
-  margin-bottom: 0;
-
-  font-size: clamp(1.45rem, 6vw, 2.1rem);
-  line-height: 1.2;
-
+  padding: 2px 4px;
+  font-size: clamp(1.45rem, 6vw, 2.3rem);
+  line-height: 1.25;
   font-weight: 700;
   text-align: center;
-
   color: rgba(20, 60, 120, 0.9);
-
-  text-shadow:
-    0 2px 12px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.4);
 }
 
 .numsArea {
   grid-column: 1 / -1;
   grid-row: 2;
-
   width: 100%;
-  height: clamp(62px, 17vw, 78px);
-
-  padding: 10px 16px;
-
+  min-height: clamp(72px, 18vw, 100px);
+  padding: 12px 18px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
   overflow: hidden;
-
   border-radius: 20px;
-
+  border: 1px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.25);
-
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
   color: rgba(10, 50, 100, 0.9);
-
-  font-size: clamp(1.25rem, 5vw, 1.65rem);
+  font-size: clamp(1.35rem, 6vw, 1.9rem);
   font-weight: 600;
-
+  line-height: 1.2;
   text-align: right;
-
   box-shadow:
     inset 0 2px 10px rgba(255, 255, 255, 0.3),
     0 6px 16px rgba(70, 130, 200, 0.1);
-
   font-variant-numeric: tabular-nums;
 }
 
@@ -135,45 +105,26 @@ button {
 .checkBut,
 .reloadBut {
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 100%;
-
-  height: clamp(62px, 17vw, 76px);
-
-  min-height: 0;
-
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.3);
-
-  border-radius: 17px;
-
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.2);
-
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-
   color: rgba(20, 60, 120, 0.9);
-
-  font-size: clamp(1.3rem, 5vw, 1.55rem);
-
+  font-size: clamp(1.35rem, 6vw, 1.7rem);
   line-height: 1;
-
-  text-shadow:
-    0 1px 2px rgba(255, 255, 255, 0.3);
-
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
   box-shadow:
     0 4px 12px rgba(70, 130, 200, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
-
   transition:
     transform 0.1s ease,
     background 0.15s ease,
     box-shadow 0.15s ease;
-
-  overflow: hidden;
 }
 
 .numBut::after,
@@ -182,19 +133,14 @@ button {
 .checkBut::after,
 .reloadBut::after {
   content: '';
-
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(255, 255, 255, 0.3) 0%,
-      transparent 70%
-    );
-
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
   opacity: 0.6;
 }
 
@@ -203,14 +149,9 @@ button {
 .numButClear:hover,
 .checkBut:hover,
 .reloadBut:hover {
-  transform: translateY(-2px);
-
   background: rgba(255, 255, 255, 0.35);
-
   border-color: rgba(255, 255, 255, 0.6);
-
-  box-shadow:
-    0 7px 18px rgba(70, 130, 200, 0.15);
+  box-shadow: 0 8px 24px rgba(70, 130, 200, 0.15);
 }
 
 .numBut:active,
@@ -275,9 +216,7 @@ button {
 .numButRemoveLast {
   grid-column: 3 / 5;
   grid-row: 5;
-
   background: rgba(255, 215, 150, 0.2);
-
   border-color: rgba(255, 200, 130, 0.3);
 }
 
@@ -288,16 +227,11 @@ button {
 .numButClear {
   grid-column: 1 / -1;
   grid-row: 6;
-
-  height: clamp(62px, 16vw, 74px);
-
+  min-height: 72px;
   background: rgba(255, 180, 180, 0.2);
-
   border-color: rgba(255, 150, 150, 0.3);
-
   color: rgba(160, 60, 60, 0.9);
-
-  font-size: clamp(1.25rem, 5vw, 1.55rem);
+  font-size: clamp(1.3rem, 5vw, 1.65rem);
 }
 
 .numButClear:hover {
@@ -307,16 +241,11 @@ button {
 .checkBut {
   grid-column: 1 / -1;
   grid-row: 7;
-
-  height: clamp(64px, 17vw, 78px);
-
+  min-height: 76px;
   background: rgba(135, 206, 250, 0.25);
-
   border-color: rgba(100, 180, 255, 0.4);
-
   color: rgba(10, 60, 130, 0.95);
-
-  font-size: clamp(1.3rem, 5vw, 1.6rem);
+  font-size: clamp(1.35rem, 5vw, 1.7rem);
 }
 
 .checkBut:hover {
@@ -326,47 +255,30 @@ button {
 .hintArea {
   grid-column: 1 / -1;
   grid-row: 8;
-
   width: 100%;
-  min-height: 0;
-  height: auto;
-
-  padding: 10px 14px;
-
+  min-height: 56px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 18px;
-
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.15);
-
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
   color: rgba(20, 60, 100, 0.8);
-
-  font-size: clamp(0.9rem, 4vw, 1.1rem);
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
   font-weight: 500;
-
   line-height: 1.4;
-
   text-align: center;
 }
 
 .reloadBut {
   grid-column: 1 / -1;
   grid-row: 9;
-
-  height: 52px;
-
-  min-height: 0;
-
-  border-radius: 16px;
-
-  font-size: 1.7rem;
+  min-height: 58px;
+  border-radius: 18px;
+  font-size: 1.8rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -381,19 +293,14 @@ button {
 
   #title {
     color: rgba(200, 225, 255, 0.9);
-
-    text-shadow:
-      0 2px 12px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   }
 
   .numsArea {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.12);
-
     color: rgba(210, 230, 255, 0.9);
-
-    box-shadow:
-      inset 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
   .numBut,
@@ -402,16 +309,10 @@ button {
   .checkBut,
   .reloadBut {
     background: rgba(255, 255, 255, 0.06);
-
     border-color: rgba(255, 255, 255, 0.1);
-
     color: rgba(200, 220, 255, 0.9);
-
-    text-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.2);
-
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .numBut:hover,
@@ -420,78 +321,64 @@ button {
   .checkBut:hover,
   .reloadBut:hover {
     background: rgba(255, 255, 255, 0.15);
-
     border-color: rgba(255, 255, 255, 0.2);
   }
 
   .numButClear {
     background: rgba(200, 80, 80, 0.15);
-
     color: rgba(255, 180, 180, 0.8);
   }
 
   .numButRemoveLast {
     background: rgba(200, 160, 80, 0.1);
-
     color: rgba(255, 220, 180, 0.8);
   }
 
   .checkBut {
     background: rgba(70, 130, 200, 0.2);
-
     color: rgba(180, 210, 255, 0.9);
   }
 
   .hintArea {
     background: rgba(255, 255, 255, 0.05);
-
     border-color: rgba(255, 255, 255, 0.08);
-
     color: rgba(200, 220, 255, 0.7);
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   body {
-    padding: 7px;
+    padding: 6px;
     gap: 6px;
+  }
+
+  button {
+    min-height: 66px;
   }
 
   .numBut,
   .numButRemoveLast {
-    height: 60px;
+    border-radius: 15px;
   }
 
-  .numButClear {
-    height: 60px;
-  }
-
+  .numButClear,
   .checkBut {
-    height: 64px;
+    min-height: 68px;
   }
 
   .numsArea {
-    height: 62px;
+    min-height: 68px;
+    border-radius: 17px;
   }
 }
 
 @media (min-width: 700px) {
   body {
-    max-width: 520px;
     padding: 12px;
-    gap: 9px;
+    gap: 10px;
   }
 
-  .numBut,
-  .numButRemoveLast {
-    height: 72px;
-  }
-
-  .numButClear {
-    height: 68px;
-  }
-
-  .checkBut {
-    height: 72px;
+  button {
+    min-height: 78px;
   }
 }

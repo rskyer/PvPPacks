@@ -1,318 +1,560 @@
-/* ─────────── reset & base ─────────── */
+/* ─────────── RESET ─────────── */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 @font-face {
-    font-family: 'parsi';
-    src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'parsi';
+  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf')
+       format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
+
+
+/* ─────────── BODY ─────────── */
 
 body {
+  width: 100%;
+  max-width: 560px;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  align-content: start;
-  justify-content: center;
-  max-width: 460px;
+
   margin: 0 auto;
-  padding: 24px 20px 32px;
+  padding: 20px 14px 32px;
+
+  display: grid;
+
+  /*
+    4 ستون مساوی
+    minmax باعث میشه دکمه‌ها
+    روی موبایل هم جا بشن
+  */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+
+  align-content: start;
+
   font-family: 'parsi', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(145deg, #d4edff 0%, #f0faff 50%, #ffffff 100%);
+
+  background: linear-gradient(
+    145deg,
+    #d4edff 0%,
+    #f0faff 50%,
+    #ffffff 100%
+  );
+
   background-attachment: fixed;
-  transition: background 0.3s ease;
 }
 
-/* ─────────── dark mode (auto) ─────────── */
+
+/* ─────────── DARK MODE ─────────── */
+
 @media (prefers-color-scheme: dark) {
+
   body {
-    background: linear-gradient(145deg, #0b1a2e 0%, #1a2f44 50%, #2a4a66 100%);
+    background: linear-gradient(
+      145deg,
+      #0b1a2e 0%,
+      #1a2f44 50%,
+      #2a4a66 100%
+    );
   }
+
 }
 
-/* ─────────── hide unwanted elements ─────────── */
-br, hr {
+
+/* ─────────── HIDE BR / HR ─────────── */
+
+br,
+hr {
   display: none;
 }
 
-/* ─────────── title ─────────── */
+
+/* ─────────── TITLE ─────────── */
+
 #title {
   grid-column: 1 / -1;
   grid-row: 1;
+
+  width: 100%;
+
   font-size: clamp(1.6rem, 6vw, 2.4rem);
   font-weight: 700;
+
   text-align: center;
+
   color: rgba(20, 60, 120, 0.9);
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.4);
-  margin-bottom: 4px;
-  letter-spacing: -0.5px;
-}
-@media (prefers-color-scheme: dark) {
-  #title {
-    color: rgba(200, 225, 255, 0.9);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  }
+
+  text-shadow:
+    0 2px 12px rgba(255, 255, 255, 0.4);
+
+  margin-bottom: 2px;
 }
 
-/* ─────────── number display ─────────── */
+@media (prefers-color-scheme: dark) {
+
+  #title {
+    color: rgba(200, 225, 255, 0.9);
+
+    text-shadow:
+      0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+}
+
+
+/* ─────────── NUMBER DISPLAY ─────────── */
+
 .numsArea {
+
   grid-column: 1 / -1;
   grid-row: 2;
-  font-size: 1.6rem;
-  font-weight: 600;
-  padding: 18px 22px;
-  margin-bottom: 6px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: rgba(10, 50, 100, 0.9);
-  text-align: right;
-  box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.3), 0 8px 20px rgba(70, 130, 200, 0.1);
-  min-height: 70px;
+
+  width: 100%;
+  min-height: clamp(70px, 16vw, 90px);
+
+  padding: 16px 20px;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-variant-numeric: tabular-nums;
-}
-@media (prefers-color-scheme: dark) {
-  .numsArea {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.12);
-    color: rgba(210, 230, 255, 0.9);
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
+
+  font-size: clamp(1.4rem, 6vw, 1.8rem);
+  font-weight: 600;
+
+  text-align: right;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  color: rgba(10, 50, 100, 0.9);
+
+  box-shadow:
+    inset 0 2px 10px rgba(255, 255, 255, 0.3),
+    0 8px 20px rgba(70, 130, 200, 0.1);
+
+  overflow: hidden;
 }
 
-/* ─────────── GLASS BUTTONS (shared) ─────────── */
+@media (prefers-color-scheme: dark) {
+
+  .numsArea {
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(255, 255, 255, 0.12);
+
+    color: rgba(210, 230, 255, 0.9);
+
+    box-shadow:
+      inset 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+
+/* ─────────── ALL BUTTONS ─────────── */
+
 .numBut,
 .numButRemoveLast,
 .numButClear,
-.checkBut {
+.checkBut,
+.reloadBut {
+
+  width: 100%;
+  min-width: 0;
+
+  min-height: clamp(64px, 14vw, 82px);
+
   font-family: inherit;
+
+  font-size: clamp(1.25rem, 5vw, 1.6rem);
+
   font-weight: 600;
-  border: none;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
   border-radius: 18px;
+
   cursor: pointer;
+
   background: rgba(255, 255, 255, 0.2);
+
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+
   color: rgba(20, 60, 120, 0.9);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(70, 130, 200, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: all 0.15s ease;
+
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 4px 12px rgba(70, 130, 200, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
-  min-height: 60px;
-  font-size: 1.4rem;
+
   position: relative;
+
   overflow: hidden;
+
+  -webkit-tap-highlight-color: transparent;
+
 }
+
+
+/* ─────────── BUTTON SHINE ─────────── */
+
 .numBut::after,
 .numButRemoveLast::after,
 .numButClear::after,
-.checkBut::after {
+.checkBut::after,
+.reloadBut::after {
+
   content: '';
+
   position: absolute;
+
   inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.3) 0%,
+      transparent 70%
+    );
+
   pointer-events: none;
+
   opacity: 0.6;
 }
+
+
+/* ─────────── HOVER ─────────── */
+
 .numBut:hover,
 .numButRemoveLast:hover,
 .numButClear:hover,
-.checkBut:hover {
+.checkBut:hover,
+.reloadBut:hover {
+
   transform: translateY(-2px);
+
   background: rgba(255, 255, 255, 0.35);
+
   border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 24px rgba(70, 130, 200, 0.15);
+
+  box-shadow:
+    0 8px 24px rgba(70, 130, 200, 0.15);
 }
+
+
+/* ─────────── CLICK ─────────── */
+
 .numBut:active,
 .numButRemoveLast:active,
 .numButClear:active,
-.checkBut:active {
-  transform: scale(0.95);
+.checkBut:active,
+.reloadBut:active {
+
+  transform: scale(0.94);
+
   transition-duration: 0.05s;
 }
-@media (prefers-color-scheme: dark) {
-  .numBut,
-  .numButRemoveLast,
-  .numButClear,
-  .checkBut {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(200, 220, 255, 0.9);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  .numBut:hover,
-  .numButRemoveLast:hover,
-  .numButClear:hover,
-  .checkBut:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
+
+
+/* ─────────── NUMBER BUTTONS ─────────── */
+
+/*
+   1  2  3  4
+   5  6  7  8
+   9  0  ⌫  ⌫
+*/
+
+.numBut:nth-of-type(1) {
+  grid-column: 1;
+  grid-row: 3;
 }
 
-/* ─────────── calculator grid positions ─────────── */
-
-/* row 1: numbers 1‑4 */
-.numBut:nth-of-type(1) { grid-column: 1; grid-row: 3; }
-.numBut:nth-of-type(2) { grid-column: 2; grid-row: 3; }
-.numBut:nth-of-type(3) { grid-column: 3; grid-row: 3; }
-.numBut:nth-of-type(4) { grid-column: 4; grid-row: 3; }
-
-/* row 2: numbers 5‑8 */
-.numBut:nth-of-type(5) { grid-column: 1; grid-row: 4; }
-.numBut:nth-of-type(6) { grid-column: 2; grid-row: 4; }
-.numBut:nth-of-type(7) { grid-column: 3; grid-row: 4; }
-.numBut:nth-of-type(8) { grid-column: 4; grid-row: 4; }
-
-/* row 3: 9, 0, ⌫ (double width) */
-.numBut:nth-of-type(9)  { grid-column: 1; grid-row: 5; } /* 9 */
-.numBut:nth-of-type(10) { grid-column: 2; grid-row: 5; } /* 0 */
-.numButRemoveLast       { grid-column: 3 / 5; grid-row: 5; } /* ⌫ spans 2 columns */
-
-/* row 4: CLEAR (full width) */
-.numButClear { grid-column: 1 / -1; grid-row: 6; }
-
-/* CHECK button – full width, placed after clear */
-.checkBut { grid-column: 1 / -1; grid-row: 7; }
-
-/* hint area – placed after check */
-.hintArea {
-  grid-column: 1 / -1;
-  grid-row: 8;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 14px 20px;
-  border-radius: 40px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(20, 60, 100, 0.8);
-  text-align: center;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 8px;
+.numBut:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 3;
 }
-@media (prefers-color-scheme: dark) {
-  .hintArea {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.08);
-    color: rgba(200, 220, 255, 0.7);
-  }
+
+.numBut:nth-of-type(3) {
+  grid-column: 3;
+  grid-row: 3;
 }
-.reloadBut {
-  font-family: inherit;
-  font-weight: 600;
-  border: none;
-  border-radius: 18px;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(20, 60, 120, 0.9);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 12px rgba(70, 130, 200, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: all 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60px;
-  font-size: 1.4rem;
-  position: relative;
-  overflow: hidden;
+
+.numBut:nth-of-type(4) {
+  grid-column: 4;
+  grid-row: 3;
 }
-/* ─────────── special button styles ─────────── */
-.numButClear {
-  background: rgba(255, 180, 180, 0.2);
-  border-color: rgba(255, 150, 150, 0.3);
-  color: rgba(160, 60, 60, 0.9);
-  font-size: 1.6rem;
+
+
+.numBut:nth-of-type(5) {
+  grid-column: 1;
+  grid-row: 4;
 }
-.numButClear:hover {
-  background: rgba(255, 180, 180, 0.35);
+
+.numBut:nth-of-type(6) {
+  grid-column: 2;
+  grid-row: 4;
 }
-@media (prefers-color-scheme: dark) {
-  .numButClear {
-    background: rgba(200, 80, 80, 0.15);
-    color: rgba(255, 180, 180, 0.8);
-  }
-  .numButClear:hover {
-    background: rgba(200, 80, 80, 0.25);
-  }
+
+.numBut:nth-of-type(7) {
+  grid-column: 3;
+  grid-row: 4;
 }
+
+.numBut:nth-of-type(8) {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+
+.numBut:nth-of-type(9) {
+  grid-column: 1;
+  grid-row: 5;
+}
+
+.numBut:nth-of-type(10) {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+
+/* ─────────── BACKSPACE ─────────── */
 
 .numButRemoveLast {
+  grid-column: 3 / 5;
+  grid-row: 5;
+
   background: rgba(255, 215, 150, 0.2);
+
   border-color: rgba(255, 200, 130, 0.3);
 }
+
 .numButRemoveLast:hover {
   background: rgba(255, 215, 150, 0.35);
 }
-@media (prefers-color-scheme: dark) {
-  .numButRemoveLast {
-    background: rgba(200, 160, 80, 0.1);
-    color: rgba(255, 220, 180, 0.8);
-  }
-  .numButRemoveLast:hover {
-    background: rgba(200, 160, 80, 0.2);
-  }
+
+
+/* ─────────── CLEAR ─────────── */
+
+.numButClear {
+
+  grid-column: 1 / -1;
+  grid-row: 6;
+
+  min-height: clamp(64px, 14vw, 78px);
+
+  background: rgba(255, 180, 180, 0.2);
+
+  border-color: rgba(255, 150, 150, 0.3);
+
+  color: rgba(160, 60, 60, 0.9);
+
+  font-size: clamp(1.3rem, 5vw, 1.6rem);
 }
 
-.checkBut {
-  background: rgba(135, 206, 250, 0.25);
-  border-color: rgba(100, 180, 255, 0.4);
-  color: rgba(10, 60, 130, 0.95);
-  font-size: 1.6rem;
-  padding: 18px 0;
-  min-height: 64px;
+.numButClear:hover {
+  background: rgba(255, 180, 180, 0.35);
 }
+
+
+/* ─────────── CHECK ─────────── */
+
+.checkBut {
+
+  grid-column: 1 / -1;
+  grid-row: 7;
+
+  min-height: clamp(68px, 15vw, 84px);
+
+  background: rgba(135, 206, 250, 0.25);
+
+  border-color: rgba(100, 180, 255, 0.4);
+
+  color: rgba(10, 60, 130, 0.95);
+
+  font-size: clamp(1.35rem, 5vw, 1.7rem);
+}
+
 .checkBut:hover {
   background: rgba(135, 206, 250, 0.4);
 }
-@media (prefers-color-scheme: dark) {
-  .checkBut {
-    background: rgba(70, 130, 200, 0.2);
-    color: rgba(180, 210, 255, 0.9);
-  }
-  .checkBut:hover {
-    background: rgba(70, 130, 200, 0.3);
-  }
+
+
+/* ─────────── HINT ─────────── */
+
+.hintArea {
+
+  grid-column: 1 / -1;
+  grid-row: 8;
+
+  width: 100%;
+
+  min-height: 56px;
+
+  padding: 14px 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  font-size: clamp(1rem, 4vw, 1.2rem);
+
+  font-weight: 500;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  color: rgba(20, 60, 100, 0.8);
 }
 
-/* ─────────── responsive ─────────── */
-@media (max-width: 460px) {
-  body {
-    padding: 16px 12px 24px;
-    gap: 10px;
-  }
+
+/* ─────────── RELOAD ─────────── */
+
+.reloadBut {
+
+  grid-column: 1 / -1;
+  grid-row: 9;
+
+  width: 100%;
+
+  min-height: 58px;
+
+  font-size: 1.8rem;
+
+  margin-top: 2px;
+}
+
+
+/* ─────────── DARK MODE BUTTONS ─────────── */
+
+@media (prefers-color-scheme: dark) {
+
   .numBut,
   .numButRemoveLast,
   .numButClear,
-  .checkBut {
-    font-size: 1.2rem;
-    min-height: 52px;
+  .checkBut,
+  .reloadBut {
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-color: rgba(255, 255, 255, 0.1);
+
+    color: rgba(200, 220, 255, 0.9);
+
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.2);
+
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2);
   }
-  .numsArea {
-    font-size: 1.3rem;
-    padding: 14px 18px;
+
+
+  .numBut:hover,
+  .numButRemoveLast:hover,
+  .numButClear:hover,
+  .checkBut:hover,
+  .reloadBut:hover {
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+
+  .numButClear {
+
+    background: rgba(200, 80, 80, 0.15);
+
+    color: rgba(255, 180, 180, 0.8);
+  }
+
+
+  .numButRemoveLast {
+
+    background: rgba(200, 160, 80, 0.1);
+
+    color: rgba(255, 220, 180, 0.8);
+  }
+
+
+  .checkBut {
+
+    background: rgba(70, 130, 200, 0.2);
+
+    color: rgba(180, 210, 255, 0.9);
+  }
+
+
+  .hintArea {
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    color: rgba(200, 220, 255, 0.7);
+  }
+
+}
+
+
+/* ─────────── SMALL PHONES ─────────── */
+
+@media (max-width: 360px) {
+
+  body {
+    padding: 14px 9px 24px;
+    gap: 9px;
+  }
+
+  .numBut,
+  .numButRemoveLast {
     min-height: 60px;
   }
-  #title {
-    font-size: clamp(1.3rem, 5vw, 1.8rem);
+
+}
+
+
+/* ─────────── LARGE SCREENS ─────────── */
+
+@media (min-width: 700px) {
+
+  body {
+    max-width: 600px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
+
 }

@@ -1,8 +1,26 @@
 
-  /* ---------- Base ---------- */
+  /* =========================================================
+     MOBILE-FIRST OVERSIZED UI
+     - Larger text and controls
+     - 48px+ touch targets
+     - 20px+ container padding
+     - Fluid rem/vw sizing
+     - No horizontal scrolling
+     ========================================================= */
+
   @font-face {
     font-family: "parsi";
     src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+  }
+
+  /* Base font is intentionally larger for mobile readability */
+  html {
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   * {
@@ -12,63 +30,103 @@
     box-sizing: border-box;
   }
 
-  html {
-    width: 100%;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-  }
-
   body {
     text-align: center;
     background: linear-gradient(135deg, skyblue 0%, #126899 100%);
-    padding: 16px;
+
+    /* Bigger mobile spacing */
+    padding: 1.25rem;
+
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow-x: hidden;
+
+    /* Prevent accidental browser gesture/zoom behavior */
+    touch-action: manipulation;
   }
 
-  /* ---------- Main card ---------- */
+  /* =========================================================
+     MAIN CARD
+     Bigger padding makes the entire game feel less cramped.
+     ========================================================= */
+
   .container {
     background: rgba(255, 255, 255, 0.96);
-    border-radius: 22px;
-    padding: clamp(20px, 5vw, 45px);
-    max-width: 760px;
+
+    /* Minimum 20px equivalent on mobile */
+    padding: clamp(1.25rem, 6vw, 3rem);
+
     width: 100%;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
-    animation: cardIn 0.45s ease-out;
+    max-width: 48rem;
+
+    border-radius: 1.4rem;
+
+    box-shadow:
+      0 1.25rem 3rem rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
   }
+
+  /* =========================================================
+     TITLE
+     Headings are deliberately 24px+.
+     ========================================================= */
 
   #title {
     color: #2c3e50;
-    font-size: clamp(1.7rem, 6vw, 2.5rem);
-    line-height: 1.35;
-    margin-bottom: 16px;
+
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+    line-height: 1.4;
+
+    /* Generous spacing */
+    margin-bottom: 1.25rem;
   }
 
-  /* ---------- Level / chances ---------- */
+  /* =========================================================
+     LEVEL / CHANCES
+     Both become large, easy-to-read badges.
+     ========================================================= */
+
   .info {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+
+    /* Minimum 16px spacing */
+    gap: 1rem;
+
     flex-wrap: wrap;
-    margin: 16px 0;
+
+    margin: 1.25rem 0;
   }
 
   #level,
   #chances {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 8px 18px;
+
+    /* 48px+ touch-friendly size */
+    min-height: 3rem;
+    min-width: 7rem;
+
+    padding: 0.75rem 1rem;
+
     background: #3498db;
     color: white;
-    border-radius: 30px;
-    font-size: clamp(14px, 3.5vw, 16px);
+
+    border-radius: 2rem;
+
+    /* Minimum readable text */
+    font-size: clamp(1.125rem, 4.5vw, 1.25rem);
     line-height: 1.4;
   }
 
@@ -76,32 +134,61 @@
     background: #e74c3c;
   }
 
+  /* =========================================================
+     DIVIDER
+     ========================================================= */
+
   hr {
     border: 0;
-    border-top: 1px dashed #bdc3c7;
-    margin: 20px 0;
+    border-top: 0.1rem dashed #bdc3c7;
+
+    /* Increased vertical spacing */
+    margin: 1.25rem 0;
   }
 
-  /* ---------- Hint ---------- */
+  /* =========================================================
+     HINT CARD
+     Large enough to be the visual focus on mobile.
+     ========================================================= */
+
   #hintArea {
-    font-size: clamp(20px, 6vw, 28px);
-    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    /* Much larger text */
+    font-size: clamp(1.35rem, 7vw, 1.9rem);
+
+    line-height: 1.7;
+
     color: #e74c3c;
     background: #fef9e7;
-    padding: clamp(16px, 4vw, 25px);
-    border-radius: 16px;
-    display: block;
-    width: 100%;
+
+    /* Minimum 20px padding */
+    padding: clamp(1.25rem, 6vw, 1.75rem);
+
+    border-radius: 1rem;
+
     min-width: 0;
-    min-height: 80px;
-    border: 3px dashed #3498db;
-    margin: 18px auto;
+    min-height: 6rem;
+
+    border: 0.2rem dashed #3498db;
+
+    /* Generous spacing */
+    margin: 1.25rem 0;
+
     font-weight: bold;
+
     overflow-wrap: anywhere;
-    transition: border-color 0.25s ease,
-                color 0.25s ease,
-                background 0.25s ease,
-                transform 0.25s ease;
+    word-break: break-word;
+
+    transition:
+      border-color 0.3s ease,
+      color 0.3s ease,
+      background 0.3s ease,
+      transform 0.2s ease;
   }
 
   #hintArea.win {
@@ -110,106 +197,171 @@
     background: #eafaf1;
   }
 
-  /* ---------- Input ---------- */
+  /* =========================================================
+     INPUT
+     48px minimum height + 18px minimum text.
+     ========================================================= */
+
   #inputWord {
     display: block;
-    width: min(100%, 520px);
-    min-height: 50px;
-    padding: 12px 18px;
-    margin: 12px auto;
-    font-size: 18px;
+
+    width: 100%;
+
+    min-height: 3rem;
+
+    padding: 0.75rem 1rem;
+
+    /* Never smaller than 18px */
+    font-size: clamp(1.125rem, 5vw, 1.3rem);
+
     line-height: 1.5;
-    color: #2c3e50;
-    background: #fff;
-    border: 2px solid #3498db;
-    border-radius: 12px;
+
+    border: 0.125rem solid #3498db;
+    border-radius: 0.75rem;
+
+    margin: 1rem 0;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
     text-align: center;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
     -webkit-appearance: none;
     appearance: none;
   }
 
-  #inputWord::placeholder {
-    color: #7f8c8d;
-    opacity: 0.85;
-  }
-
   #inputWord:focus {
     outline: none;
+
     border-color: #2ecc71;
-    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15);
+
+    box-shadow:
+      0 0 0 0.25rem rgba(46, 204, 113, 0.15);
   }
 
-  /* ---------- Main button ---------- */
+  #inputWord::placeholder {
+    font-size: 1rem;
+  }
+
+  /* =========================================================
+     PRIMARY BUTTON
+     48x48 minimum, but made considerably larger on mobile.
+     ========================================================= */
+
   .btn-primary {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 11px 30px;
-    margin: 6px;
-    font-size: 18px;
+
+    min-width: 3rem;
+    min-height: 3rem;
+
+    /* Comfortable thumb area */
+    padding: 0.75rem 2rem;
+
+    font-size: clamp(1.125rem, 5vw, 1.3rem);
     line-height: 1.4;
+
     background: #2ecc71;
     color: white;
+
     border: none;
-    border-radius: 12px;
+    border-radius: 0.75rem;
+
     cursor: pointer;
+
+    margin: 0.5rem;
+
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+
+    transition:
+      background 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
   }
 
   .btn-primary:hover {
     background: #27ae60;
-    transform: translateY(-2px);
+    transform: translateY(-0.1rem);
   }
 
   .btn-primary:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
 
-  /* ---------- Settings ---------- */
+  /* =========================================================
+     SETTINGS SECTION
+     ========================================================= */
+
   .settings {
-    margin-top: 28px;
-    padding-top: 22px;
-    border-top: 2px solid #ecf0f1;
+    margin-top: 2rem;
+
+    /* Bigger internal spacing */
+    padding-top: 1.25rem;
+
+    border-top: 0.125rem solid #ecf0f1;
   }
 
   #settings {
     color: #7f8c8d;
-    margin-bottom: 12px;
-    font-size: 17px;
+
+    margin-bottom: 1rem;
+
+    /* Minimum 18px */
+    font-size: clamp(1.125rem, 4vw, 1.3rem);
+
     line-height: 1.6;
   }
 
+  /* =========================================================
+     SETTINGS BUTTONS
+     Every button is at least 48px high AND 48px wide.
+     On narrow phones they become comfortable full-width buttons.
+     ========================================================= */
+
   .setBut {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
-    min-height: 46px;
-    padding: 10px 18px;
-    margin: 5px;
+
+    min-width: 3rem;
+    min-height: 3rem;
+
+    padding: 0.75rem 1.25rem;
+
+    margin: 0.5rem;
+
     background: #3498db;
     color: white;
+
     border: none;
-    border-radius: 10px;
+    border-radius: 0.7rem;
+
     cursor: pointer;
-    font-size: 15px;
+
+    font-size: clamp(1.125rem, 4.5vw, 1.2rem);
     line-height: 1.4;
+
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+
+    transition:
+      background 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
   }
 
   .setBut:hover {
     background: #2980b9;
-    transform: translateY(-2px);
+    transform: translateY(-0.1rem);
   }
 
   .setBut:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
 
   .setBut.danger {
@@ -228,114 +380,167 @@
     background: #e67e22;
   }
 
-  /* ---------- Status / version ---------- */
+  /* =========================================================
+     STATUS
+     Increased from tiny 14px to a comfortable 18px.
+     ========================================================= */
+
   .status {
-    margin-top: 14px;
-    font-size: 14px;
+    margin-top: 1rem;
+
+    font-size: clamp(1.125rem, 4vw, 1.2rem);
+
     line-height: 1.7;
+
     color: #7f8c8d;
+
+    overflow-wrap: anywhere;
   }
+
+  /* =========================================================
+     VERSION
+     Font-family declaration intentionally unchanged.
+     ========================================================= */
 
   version {
     display: block;
+
     font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+
     color: #666;
-    font-size: 11px;
+
+    /* Kept slightly smaller because it is metadata */
+    font-size: 1rem;
+
     font-weight: 300;
+
     opacity: 0.6;
+
     letter-spacing: 0.3px;
-    margin-top: 20px;
+
+    margin-top: 1.25rem;
+
     text-align: center;
   }
 
-  /* ---------- Tablet ---------- */
-  @media (min-width: 600px) {
+  /* =========================================================
+     SMALL PHONES: 320px–359px
+     Force buttons to become large and stacked.
+     ========================================================= */
+
+  @media (max-width: 22.5rem) {
     body {
-      padding: 24px;
+      padding: 1rem;
     }
 
     .container {
-      padding: 36px;
-    }
-
-    .info {
-      gap: 16px;
-    }
-
-    #inputWord {
-      font-size: 19px;
-    }
-  }
-
-  /* ---------- Small phones ---------- */
-  @media (max-width: 420px) {
-    body {
-      padding: 10px;
-    }
-
-    .container {
-      padding: 18px 14px;
-      border-radius: 18px;
+      padding: 1.25rem;
     }
 
     #title {
-      font-size: 1.65rem;
+      font-size: 1.5rem;
     }
 
     .info {
-      gap: 7px;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     #level,
     #chances {
-      flex: 1;
-      min-width: 130px;
-      padding: 8px 10px;
-    }
-
-    #hintArea {
-      min-height: 70px;
-      padding: 14px 10px;
-      margin: 14px auto;
-    }
-
-    #inputWord {
       width: 100%;
-      min-height: 50px;
-      font-size: 17px;
+      min-height: 3rem;
     }
 
-    .btn-primary {
-      width: min(100%, 320px);
-      margin: 6px auto;
-    }
-
+    .btn-primary,
     .setBut {
-      width: min(100%, 280px);
-      margin: 5px auto;
+      width: 100%;
+      min-width: 3rem;
+      min-height: 3rem;
+      margin: 0.5rem 0;
     }
   }
 
-  /* ---------- Reduced motion ---------- */
+  /* =========================================================
+     NORMAL PHONES: 360px–428px
+     This is the main target range.
+     ========================================================= */
+
+  @media (min-width: 22.51rem) and (max-width: 26.75rem) {
+    body {
+      padding: 1.1rem;
+    }
+
+    .container {
+      padding: 1.35rem;
+    }
+
+    .btn-primary {
+      min-width: 11rem;
+      min-height: 3rem;
+    }
+
+    .setBut {
+      min-height: 3rem;
+    }
+  }
+
+  /* =========================================================
+     TABLETS
+     Increase the base sizing slightly on larger displays.
+     ========================================================= */
+
+  @media (min-width: 48rem) {
+    html {
+      font-size: 17px;
+    }
+
+    body {
+      padding: 2rem;
+    }
+
+    .container {
+      padding: 2.5rem;
+    }
+
+    #title {
+      font-size: 2.5rem;
+    }
+
+    #hintArea {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* =========================================================
+     ACCESSIBILITY
+     Respect users who prefer reduced animation.
+     ========================================================= */
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
+      animation: none !important;
+      transition: none !important;
     }
   }
 
-  @keyframes cardIn {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
+  /* =========================================================
+     EXTRA SAFETY:
+     Prevent accidental oversized content from causing
+     horizontal scrolling.
+     ========================================================= */
 
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 
-
+  button,
+  input {
+    max-width: 100%;
+  }

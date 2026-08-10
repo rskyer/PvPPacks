@@ -1,8 +1,8 @@
 /* =========================================================
-   FINAL OPTIMIZED CSS - FULLY RESPONSIVE & FITTED
-   - Bigger touch targets, larger text, full-width usage
-   - No horizontal scroll, perfect fit on any screen
+   FULLY FITTED CSS - EXACTLY LIKE REFERENCE
+   - Grid layout, full-width buttons, no extra gaps
    - All class names & fonts preserved
+   - Container fits screen perfectly
    ========================================================= */
 
 @font-face {
@@ -10,68 +10,81 @@
   src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
 }
 
-/* Base: larger font, full-width container */
-html {
-  font-size: 18px; /* bigger base for mobile */
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
 * {
-  font-family: "parsi", 'Iran-sans', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  text-align: center;
-  background: linear-gradient(135deg, skyblue 0%, #126899 100%);
-  padding: 0.5rem; /* minimal padding to use full screen */
+html {
   width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
+  min-height: 100%;
   touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Main card - fills almost all screen, no max-width on mobile */
-.container {
-  background: rgba(255, 255, 255, 0.96);
-  padding: clamp(1.2rem, 6vw, 2.5rem);
+body {
   width: 100%;
-  max-width: 100%; /* full width on mobile, limited on tablet+ */
-  border-radius: clamp(1.2rem, 4vw, 2rem);
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  max-width: 680px; /* limited on large screens, full on mobile */
+  min-height: 100vh;
   margin: 0 auto;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr; /* single column, full width */
+  grid-template-rows: auto auto auto auto auto auto auto auto auto;
+  gap: 8px;
+  align-content: start;
+  font-family: "parsi", 'Iran-sans', sans-serif;
+  background: linear-gradient(135deg, skyblue 0%, #126899 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+  touch-action: manipulation;
+  overscroll-behavior: none;
 }
 
-/* Title - extra large */
+/* =========================================================
+   MAIN CARD - full width, no extra padding
+   ========================================================= */
+
+.container {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
 #title {
-  color: #2c3e50;
-  font-size: clamp(2rem, 10vw, 3rem);
-  line-height: 1.3;
-  margin-bottom: clamp(1rem, 4vw, 1.5rem);
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 2px 4px;
+  font-size: clamp(1.45rem, 6vw, 2.3rem);
+  line-height: 1.25;
   font-weight: 700;
-  word-break: break-word;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 4px;
 }
 
-/* Info badges - prominent */
+/* =========================================================
+   INFO BADGES
+   ========================================================= */
+
 .info {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(1rem, 3vw, 1.5rem);
+  gap: 8px;
   flex-wrap: wrap;
-  margin: clamp(1rem, 4vw, 1.5rem) 0;
+  margin: 4px 0;
 }
 
 #level,
@@ -79,44 +92,49 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 3.5rem; /* taller */
-  min-width: 8rem;
-  padding: 0.75rem 1.5rem;
+  min-height: 48px;
+  min-width: 80px;
+  padding: 8px 16px;
   background: #3498db;
   color: white;
-  border-radius: 2rem;
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
-  line-height: 1.4;
+  border-radius: 20px;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  line-height: 1.2;
   font-weight: 700;
-  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.15);
 }
 
 #chances {
   background: #e74c3c;
 }
 
+/* =========================================================
+   DIVIDER - hidden (like reference)
+   ========================================================= */
+
 hr {
-  border: 0;
-  border-top: 0.15rem dashed #bdc3c7;
-  margin: clamp(1rem, 4vw, 1.5rem) 0;
+  display: none;
 }
 
-/* Hint area - huge and clear */
+/* =========================================================
+   HINT AREA
+   ========================================================= */
+
 #hintArea {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  font-size: clamp(1.6rem, 8vw, 2.4rem);
-  line-height: 1.6;
-  color: #e74c3c;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: #fef9e7;
-  padding: clamp(1.2rem, 6vw, 2rem);
-  border-radius: 1.2rem;
-  min-height: 6rem;
-  border: 0.25rem dashed #3498db;
-  margin: clamp(1rem, 4vw, 1.5rem) 0;
-  font-weight: bold;
+  color: #e74c3c;
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
   overflow-wrap: anywhere;
   word-break: break-word;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
@@ -128,17 +146,19 @@ hr {
   background: #eafaf1;
 }
 
-/* Input - tall and wide */
+/* =========================================================
+   INPUT
+   ========================================================= */
+
 #inputWord {
-  display: block;
+  grid-column: 1 / -1;
   width: 100%;
-  min-height: 3.5rem;
-  padding: 0.75rem 1.2rem;
-  font-size: clamp(1.3rem, 6vw, 1.8rem);
-  line-height: 1.5;
-  border: 0.2rem solid #3498db;
-  border-radius: 1rem;
-  margin: 1rem 0;
+  min-height: 56px;
+  padding: 8px 16px;
+  font-size: clamp(1rem, 4.5vw, 1.3rem);
+  line-height: 1.4;
+  border: 2px solid #3498db;
+  border-radius: 18px;
   text-align: center;
   -webkit-appearance: none;
   appearance: none;
@@ -149,80 +169,93 @@ hr {
 #inputWord:focus {
   outline: none;
   border-color: #2ecc71;
-  box-shadow: 0 0 0 0.3rem rgba(46, 204, 113, 0.2);
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15);
 }
 
 #inputWord::placeholder {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   opacity: 0.7;
 }
 
-/* Primary button - big and chunky */
+/* =========================================================
+   PRIMARY BUTTON - full width
+   ========================================================= */
+
 .btn-primary {
-  display: inline-flex;
+  grid-column: 1 / -1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 4rem;
-  min-height: 4rem;
-  padding: 0.75rem 2.5rem;
-  font-size: clamp(1.3rem, 6vw, 1.8rem);
-  line-height: 1.4;
+  width: 100%;
+  min-height: 72px;
+  padding: 8px 16px;
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
+  line-height: 1.2;
   background: #2ecc71;
   color: white;
   border: none;
-  border-radius: 1rem;
+  border-radius: 18px;
   cursor: pointer;
-  margin: 0.75rem 0;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   font-weight: 700;
   transition: background 0.2s, transform 0.1s;
-  box-shadow: 0 0.25rem 0.75rem rgba(46, 204, 113, 0.4);
-  width: 100%; /* full width on mobile */
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
 }
 
 .btn-primary:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
-/* Settings section */
+/* =========================================================
+   SETTINGS SECTION
+   ========================================================= */
+
 .settings {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 0.15rem solid #ecf0f1;
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 2px solid #ecf0f1;
 }
 
 #settings {
   color: #7f8c8d;
-  margin-bottom: 1rem;
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
-  line-height: 1.6;
+  margin-bottom: 8px;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  line-height: 1.4;
   font-weight: 600;
+  text-align: center;
 }
 
-/* Settings buttons - full width on small screens, stacked */
+/* Settings buttons - grid for 2 columns */
+.settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+#settings {
+  grid-column: 1 / -1;
+}
+
 .setBut {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 3.5rem;
-  min-height: 3.5rem;
-  padding: 0.75rem 1.5rem;
-  margin: 0.4rem 0.2rem;
+  width: 100%;
+  min-height: 60px;
+  padding: 8px 12px;
   background: #3498db;
   color: white;
   border: none;
-  border-radius: 0.8rem;
+  border-radius: 16px;
   cursor: pointer;
-  font-size: clamp(1.1rem, 5vw, 1.4rem);
-  line-height: 1.4;
+  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  line-height: 1.3;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  font-weight: 500;
+  font-weight: 600;
   transition: background 0.2s, transform 0.1s;
-  flex: 1 1 auto; /* allow wrapping */
-  min-width: 40%; /* at least two per row */
-  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
 }
 
 .setBut:active {
@@ -237,144 +270,155 @@ hr {
   background: #f39c12;
 }
 
-/* Status - clear and large */
+/* =========================================================
+   STATUS
+   ========================================================= */
+
 .status {
-  margin-top: 1rem;
-  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
-  line-height: 1.6;
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  padding: 8px 12px;
+  font-size: clamp(0.85rem, 3.5vw, 1rem);
+  line-height: 1.5;
   color: #7f8c8d;
+  text-align: center;
   overflow-wrap: anywhere;
-  padding: 0.75rem;
-  background: rgba(0,0,0,0.03);
-  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
 }
 
-/* Version - unchanged font-family */
+/* =========================================================
+   VERSION
+   ========================================================= */
+
 version {
+  grid-column: 1 / -1;
   display: block;
   font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   color: #666;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 300;
   opacity: 0.6;
   letter-spacing: 0.3px;
-  margin-top: 1.5rem;
+  margin-top: 4px;
   text-align: center;
 }
 
 /* =========================================================
-   RESPONSIVE BREAKPOINTS
+   COLOR PANEL (dynamically added)
    ========================================================= */
 
-/* Very small phones: stack everything */
-@media (max-width: 22.5rem) {
+.color-panel {
+  grid-column: 1 / -1;
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 4px 0;
+  border: 2px solid #ddd;
+}
+.color-panel h4 {
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+.color-panel label {
+  display: inline-block;
+  margin: 4px 8px;
+  font-size: 0.85rem;
+  color: #555;
+}
+.color-panel input[type="color"] {
+  width: 48px;
+  height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 2px;
+  vertical-align: middle;
+}
+.color-panel .setBut {
+  min-height: 48px;
+  margin: 4px 0;
+}
+
+/* =========================================================
+   RESPONSIVE - SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
   body {
-    padding: 0.25rem;
+    padding: 6px;
+    gap: 6px;
   }
   .container {
-    padding: 1rem;
-    border-radius: 0.8rem;
+    padding: 12px 8px;
+    border-radius: 16px;
   }
-  #title {
-    font-size: 1.8rem;
+  .btn-primary {
+    min-height: 64px;
   }
-  .info {
-    flex-direction: column;
-    gap: 0.75rem;
+  .setBut {
+    min-height: 52px;
+    font-size: 0.85rem;
   }
   #level,
   #chances {
-    width: 100%;
-    min-height: 3rem;
-  }
-  .btn-primary,
-  .setBut {
-    width: 100%;
-    min-height: 3rem;
-    margin: 0.3rem 0;
-  }
-  .setBut {
-    min-width: 100%;
+    min-height: 40px;
+    min-width: 60px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
   }
   #hintArea {
-    min-height: 4.5rem;
-    font-size: 1.3rem;
-    padding: 0.8rem;
+    min-height: 48px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
   }
-}
-
-/* Normal phones (360-428px) */
-@media (min-width: 22.51rem) and (max-width: 26.75rem) {
-  body {
-    padding: 0.5rem;
-  }
-  .container {
-    padding: 1.2rem;
-    border-radius: 1.2rem;
-  }
-  .btn-primary {
-    min-height: 3.5rem;
-  }
-  .setBut {
-    min-height: 3.2rem;
-    min-width: 45%;
-  }
-  #hintArea {
-    font-size: 1.4rem;
-    padding: 1rem;
-  }
-}
-
-/* Tablets and larger: limit width, increase spacing */
-@media (min-width: 48rem) {
-  html {
-    font-size: 20px;
-  }
-  body {
-    padding: 2rem;
-  }
-  .container {
-    max-width: 52rem;
-    padding: 2.5rem;
-    border-radius: 2rem;
-  }
-  #title {
-    font-size: 3rem;
-  }
-  #hintArea {
-    font-size: 2rem;
-    min-height: 7rem;
-    padding: 1.8rem;
-  }
-  .btn-primary {
-    width: auto; /* not full width on tablets */
-    min-width: 12rem;
-    padding: 0.75rem 3rem;
-  }
-  .setBut {
-    min-width: 8rem;
-    padding: 0.75rem 2rem;
-  }
-  .info {
-    gap: 2rem;
-  }
-  #level,
-  #chances {
-    min-width: 10rem;
-    font-size: 1.5rem;
-    min-height: 4rem;
-  }
-}
-
-/* Large screens */
-@media (min-width: 64rem) {
-  .container {
-    max-width: 56rem;
+  #inputWord {
+    min-height: 48px;
+    font-size: 1rem;
   }
 }
 
 /* =========================================================
-   ACCESSIBILITY & SAFETY
+   RESPONSIVE - TABLETS & LARGER
+   ========================================================= */
+
+@media (min-width: 700px) {
+  body {
+    padding: 16px;
+    gap: 12px;
+  }
+  .container {
+    padding: 24px 20px;
+    border-radius: 28px;
+  }
+  .btn-primary {
+    min-height: 80px;
+    font-size: 1.6rem;
+  }
+  .setBut {
+    min-height: 68px;
+    font-size: 1.1rem;
+  }
+  #level,
+  #chances {
+    min-height: 56px;
+    min-width: 100px;
+    font-size: 1.3rem;
+  }
+  #hintArea {
+    min-height: 64px;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+  }
+  #inputWord {
+    min-height: 64px;
+    font-size: 1.3rem;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -397,37 +441,4 @@ svg {
 button,
 input {
   max-width: 100%;
-}
-
-/* Color panel – inline styling, keep it clear */
-.color-panel {
-  background: #f8f9fa;
-  border-radius: 1rem;
-  padding: 1.2rem;
-  margin: 0.75rem 0;
-  border: 0.15rem solid #ddd;
-}
-.color-panel h4 {
-  margin-bottom: 0.75rem;
-  color: #2c3e50;
-  font-size: 1.2rem;
-}
-.color-panel label {
-  display: inline-block;
-  margin: 0.25rem 0.5rem;
-  font-size: 1rem;
-  color: #555;
-}
-.color-panel input[type="color"] {
-  width: 3.5rem;
-  height: 3rem;
-  border: 0.15rem solid #ddd;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  padding: 0.15rem;
-  vertical-align: middle;
-}
-.color-panel .setBut {
-  margin: 0.25rem 0.5rem;
-  min-width: 5rem;
 }

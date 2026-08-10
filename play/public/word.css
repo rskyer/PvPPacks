@@ -10,70 +10,61 @@
     padding: 0;
 }
 
-html {
+html,
+body {
     width: 100%;
     min-height: 100%;
+}
+
+html {
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
 }
 
 body {
-    width: 100%;
     min-height: 100dvh;
-    margin: 0;
-    padding: 18px 0 30px;
-    background: linear-gradient(
-        135deg,
-        #82cde8 0%,
-        #3196c2 55%,
-        #14739d 100%
-    );
+    padding: 28px 0 40px;
+    background: linear-gradient(135deg, #87ceeb, #3198c5, #19749e);
     font-family: "parsi", sans-serif;
     overflow-x: hidden;
 }
 
 .container {
-    width: calc(100% - 28px);
-    max-width: 680px;
+    width: min(94vw, 850px);
     margin: 0 auto;
-    padding: 24px 22px 16px;
+    padding: 30px 34px 20px;
     background: rgba(255, 255, 255, 0.97);
-    border-radius: 25px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, .18);
-    min-height: 0;
-    display: block;
+    border-radius: 28px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
 }
 
 #title {
     width: 100%;
-    margin: 0 0 14px;
+    margin-bottom: 20px;
     color: #263746;
-    font-size: 34px;
+    font-size: clamp(30px, 5vw, 42px);
     font-weight: 800;
     line-height: 1.25;
     text-align: center;
 }
 
 .info {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto 18px;
+    width: 75%;
+    margin: 0 auto 22px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 18px;
 }
 
 #level,
 #chances {
-    width: 100%;
-    height: 62px;
-    margin: 0;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 32px;
+    border-radius: 38px;
     color: white;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
     white-space: nowrap;
 }
@@ -87,29 +78,28 @@ body {
 }
 
 hr {
-    display: block;
     width: 100%;
     height: 2px;
-    margin: 0 0 20px;
+    margin: 0 0 24px;
     border: 0;
-    background: #e4e7e8;
+    background: #dfe3e5;
 }
 
 #hintArea {
     width: 100%;
-    min-height: 125px;
-    margin: 0 0 18px;
-    padding: 16px 22px;
+    min-height: 170px;
+    margin-bottom: 22px;
+    padding: 20px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 5px dashed #3b9bd0;
-    border-radius: 22px;
+    border-radius: 25px;
     background: #fffbea;
     color: #d94d40;
-    font-size: 24px;
+    font-size: clamp(23px, 4vw, 31px);
     font-weight: 700;
-    line-height: 1.55;
+    line-height: 1.6;
     text-align: center;
     overflow-wrap: anywhere;
 }
@@ -127,90 +117,87 @@ hr {
 #inputWord {
     display: block;
     width: 100%;
-    height: 66px;
-    margin: 0 0 12px;
-    padding: 8px 18px;
+    height: 76px;
+    margin-bottom: 18px;
+    padding: 10px 22px;
     border: 3px solid #3b9bd0;
-    border-radius: 18px;
+    border-radius: 20px;
     background: white;
     color: #333;
     font-family: inherit;
-    font-size: 20px;
+    font-size: 23px;
     text-align: center;
     outline: none;
-    -webkit-appearance: none;
 }
 
 #inputWord::placeholder {
     color: #999;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 #inputWord:focus {
     border-color: #2ecc71;
-    box-shadow: 0 0 0 3px rgba(46, 204, 113, .12);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, .12);
 }
 
 .btn-primary {
     display: flex;
-    width: 290px;
-    max-width: 80%;
-    height: 64px;
+    width: 310px;
+    height: 72px;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
     border: 0;
-    border-radius: 17px;
+    border-radius: 19px;
     background: #2dcc70;
     color: white;
     font-family: inherit;
-    font-size: 23px;
+    font-size: 27px;
     font-weight: 800;
     cursor: pointer;
+    touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    transition: transform .1s;
 }
 
 .btn-primary:active {
-    transform: scale(.96);
+    transform: scale(.97);
 }
 
 .settings {
     width: 100%;
-    margin-top: 22px;
-    padding-top: 16px;
+    margin-top: 30px;
+    padding-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    border-top: 2px solid #e7e9ea;
+    gap: 12px 16px;
+    border-top: 2px solid #e4e7e9;
 }
 
 #settings {
     grid-column: 1 / -1;
-    margin: 0 0 2px;
-    color: #7c8588;
-    font-size: 21px;
+    margin-bottom: 5px;
+    color: #7d878b;
+    font-size: 25px;
     font-weight: 700;
     text-align: center;
 }
 
 .setBut {
     width: 100%;
-    height: 54px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 8px;
     border: 0;
-    border-radius: 14px;
+    border-radius: 16px;
     background: #3498db;
     color: white;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: 700;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .setBut.success {
@@ -228,141 +215,142 @@ hr {
 version {
     grid-column: 1 / -1;
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
     color: #999;
     font-family: Arial, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     text-align: center;
     opacity: .75;
 }
 
 .status {
     width: 100%;
-    margin-top: 10px;
-    padding: 9px 10px;
-    border-radius: 10px;
+    margin-top: 12px;
+    padding: 11px 12px;
+    border-radius: 11px;
     background: #f4f5f6;
     color: #607d8b;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     text-align: center;
 }
 
 .color-panel {
-    width: min(100%, 560px) !important;
-    margin: 0 auto !important;
-    padding: 15px !important;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
+    width: 100% !important;
+    margin: 15px 0 !important;
+    padding: 18px !important;
     background: #f8f9fa !important;
     border: 2px solid #ddd !important;
-    border-radius: 16px !important;
+    border-radius: 18px !important;
 }
 
 .color-panel h4 {
-    font-size: 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
     text-align: center;
 }
 
-.color-panel br {
-    display: none;
-}
-
 .color-panel label {
-    font-size: 18px;
-    text-align: right;
+    font-size: 19px;
 }
 
 .color-panel input[type="color"] {
     width: 100%;
-    height: 50px;
+    height: 55px;
     border-radius: 10px;
 }
 
 @media (max-width: 600px) {
+
     body {
-        padding: 12px 0 20px;
+        padding: 12px 0 24px;
     }
 
     .container {
-        width: calc(100% - 24px);
-        padding: 20px 12px 14px;
-        border-radius: 22px;
+        width: calc(100% - 18px);
+        padding: 22px 10px 16px;
+        border-radius: 23px;
     }
 
     #title {
-        font-size: 29px;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
+        font-size: 30px;
     }
 
     .info {
+        width: 100%;
         gap: 8px;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
     }
 
     #level,
     #chances {
+        height: 60px;
+        font-size: 19px;
+    }
+
+    hr {
+        margin-bottom: 18px;
+    }
+
+    #hintArea {
+        min-height: 145px;
+        margin-bottom: 16px;
+        padding: 16px;
+        border-width: 4px;
+        border-radius: 20px;
+        font-size: 21px;
+        line-height: 1.55;
+    }
+
+    #inputWord {
+        height: 64px;
+        margin-bottom: 14px;
+        font-size: 19px;
+    }
+
+    #inputWord::placeholder {
+        font-size: 18px;
+    }
+
+    .btn-primary {
+        width: 290px;
+        max-width: 90%;
+        height: 64px;
+        font-size: 23px;
+    }
+
+    .settings {
+        margin-top: 22px;
+        padding-top: 16px;
+        gap: 9px;
+    }
+
+    #settings {
+        margin-bottom: 2px;
+        font-size: 21px;
+    }
+
+    .setBut {
         height: 56px;
         font-size: 18px;
     }
 
-    hr {
-        margin-bottom: 16px;
-    }
-
-    #hintArea {
-        min-height: 100px;
-        margin-bottom: 12px;
-        padding: 12px 14px;
-        border-width: 4px;
-        border-radius: 18px;
-        font-size: 19px;
-        line-height: 1.5;
-    }
-
-    #inputWord {
-        height: 58px;
-        margin-bottom: 10px;
-        font-size: 18px;
-    }
-
-    #inputWord::placeholder {
-        font-size: 17px;
-    }
-
-    .btn-primary {
-        width: 270px;
-        height: 58px;
-        font-size: 21px;
-    }
-
-    .settings {
-        margin-top: 18px;
-        padding-top: 13px;
-        gap: 8px;
-    }
-
-    #settings {
-        font-size: 19px;
-    }
-
-    .setBut {
-        height: 50px;
-        font-size: 17px;
+    version {
+        font-size: 14px;
     }
 
     .status {
-        margin-top: 8px;
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 380px) {
+
     .container {
-        width: calc(100% - 18px);
-        padding-left: 9px;
-        padding-right: 9px;
+        width: calc(100% - 12px);
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     #title {
@@ -371,58 +359,39 @@ version {
 
     #level,
     #chances {
-        height: 52px;
-        font-size: 16px;
+        height: 55px;
+        font-size: 17px;
     }
 
     #hintArea {
-        min-height: 90px;
+        min-height: 125px;
         font-size: 18px;
     }
 
     #inputWord {
-        height: 55px;
+        height: 58px;
     }
 
     .btn-primary {
-        width: 250px;
-        height: 56px;
+        width: 260px;
+        height: 58px;
+        font-size: 21px;
     }
 
     .setBut {
-        height: 48px;
-        font-size: 16px;
+        height: 52px;
+        font-size: 17px;
     }
 }
 
 @media (min-width: 700px) {
+
     body {
         padding-top: 30px;
     }
 
     .container {
-        width: 680px;
-        padding: 28px 30px 18px;
+        width: min(92vw, 850px);
+        padding: 32px 38px 22px;
     }
-
-    #title {
-        font-size: 38px;
-    }
-
-    #hintArea {
-        min-height: 135px;
-        font-size: 26px;
-    }
-}
-
-img,
-video,
-canvas,
-svg {
-    max-width: 100%;
-}
-
-button,
-input {
-    max-width: 100%;
 }

@@ -1,12 +1,12 @@
 /* =========================================================
    GUESS THE WORD
-   FULL GAME UI
+   MOBILE GAME UI
 ========================================================= */
 
 @font-face {
     font-family: "parsi";
     src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf")
-         format("truetype");
+        format("truetype");
     font-display: swap;
 }
 
@@ -25,8 +25,6 @@ html {
     width: 100%;
     min-height: 100%;
 
-    font-size: 18px;
-
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 
@@ -37,56 +35,54 @@ body {
     width: 100%;
     min-height: 100dvh;
 
+    padding: 14px 0;
+
     margin: 0;
-    padding: 10px;
 
     font-family: "parsi", Tahoma, sans-serif;
-    font-size: 18px;
-    line-height: 1.5;
-
-    color: #263238;
 
     background:
         linear-gradient(
             135deg,
-            #87ceeb 0%,
-            #45a9d4 50%,
-            #16729e 100%
+            #87ceeb,
+            #3b9dcc,
+            #176f99
         );
 
     background-repeat: no-repeat;
     background-size: cover;
 
     overflow-x: hidden;
-    overflow-y: auto;
 }
 
 
 /* =========================================================
-   MAIN GAME
+   MAIN GAME PANEL
 ========================================================= */
 
 .container {
-    width: 100%;
-    max-width: 900px;
+    width: 92vw;
+    max-width: 760px;
 
-    min-height: calc(100dvh - 20px);
+    min-height: calc(100dvh - 28px);
 
     margin: 0 auto;
 
-    padding: 22px;
+    padding: 25px 35px 18px;
 
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.97);
 
-    border-radius: 24px;
+    border-radius: 25px;
 
     box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.20);
+        0 6px 25px rgba(0, 0, 0, 0.18);
 
     display: flex;
     flex-direction: column;
 
-    gap: 16px;
+    align-items: center;
+
+    gap: 14px;
 
     overflow: hidden;
 }
@@ -99,7 +95,9 @@ body {
 #title {
     width: 100%;
 
-    color: #263238;
+    margin: 0 0 2px;
+
+    color: #26384b;
 
     font-size: clamp(28px, 5vw, 40px);
 
@@ -108,42 +106,41 @@ body {
     line-height: 1.3;
 
     text-align: center;
-
-    flex-shrink: 0;
 }
 
 
 /* =========================================================
-   INFO
+   LEVEL / CHANCES
 ========================================================= */
 
 .info {
-    width: 100%;
+    width: min(100%, 460px);
 
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 12px;
+    gap: 18px;
 
-    flex-shrink: 0;
+    margin: 0 auto;
 }
 
 #level,
 #chances {
     width: 100%;
 
-    min-height: 58px;
+    height: 62px;
 
     margin: 0;
 
-    padding: 10px;
+    padding: 8px 12px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 15px;
+    border-radius: 32px;
 
     color: white;
 
@@ -152,6 +149,8 @@ body {
     font-weight: 800;
 
     line-height: 1.2;
+
+    white-space: nowrap;
 
     text-align: center;
 }
@@ -166,7 +165,7 @@ body {
 
 
 /* =========================================================
-   SEPARATOR
+   HR
 ========================================================= */
 
 hr {
@@ -174,11 +173,11 @@ hr {
 
     height: 2px;
 
+    margin: 4px 0;
+
     border: 0;
 
-    background: #e5e8ea;
-
-    flex-shrink: 0;
+    background: #e1e4e6;
 }
 
 
@@ -187,25 +186,28 @@ hr {
 ========================================================= */
 
 #hintArea {
-    width: 100%;
+    width: min(100%, 560px);
 
-    min-height: 100px;
+    min-height: 112px;
 
-    padding: 16px 20px;
+    margin: 0 auto;
+
+    padding: 15px 22px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 2px dashed #3498db;
+    border: 5px dashed #3d9ed0;
 
-    border-radius: 17px;
+    border-radius: 22px;
 
     background: #fffbea;
 
-    color: #d84315;
+    color: #d84d3f;
 
-    font-size: 21px;
+    font-size: clamp(19px, 4vw, 27px);
 
     font-weight: 700;
 
@@ -214,41 +216,35 @@ hr {
     text-align: center;
 
     overflow-wrap: anywhere;
-
-    flex-shrink: 0;
 }
 
 #hintArea.win {
-    background: #eafaf1;
-
     border-color: #2ecc71;
+
+    background: #eafaf1;
 
     color: #219653;
 }
 
 
 /* =========================================================
-   INPUT AREA
+   INPUT + CHECK AREA
 ========================================================= */
 
-/*
-   این selector مخصوص div حاوی input است.
-   چون HTML فعلی کلاس ندارد.
-*/
-
-.container > div:not(.settings):has(#inputWord) {
+.container > div:has(#inputWord) {
     width: 100%;
 
     display: flex;
+
     flex-direction: column;
 
-    gap: 10px;
+    align-items: center;
 
-    flex-shrink: 0;
+    gap: 10px;
 }
 
 
-/* حذف br های HTML */
+/* HTML <br> is unnecessary */
 
 .container br {
     display: none;
@@ -260,15 +256,17 @@ hr {
 ========================================================= */
 
 #inputWord {
-    width: 100%;
+    width: min(100%, 560px);
 
     height: 64px;
 
-    padding: 10px 18px;
+    margin: 0 auto;
 
-    border: 2px solid #3498db;
+    padding: 8px 18px;
 
-    border-radius: 16px;
+    border: 3px solid #3b9bd0;
+
+    border-radius: 17px;
 
     background: white;
 
@@ -278,7 +276,7 @@ hr {
 
     font-size: 20px;
 
-    line-height: 1.4;
+    font-weight: 600;
 
     text-align: center;
 
@@ -289,11 +287,11 @@ hr {
 }
 
 #inputWord::placeholder {
+    color: #888;
+
     font-family: inherit;
 
     font-size: 18px;
-
-    color: #777;
 
     opacity: 0.75;
 }
@@ -302,24 +300,34 @@ hr {
     border-color: #2ecc71;
 
     box-shadow:
-        0 0 0 4px rgba(46, 204, 113, 0.14);
+        0 0 0 3px rgba(46, 204, 113, 0.15);
 }
 
 
 /* =========================================================
    CHECK BUTTON
+
+   IMPORTANT:
+   NOT FULL WIDTH
 ========================================================= */
 
 .btn-primary {
-    width: 100%;
+    width: min(100%, 290px);
 
-    height: 68px;
+    height: 64px;
 
-    padding: 10px;
+    margin: 0 auto;
+
+    padding: 8px 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     border: 0;
 
-    border-radius: 16px;
+    border-radius: 17px;
 
     background: #2ecc71;
 
@@ -331,6 +339,8 @@ hr {
 
     font-weight: 800;
 
+    line-height: 1.2;
+
     cursor: pointer;
 
     touch-action: manipulation;
@@ -338,21 +348,15 @@ hr {
     -webkit-tap-highlight-color: transparent;
 
     box-shadow:
-        0 4px 12px rgba(46, 204, 113, 0.25);
+        0 4px 10px rgba(46, 204, 113, 0.22);
 
     transition:
-        transform 0.1s,
-        filter 0.15s;
+        transform .1s ease,
+        filter .15s ease;
 }
 
 .btn-primary:active {
-    transform: scale(0.98);
-}
-
-@media (hover: hover) {
-    .btn-primary:hover {
-        filter: brightness(0.95);
-    }
+    transform: scale(.97);
 }
 
 
@@ -361,19 +365,19 @@ hr {
 ========================================================= */
 
 .settings {
-    width: 100%;
+    width: min(100%, 430px);
+
+    margin: 6px auto 0;
+
+    padding-top: 14px;
 
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 10px;
+    gap: 10px 12px;
 
-    padding-top: 14px;
-
-    border-top: 2px solid #e7e9eb;
-
-    flex-shrink: 0;
+    border-top: 2px solid #e5e8ea;
 }
 
 
@@ -384,11 +388,17 @@ hr {
 #settings {
     grid-column: 1 / -1;
 
-    color: #546e7a;
+    width: 100%;
 
-    font-size: 20px;
+    margin: 0 0 2px;
+
+    color: #7c8588;
+
+    font-size: 21px;
 
     font-weight: 700;
+
+    line-height: 1.3;
 
     text-align: center;
 }
@@ -401,11 +411,12 @@ hr {
 .setBut {
     width: 100%;
 
-    min-height: 58px;
+    height: 55px;
 
-    padding: 9px;
+    padding: 7px 10px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -423,7 +434,9 @@ hr {
 
     font-weight: 700;
 
-    line-height: 1.3;
+    line-height: 1.2;
+
+    text-align: center;
 
     cursor: pointer;
 
@@ -432,12 +445,12 @@ hr {
     -webkit-tap-highlight-color: transparent;
 
     transition:
-        transform 0.1s,
-        filter 0.15s;
+        transform .1s ease,
+        filter .15s ease;
 }
 
 .setBut:active {
-    transform: scale(0.97);
+    transform: scale(.97);
 }
 
 .setBut.success {
@@ -456,11 +469,13 @@ hr {
 version {
     grid-column: 1 / -1;
 
-    display: block;
-
     width: 100%;
 
-    color: #777;
+    display: block;
+
+    margin-top: 3px;
+
+    color: #999;
 
     font-family:
         "Samsung One",
@@ -470,9 +485,11 @@ version {
 
     font-size: 15px;
 
+    line-height: 1.2;
+
     text-align: center;
 
-    opacity: 0.65;
+    opacity: .75;
 }
 
 
@@ -483,25 +500,25 @@ version {
 .status {
     width: 100%;
 
-    padding: 12px;
+    padding: 9px 12px;
 
-    border-radius: 12px;
+    margin-top: 0;
 
-    background: #f4f6f7;
+    border-radius: 10px;
+
+    background: #f5f6f7;
 
     color: #607d8b;
 
-    font-size: 18px;
+    font-size: 17px;
 
     font-weight: 600;
 
-    line-height: 1.4;
+    line-height: 1.3;
 
     text-align: center;
 
     overflow-wrap: anywhere;
-
-    flex-shrink: 0;
 }
 
 
@@ -510,17 +527,17 @@ version {
 ========================================================= */
 
 .color-panel {
-    width: 100% !important;
+    width: min(100%, 560px) !important;
 
-    margin: 0 !important;
+    margin: 0 auto !important;
 
-    padding: 16px !important;
+    padding: 15px !important;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 10px;
+    gap: 9px;
 
     background: #f8f9fa !important;
 
@@ -541,41 +558,42 @@ version {
 
 .color-panel label {
     font-size: 18px;
+
+    text-align: right;
 }
 
 .color-panel input[type="color"] {
     width: 100%;
 
-    height: 52px;
-
-    padding: 3px;
-
-    border: 2px solid #ccc;
+    height: 50px;
 
     border-radius: 10px;
 }
 
 
 /* =========================================================
-   MOBILE
+   PHONE
 ========================================================= */
 
 @media (max-width: 600px) {
 
     body {
-        padding: 7px;
+        padding: 8px 0;
     }
 
     .container {
-        width: 100%;
+        width: 92vw;
 
-        min-height: calc(100dvh - 14px);
+        min-height: calc(100dvh - 16px);
 
-        padding: 17px 12px 13px;
-
-        border-radius: 20px;
+        padding:
+            20px
+            10px
+            13px;
 
         gap: 12px;
+
+        border-radius: 21px;
     }
 
     #title {
@@ -583,70 +601,73 @@ version {
     }
 
     .info {
-        gap: 8px;
+        width: min(100%, 455px);
+
+        gap: 16px;
     }
 
     #level,
     #chances {
-        min-height: 54px;
+        height: 58px;
 
         font-size: 18px;
     }
 
     #hintArea {
-        min-height: 88px;
+        width: 100%;
 
-        padding: 13px;
+        min-height: 108px;
 
-        font-size: 19px;
+        font-size: 20px;
+
+        border-width: 5px;
     }
 
     #inputWord {
-        height: 60px;
+        width: 100%;
+
+        height: 62px;
 
         font-size: 19px;
     }
 
     .btn-primary {
-        height: 62px;
+        width: 290px;
 
-        font-size: 21px;
+        max-width: 90%;
+
+        height: 64px;
+
+        font-size: 22px;
     }
 
     .settings {
-        gap: 8px;
+        width: min(100%, 430px);
+
+        gap: 9px 11px;
     }
 
     .setBut {
-        min-height: 54px;
+        height: 54px;
 
-        font-size: 18px;
-    }
-
-    .status {
         font-size: 18px;
     }
 }
 
 
 /* =========================================================
-   SMALL PHONE
+   SMALL PHONES
 ========================================================= */
 
-@media (max-width: 360px) {
-
-    body {
-        padding: 5px;
-    }
+@media (max-width: 380px) {
 
     .container {
-        min-height: calc(100dvh - 10px);
+        width: 94vw;
 
-        padding: 14px 9px 11px;
+        padding-left: 8px;
+        padding-right: 8px;
 
-        gap: 9px;
-
-        border-radius: 17px;
+        gap: 10px;
     }
 
     #title {
@@ -654,126 +675,142 @@ version {
     }
 
     .info {
-        gap: 6px;
+        gap: 8px;
     }
 
     #level,
     #chances {
-        min-height: 50px;
+        height: 52px;
 
-        font-size: 18px;
+        font-size: 17px;
     }
 
     #hintArea {
-        min-height: 78px;
+        min-height: 92px;
+
+        padding: 10px 14px;
 
         font-size: 18px;
     }
 
     #inputWord {
-        height: 56px;
+        height: 57px;
+
+        font-size: 18px;
     }
 
     .btn-primary {
+        width: 260px;
+
         height: 58px;
 
         font-size: 20px;
     }
 
-    .setBut {
-        min-height: 50px;
+    .settings {
+        width: 100%;
+    }
 
-        font-size: 18px;
+    .setBut {
+        height: 51px;
+
+        font-size: 17px;
+    }
+
+    #settings {
+        font-size: 19px;
+    }
+
+    .status {
+        font-size: 16px;
     }
 }
 
 
 /* =========================================================
-   LAPTOP / DESKTOP
+   DESKTOP / LAPTOP
 ========================================================= */
 
 @media (min-width: 700px) {
 
     body {
-        padding: 16px;
+        padding: 20px 0;
     }
 
     .container {
-        min-height: calc(100dvh - 32px);
+        width: min(90vw, 850px);
 
-        padding: 25px;
+        min-height: calc(100dvh - 40px);
 
-        gap: 17px;
+        padding: 28px 35px 20px;
 
-        border-radius: 26px;
+        gap: 16px;
+
+        border-radius: 27px;
     }
 
     #title {
         font-size: 38px;
     }
 
+    .info {
+        width: 470px;
+
+        gap: 18px;
+    }
+
     #level,
     #chances {
-        min-height: 60px;
+        height: 62px;
 
         font-size: 20px;
     }
 
     #hintArea {
+        width: 620px;
+
+        max-width: 100%;
+
         min-height: 120px;
 
-        font-size: 22px;
+        font-size: 23px;
     }
 
     #inputWord {
-        height: 66px;
+        width: 620px;
 
-        font-size: 21px;
+        max-width: 100%;
+
+        height: 66px;
     }
 
     .btn-primary {
-        height: 70px;
+        width: 300px;
 
-        font-size: 24px;
+        height: 66px;
+    }
+
+    .settings {
+        width: 450px;
+
+        max-width: 100%;
     }
 
     .setBut {
-        min-height: 58px;
-
-        font-size: 19px;
+        height: 57px;
     }
 }
 
 
 /* =========================================================
-   LARGE DESKTOP
+   VERY LARGE SCREEN
 ========================================================= */
 
 @media (min-width: 1100px) {
 
     .container {
-        max-width: 900px;
+        width: 850px;
     }
-}
-
-
-/* =========================================================
-   NO HORIZONTAL OVERFLOW
-========================================================= */
-
-button,
-input,
-textarea,
-select {
-    max-width: 100%;
-}
-
-img,
-video,
-canvas,
-svg,
-iframe {
-    max-width: 100%;
 }
 
 
@@ -783,7 +820,7 @@ iframe {
 
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid rgba(52, 152, 219, 0.35);
+    outline: 3px solid rgba(52, 152, 219, .35);
 
     outline-offset: 2px;
 }

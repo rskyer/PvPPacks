@@ -1,18 +1,13 @@
 /* =========================================================
    GUESS THE WORD
-   MOBILE-FIRST RESPONSIVE CSS
-========================================================= */
-
-
-/* =========================================================
-   FONT
+   REAL GAME UI
+   MOBILE FIRST
 ========================================================= */
 
 @font-face {
     font-family: "parsi";
     src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf")
-        format("truetype");
-
+         format("truetype");
     font-display: swap;
 }
 
@@ -37,35 +32,32 @@ html {
     text-size-adjust: 100%;
 
     overflow-x: hidden;
-
-    touch-action: manipulation;
 }
 
 body {
     width: 100%;
-    min-width: 0;
     min-height: 100dvh;
 
     margin: 0;
 
     padding:
-        max(14px, env(safe-area-inset-top))
-        max(9px, env(safe-area-inset-right))
-        max(14px, env(safe-area-inset-bottom))
-        max(9px, env(safe-area-inset-left));
+        12px
+        max(10px, env(safe-area-inset-right))
+        16px
+        max(10px, env(safe-area-inset-left));
 
     font-family: "parsi", Tahoma, sans-serif;
 
     font-size: 18px;
-    line-height: 1.55;
+    line-height: 1.5;
 
     color: #263238;
 
-    /* کل صفحه */
     background:
         linear-gradient(
             135deg,
-            skyblue 0%,
+            #87ceeb 0%,
+            #3498db 48%,
             #126899 100%
         );
 
@@ -75,51 +67,33 @@ body {
 
     overflow-x: hidden;
     overflow-y: auto;
-
-    /*
-       کارت در وسط فضای قابل مشاهده قرار می‌گیرد،
-       اما در صفحات کوتاه به بالا می‌رود.
-    */
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 
 /* =========================================================
-   MAIN GAME CONTAINER
+   GAME CONTAINER
 ========================================================= */
 
 .container {
-    width: 100%;
-    max-width: 680px;
-
-    min-width: 0;
+    width: min(94vw, 760px);
 
     margin: 0 auto;
 
-    padding: 17px 12px 15px;
+    padding: 18px 16px 15px;
 
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.98);
 
-    border-radius: 21px;
+    border-radius: 22px;
 
     box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.18);
+        0 7px 24px rgba(0, 0, 0, 0.20);
 
     display: flex;
     flex-direction: column;
 
-    gap: 10px;
+    gap: 11px;
 
     overflow: hidden;
-
-    /*
-       خیلی مهم:
-       کارت به خاطر flex کش نمی‌آید.
-    */
-    flex: 0 1 auto;
-    flex-shrink: 0;
 }
 
 
@@ -129,21 +103,18 @@ body {
 
 #title {
     width: 100%;
-    min-width: 0;
 
     margin: 0;
 
-    text-align: center;
-
     color: #263238;
 
-    font-size: clamp(26px, 7vw, 34px);
+    font-size: 30px;
 
     font-weight: 800;
 
-    line-height: 1.35;
+    line-height: 1.25;
 
-    overflow-wrap: anywhere;
+    text-align: center;
 }
 
 
@@ -153,13 +124,12 @@ body {
 
 .info {
     width: 100%;
-    min-width: 0;
 
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: 1fr 1fr;
 
-    gap: 7px;
+    gap: 8px;
 
     margin: 0;
 }
@@ -167,13 +137,12 @@ body {
 #level,
 #chances {
     width: 100%;
-    min-width: 0;
 
-    min-height: 48px;
+    min-height: 50px;
 
     margin: 0;
 
-    padding: 7px 6px;
+    padding: 8px 10px;
 
     display: flex;
     align-items: center;
@@ -183,19 +152,15 @@ body {
 
     color: white;
 
-    font-family: inherit;
-
     font-size: 18px;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    line-height: 1.3;
+    line-height: 1.2;
 
     text-align: center;
 
     white-space: nowrap;
-
-    overflow: hidden;
 }
 
 #level {
@@ -208,19 +173,19 @@ body {
 
 
 /* =========================================================
-   HR
+   SEPARATOR
 ========================================================= */
 
 hr {
     width: 100%;
 
-    height: 1px;
+    height: 2px;
 
     margin: 0;
 
     border: 0;
 
-    background: #e2e2e2;
+    background: #edf0f2;
 }
 
 
@@ -230,13 +195,12 @@ hr {
 
 #hintArea {
     width: 100%;
-    min-width: 0;
 
-    min-height: 62px;
+    min-height: 70px;
 
     margin: 0;
 
-    padding: 10px 12px;
+    padding: 12px 15px;
 
     display: flex;
     align-items: center;
@@ -246,28 +210,23 @@ hr {
 
     border-radius: 15px;
 
-    background: #fef9e7;
+    background: #fffbea;
 
     color: #d84315;
 
-    font-family: inherit;
+    font-size: 19px;
 
-    font-size: 18px;
+    font-weight: 700;
 
-    font-weight: 600;
-
-    line-height: 1.55;
+    line-height: 1.5;
 
     text-align: center;
 
     overflow-wrap: anywhere;
 
-    word-break: normal;
-
     transition:
         background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
+        border-color 0.2s ease;
 }
 
 #hintArea.win {
@@ -280,9 +239,9 @@ hr {
 
 
 /* =========================================================
-   INPUT + CHECK BUTTON WRAPPER
+   INPUT + CHECK AREA
 
-   HTML:
+   HTML has:
    <div>
        <input>
        <br>
@@ -292,14 +251,19 @@ hr {
 
 .container > div:has(#inputWord) {
     width: 100%;
-    min-width: 0;
 
     display: flex;
     flex-direction: column;
 
-    gap: 7px;
+    gap: 8px;
 
     margin: 0;
+}
+
+
+/* remove HTML br */
+.container br {
+    display: none;
 }
 
 
@@ -308,23 +272,18 @@ hr {
 ========================================================= */
 
 #inputWord {
-    display: block;
-
     width: 100%;
-    min-width: 0;
 
-    height: 54px;
-    min-height: 54px;
+    height: 56px;
+    min-height: 56px;
 
-    margin: 0;
-
-    padding: 8px 13px;
+    padding: 9px 14px;
 
     border: 2px solid #3498db;
 
     border-radius: 14px;
 
-    background: #ffffff;
+    background: white;
 
     color: #263238;
 
@@ -334,7 +293,7 @@ hr {
 
     font-weight: 500;
 
-    line-height: 1.4;
+    line-height: 1.3;
 
     text-align: center;
 
@@ -344,8 +303,8 @@ hr {
     appearance: none;
 
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
 #inputWord::placeholder {
@@ -362,31 +321,19 @@ hr {
     border-color: #2ecc71;
 
     box-shadow:
-        0 0 0 3px rgba(46, 204, 113, 0.14);
+        0 0 0 3px rgba(46, 204, 113, 0.15);
 }
 
 
 /* =========================================================
-   REMOVE HTML BR SPACING
-========================================================= */
-
-.container br {
-    display: none;
-}
-
-
-/* =========================================================
-   MAIN CHECK BUTTON
+   CHECK BUTTON
 ========================================================= */
 
 .btn-primary {
     width: 100%;
-    min-width: 0;
 
-    height: 56px;
-    min-height: 56px;
-
-    margin: 0;
+    height: 58px;
+    min-height: 58px;
 
     padding: 8px 14px;
 
@@ -404,13 +351,11 @@ hr {
 
     font-family: inherit;
 
-    font-size: 20px;
+    font-size: 21px;
 
     font-weight: 800;
 
-    line-height: 1.3;
-
-    text-align: center;
+    line-height: 1.2;
 
     cursor: pointer;
 
@@ -419,7 +364,7 @@ hr {
     -webkit-tap-highlight-color: transparent;
 
     box-shadow:
-        0 3px 9px rgba(46, 204, 113, 0.25);
+        0 3px 8px rgba(46, 204, 113, 0.25);
 
     transition:
         transform 0.1s ease,
@@ -443,21 +388,18 @@ hr {
 
 .settings {
     width: 100%;
-    min-width: 0;
-
-    margin: 0;
-
-    padding-top: 10px;
 
     display: grid;
 
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
+    grid-template-columns: 1fr 1fr;
 
-    gap: 7px;
+    gap: 8px;
 
-    border-top: 1px solid #e3e3e3;
+    margin: 0;
+
+    padding-top: 11px;
+
+    border-top: 2px solid #edf0f2;
 }
 
 
@@ -468,38 +410,31 @@ hr {
 #settings {
     grid-column: 1 / -1;
 
-    width: 100%;
-
     margin: 0;
 
     color: #607d8b;
-
-    font-family: inherit;
 
     font-size: 18px;
 
     font-weight: 700;
 
-    line-height: 1.4;
+    line-height: 1.3;
 
     text-align: center;
 }
 
 
 /* =========================================================
-   SETTINGS BUTTONS
+   SETTINGS BUTTON
 ========================================================= */
 
 .setBut {
     width: 100%;
-    min-width: 0;
 
-    height: 50px;
-    min-height: 50px;
+    height: 52px;
+    min-height: 52px;
 
-    margin: 0;
-
-    padding: 7px 6px;
+    padding: 7px 8px;
 
     display: flex;
     align-items: center;
@@ -507,7 +442,7 @@ hr {
 
     border: 0;
 
-    border-radius: 12px;
+    border-radius: 13px;
 
     background: #3498db;
 
@@ -519,7 +454,7 @@ hr {
 
     font-weight: 700;
 
-    line-height: 1.3;
+    line-height: 1.25;
 
     text-align: center;
 
@@ -560,9 +495,9 @@ hr {
 version {
     grid-column: 1 / -1;
 
-    width: 100%;
-
     display: block;
+
+    width: 100%;
 
     margin: 0;
 
@@ -574,11 +509,9 @@ version {
         Arial,
         sans-serif;
 
-    font-size: 16px;
+    font-size: 15px;
 
-    font-weight: 400;
-
-    line-height: 1.4;
+    line-height: 1.3;
 
     text-align: center;
 
@@ -592,23 +525,22 @@ version {
 
 .status {
     width: 100%;
-    min-width: 0;
 
     margin: 0;
 
-    padding: 8px 10px;
+    padding: 9px 12px;
 
     border-radius: 11px;
 
-    background: #f5f6f7;
+    background: #f4f6f7;
 
     color: #607d8b;
 
-    font-family: inherit;
-
     font-size: 18px;
 
-    line-height: 1.45;
+    font-weight: 600;
+
+    line-height: 1.35;
 
     text-align: center;
 
@@ -622,17 +554,16 @@ version {
 
 .color-panel {
     width: 100% !important;
-    min-width: 0;
 
     margin: 0 !important;
 
-    padding: 13px !important;
+    padding: 14px !important;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 7px;
+    gap: 8px;
 
     background: #f8f9fa !important;
 
@@ -646,11 +577,9 @@ version {
 
     color: #263238;
 
-    font-family: inherit;
-
     font-size: 20px;
 
-    line-height: 1.4;
+    line-height: 1.3;
 
     text-align: center;
 }
@@ -660,64 +589,33 @@ version {
 }
 
 .color-panel label {
-    display: block;
-
-    width: 100%;
-
     margin: 0;
 
     color: #455a64;
 
-    font-family: inherit;
-
     font-size: 18px;
 
-    line-height: 1.4;
-
-    text-align: right;
+    line-height: 1.3;
 }
 
 .color-panel input[type="color"] {
     width: 100%;
 
     height: 50px;
-    min-height: 48px;
 
     padding: 3px;
 
     border: 2px solid #ccc;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     background: white;
-
-    cursor: pointer;
 }
 
 .color-panel .setBut {
     width: 100%;
 
-    min-height: 50px;
-
     height: 50px;
-
-    margin: 0;
-}
-
-
-/* =========================================================
-   SMALL HEIGHT DEVICES
-   مثل بعض گوشی‌ها در حالت landscape
-========================================================= */
-
-@media (max-height: 700px) {
-
-    body {
-        align-items: flex-start;
-
-        padding-top:
-            max(10px, env(safe-area-inset-top));
-    }
 }
 
 
@@ -725,106 +623,89 @@ version {
    MOBILE
 ========================================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
     body {
-        padding-left:
-            max(7px, env(safe-area-inset-left));
-
-        padding-right:
-            max(7px, env(safe-area-inset-right));
-
-        padding-top:
-            max(12px, env(safe-area-inset-top));
-
-        padding-bottom:
-            max(12px, env(safe-area-inset-bottom));
+        padding-top: 10px;
+        padding-bottom: 14px;
     }
 
     .container {
-        width: 100%;
+        width: calc(100vw - 16px);
+
         max-width: none;
 
-        padding: 15px 10px 13px;
+        padding: 16px 11px 14px;
 
-        border-radius: 18px;
+        border-radius: 19px;
 
         gap: 9px;
     }
 
     #title {
-        font-size: 27px;
-    }
-
-    .info {
-        gap: 6px;
+        font-size: 28px;
     }
 
     #level,
     #chances {
-        min-height: 48px;
+        min-height: 49px;
 
         font-size: 18px;
     }
 
     #hintArea {
-        min-height: 61px;
+        min-height: 68px;
 
         font-size: 18px;
     }
 
     #inputWord {
-        height: 54px;
-        min-height: 54px;
-
-        font-size: 18px;
-    }
-
-    #inputWord::placeholder {
-        font-size: 18px;
+        height: 55px;
+        min-height: 55px;
     }
 
     .btn-primary {
-        height: 55px;
-        min-height: 55px;
+        height: 57px;
+        min-height: 57px;
 
         font-size: 20px;
     }
 
     .settings {
-        gap: 6px;
-
-        padding-top: 9px;
+        gap: 7px;
     }
 
     .setBut {
-        height: 50px;
-        min-height: 50px;
+        height: 51px;
+        min-height: 51px;
 
-        font-size: 18px;
-    }
-
-    .status {
         font-size: 18px;
     }
 }
 
 
 /* =========================================================
-   VERY NARROW PHONES
+   VERY SMALL PHONES
 ========================================================= */
 
 @media (max-width: 350px) {
 
     .container {
+        width: calc(100vw - 12px);
+
         padding-left: 8px;
         padding-right: 8px;
     }
 
+    #title {
+        font-size: 26px;
+    }
+
     /*
-       فقط تنظیمات یک ستونه می‌شود.
-       اندازه متن و دکمه‌ها کوچک نمی‌شود.
+       فقط اگر گوشی واقعاً خیلی باریک باشد،
+       تنظیمات یک ستون می‌شوند.
     */
+
     .settings {
         grid-template-columns: 1fr;
     }
@@ -833,36 +714,28 @@ version {
     version {
         grid-column: 1;
     }
-
-    #level,
-    #chances {
-        font-size: 18px;
-    }
-
-    .setBut {
-        min-height: 50px;
-    }
 }
 
 
 /* =========================================================
-   TABLET / DESKTOP
+   DESKTOP / LAPTOP
 ========================================================= */
 
 @media (min-width: 700px) {
 
     body {
-        padding:
-            24px
-            16px;
+        padding-top: 24px;
+        padding-bottom: 24px;
     }
 
     .container {
-        padding: 23px 19px 19px;
+        width: min(92vw, 760px);
 
-        border-radius: 24px;
+        padding: 22px 20px 18px;
 
         gap: 12px;
+
+        border-radius: 24px;
     }
 
     #title {
@@ -871,69 +744,68 @@ version {
 
     #level,
     #chances {
-        min-height: 51px;
+        min-height: 52px;
 
         font-size: 19px;
     }
 
     #hintArea {
-        min-height: 68px;
+        min-height: 72px;
 
         font-size: 19px;
     }
 
     #inputWord {
-        height: 56px;
-        min-height: 56px;
+        height: 58px;
+        min-height: 58px;
 
         font-size: 19px;
     }
 
     .btn-primary {
-        height: 58px;
-        min-height: 58px;
+        height: 60px;
+        min-height: 60px;
 
         font-size: 21px;
     }
 
     .setBut {
-        height: 52px;
-        min-height: 52px;
-
-        font-size: 18px;
+        height: 53px;
+        min-height: 53px;
     }
 }
 
 
 /* =========================================================
-   FOCUS / ACCESSIBILITY
+   LARGE SCREEN
 ========================================================= */
+
+@media (min-width: 1100px) {
+
+    body {
+        padding-top: 28px;
+    }
+
+    .container {
+        width: 760px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button,
+input {
+    max-width: 100%;
+}
 
 button:focus-visible,
 input:focus-visible {
     outline: 3px solid rgba(52, 152, 219, 0.35);
 
     outline-offset: 2px;
-}
-
-
-/* =========================================================
-   PREVENT HORIZONTAL OVERFLOW
-========================================================= */
-
-img,
-video,
-canvas,
-svg,
-iframe {
-    max-width: 100%;
-}
-
-button,
-input,
-textarea,
-select {
-    max-width: 100%;
 }
 
 

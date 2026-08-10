@@ -1,19 +1,8 @@
-/* =========================================================
-   GUESS THE WORD
-   MOBILE GAME UI
-========================================================= */
-
 @font-face {
     font-family: "parsi";
-    src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf")
-        format("truetype");
+    src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf");
     font-display: swap;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     box-sizing: border-box;
@@ -24,135 +13,69 @@
 html {
     width: 100%;
     min-height: 100%;
-
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    width: 50%;
+    width: 100%;
     min-height: 100dvh;
-
-    padding: 14px 0;
-
     margin: 0;
-
-    font-family: "parsi", Tahoma, sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #87ceeb,
-            #3b9dcc,
-            #176f99
-        );
-
-    background-repeat: no-repeat;
-    background-size: cover;
-
+    padding: 18px 0 30px;
+    background: linear-gradient(
+        135deg,
+        #82cde8 0%,
+        #3196c2 55%,
+        #14739d 100%
+    );
+    font-family: "parsi", sans-serif;
     overflow-x: hidden;
 }
 
-
-/* =========================================================
-   MAIN GAME PANEL
-========================================================= */
-
 .container {
-    width: 96%;
-    max-width: 760px;
-
-    min-height: calc(100dvh - 28px);
-
+    width: calc(100% - 28px);
+    max-width: 680px;
     margin: 0 auto;
-
-    padding: 25px 35px 18px;
-
+    padding: 24px 22px 16px;
     background: rgba(255, 255, 255, 0.97);
-
     border-radius: 25px;
-
-    box-shadow:
-        0 6px 25px rgba(0, 0, 0, 0.18);
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 14px;
-
-    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .18);
+    min-height: 0;
+    display: block;
 }
-
-
-/* =========================================================
-   TITLE
-========================================================= */
 
 #title {
     width: 100%;
-
-    margin: 0 0 2px;
-
-    color: #26384b;
-
-    font-size: clamp(28px, 5vw, 40px);
-
+    margin: 0 0 14px;
+    color: #263746;
+    font-size: 34px;
     font-weight: 800;
-
-    line-height: 1.3;
-
+    line-height: 1.25;
     text-align: center;
 }
 
-
-/* =========================================================
-   LEVEL / CHANCES
-========================================================= */
-
 .info {
-    width: min(100%, 460px);
-
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 18px;
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 18px;
-
-    margin: 0 auto;
+    gap: 14px;
 }
 
 #level,
 #chances {
     width: 100%;
-
     height: 62px;
-
     margin: 0;
-
-    padding: 8px 12px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border-radius: 32px;
-
     color: white;
-
     font-size: 20px;
-
     font-weight: 800;
-
-    line-height: 1.2;
-
     white-space: nowrap;
-
-    text-align: center;
 }
 
 #level {
@@ -160,297 +83,134 @@ body {
 }
 
 #chances {
-    background: #e74c3c;
+    background: #ed4b3e;
 }
-
-
-/* =========================================================
-   HR
-========================================================= */
 
 hr {
+    display: block;
     width: 100%;
-
     height: 2px;
-
-    margin: 4px 0;
-
+    margin: 0 0 20px;
     border: 0;
-
-    background: #e1e4e6;
+    background: #e4e7e8;
 }
 
-
-/* =========================================================
-   HINT
-========================================================= */
-
 #hintArea {
-    width: min(100%, 560px);
-
-    min-height: 112px;
-
-    margin: 0 auto;
-
-    padding: 15px 22px;
-
+    width: 100%;
+    min-height: 125px;
+    margin: 0 0 18px;
+    padding: 16px 22px;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    border: 5px dashed #3d9ed0;
-
+    border: 5px dashed #3b9bd0;
     border-radius: 22px;
-
     background: #fffbea;
-
-    color: #d84d3f;
-
-    font-size: clamp(19px, 4vw, 27px);
-
+    color: #d94d40;
+    font-size: 24px;
     font-weight: 700;
-
-    line-height: 1.6;
-
+    line-height: 1.55;
     text-align: center;
-
     overflow-wrap: anywhere;
 }
 
 #hintArea.win {
     border-color: #2ecc71;
-
     background: #eafaf1;
-
-    color: #219653;
+    color: #27ae60;
 }
 
-
-/* =========================================================
-   INPUT + CHECK AREA
-========================================================= */
-
-.container > div:has(#inputWord) {
+.container > div {
     width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 10px;
 }
-
-
-/* HTML <br> is unnecessary */
-
-.container br {
-    display: none;
-}
-
-
-/* =========================================================
-   INPUT
-========================================================= */
 
 #inputWord {
-    width: min(100%, 560px);
-
-    height: 64px;
-
-    margin: 0 auto;
-
+    display: block;
+    width: 100%;
+    height: 66px;
+    margin: 0 0 12px;
     padding: 8px 18px;
-
     border: 3px solid #3b9bd0;
-
-    border-radius: 17px;
-
+    border-radius: 18px;
     background: white;
-
-    color: #263238;
-
+    color: #333;
     font-family: inherit;
-
     font-size: 20px;
-
-    font-weight: 600;
-
     text-align: center;
-
     outline: none;
-
     -webkit-appearance: none;
-    appearance: none;
 }
 
 #inputWord::placeholder {
-    color: #888;
-
+    color: #999;
     font-family: inherit;
-
     font-size: 18px;
-
-    opacity: 0.75;
 }
 
 #inputWord:focus {
     border-color: #2ecc71;
-
-    box-shadow:
-        0 0 0 3px rgba(46, 204, 113, 0.15);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, .12);
 }
 
-
-/* =========================================================
-   CHECK BUTTON
-
-   IMPORTANT:
-   NOT FULL WIDTH
-========================================================= */
-
 .btn-primary {
-    width: min(100%, 290px);
-
-    height: 64px;
-
-    margin: 0 auto;
-
-    padding: 8px 20px;
-
     display: flex;
-
+    width: 290px;
+    max-width: 80%;
+    height: 64px;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
-
     border: 0;
-
     border-radius: 17px;
-
-    background: #2ecc71;
-
+    background: #2dcc70;
     color: white;
-
     font-family: inherit;
-
     font-size: 23px;
-
     font-weight: 800;
-
-    line-height: 1.2;
-
     cursor: pointer;
-
-    touch-action: manipulation;
-
     -webkit-tap-highlight-color: transparent;
-
-    box-shadow:
-        0 4px 10px rgba(46, 204, 113, 0.22);
-
-    transition:
-        transform .1s ease,
-        filter .15s ease;
+    transition: transform .1s;
 }
 
 .btn-primary:active {
-    transform: scale(.97);
+    transform: scale(.96);
 }
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
 
 .settings {
-    width: min(100%, 430px);
-
-    margin: 6px auto 0;
-
-    padding-top: 14px;
-
+    width: 100%;
+    margin-top: 22px;
+    padding-top: 16px;
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
-    gap: 10px 12px;
-
-    border-top: 2px solid #e5e8ea;
+    gap: 10px;
+    border-top: 2px solid #e7e9ea;
 }
-
-
-/* =========================================================
-   SETTINGS TITLE
-========================================================= */
 
 #settings {
     grid-column: 1 / -1;
-
-    width: 100%;
-
     margin: 0 0 2px;
-
     color: #7c8588;
-
     font-size: 21px;
-
     font-weight: 700;
-
-    line-height: 1.3;
-
     text-align: center;
 }
-
-
-/* =========================================================
-   SETTINGS BUTTONS
-========================================================= */
 
 .setBut {
     width: 100%;
-
-    height: 55px;
-
-    padding: 7px 10px;
-
+    height: 54px;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
+    padding: 5px 8px;
     border: 0;
-
     border-radius: 14px;
-
     background: #3498db;
-
     color: white;
-
     font-family: inherit;
-
     font-size: 18px;
-
     font-weight: 700;
-
-    line-height: 1.2;
-
-    text-align: center;
-
     cursor: pointer;
-
-    touch-action: manipulation;
-
     -webkit-tap-highlight-color: transparent;
-
-    transition:
-        transform .1s ease,
-        filter .15s ease;
-}
-
-.setBut:active {
-    transform: scale(.97);
 }
 
 .setBut.success {
@@ -461,94 +221,47 @@ hr {
     background: #e74c3c;
 }
 
-
-/* =========================================================
-   VERSION
-========================================================= */
+.setBut:active {
+    transform: scale(.97);
+}
 
 version {
     grid-column: 1 / -1;
-
-    width: 100%;
-
     display: block;
-
-    margin-top: 3px;
-
+    margin-top: 2px;
     color: #999;
-
-    font-family:
-        "Samsung One",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+    font-family: Arial, sans-serif;
     font-size: 15px;
-
-    line-height: 1.2;
-
     text-align: center;
-
     opacity: .75;
 }
 
-
-/* =========================================================
-   STATUS
-========================================================= */
-
 .status {
     width: 100%;
-
-    padding: 9px 12px;
-
-    margin-top: 0;
-
+    margin-top: 10px;
+    padding: 9px 10px;
     border-radius: 10px;
-
-    background: #f5f6f7;
-
+    background: #f4f5f6;
     color: #607d8b;
-
-    font-size: 17px;
-
+    font-size: 16px;
     font-weight: 600;
-
-    line-height: 1.3;
-
     text-align: center;
-
-    overflow-wrap: anywhere;
 }
-
-
-/* =========================================================
-   COLOR PANEL
-========================================================= */
 
 .color-panel {
     width: min(100%, 560px) !important;
-
     margin: 0 auto !important;
-
     padding: 15px !important;
-
     display: flex;
-
     flex-direction: column;
-
     gap: 9px;
-
     background: #f8f9fa !important;
-
     border: 2px solid #ddd !important;
-
     border-radius: 16px !important;
 }
 
 .color-panel h4 {
     font-size: 20px;
-
     text-align: center;
 }
 
@@ -558,284 +271,158 @@ version {
 
 .color-panel label {
     font-size: 18px;
-
     text-align: right;
 }
 
 .color-panel input[type="color"] {
     width: 100%;
-
     height: 50px;
-
     border-radius: 10px;
 }
 
-
-/* =========================================================
-   PHONE
-========================================================= */
-
 @media (max-width: 600px) {
-
     body {
-        padding: 8px 0;
+        padding: 12px 0 20px;
     }
 
     .container {
-        width: 92vw;
-
-        min-height: calc(100dvh - 16px);
-
-        padding:
-            20px
-            10px
-            13px;
-
-        gap: 12px;
-
-        border-radius: 21px;
+        width: calc(100% - 24px);
+        padding: 20px 12px 14px;
+        border-radius: 22px;
     }
 
     #title {
         font-size: 29px;
-    }
-
-    .info {
-        width: min(100%, 455px);
-
-        gap: 16px;
-    }
-
-    #level,
-    #chances {
-        height: 58px;
-
-        font-size: 18px;
-    }
-
-    #hintArea {
-        width: 100%;
-
-        min-height: 108px;
-
-        font-size: 20px;
-
-        border-width: 5px;
-    }
-
-    #inputWord {
-        width: 100%;
-
-        height: 62px;
-
-        font-size: 19px;
-    }
-
-    .btn-primary {
-        width: 290px;
-
-        max-width: 90%;
-
-        height: 64px;
-
-        font-size: 22px;
-    }
-
-    .settings {
-        width: min(100%, 430px);
-
-        gap: 9px 11px;
-    }
-
-    .setBut {
-        height: 54px;
-
-        font-size: 18px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .container {
-        width: 94vw;
-
-        padding-left: 8px;
-        padding-right: 8px;
-
-        gap: 10px;
-    }
-
-    #title {
-        font-size: 27px;
+        margin-bottom: 12px;
     }
 
     .info {
         gap: 8px;
+        margin-bottom: 16px;
     }
 
     #level,
     #chances {
-        height: 52px;
+        height: 56px;
+        font-size: 18px;
+    }
 
-        font-size: 17px;
+    hr {
+        margin-bottom: 16px;
     }
 
     #hintArea {
-        min-height: 92px;
-
-        padding: 10px 14px;
-
-        font-size: 18px;
+        min-height: 100px;
+        margin-bottom: 12px;
+        padding: 12px 14px;
+        border-width: 4px;
+        border-radius: 18px;
+        font-size: 19px;
+        line-height: 1.5;
     }
 
     #inputWord {
-        height: 57px;
-
+        height: 58px;
+        margin-bottom: 10px;
         font-size: 18px;
     }
 
+    #inputWord::placeholder {
+        font-size: 17px;
+    }
+
     .btn-primary {
-        width: 260px;
-
+        width: 270px;
         height: 58px;
-
-        font-size: 20px;
+        font-size: 21px;
     }
 
     .settings {
-        width: 100%;
-    }
-
-    .setBut {
-        height: 51px;
-
-        font-size: 17px;
+        margin-top: 18px;
+        padding-top: 13px;
+        gap: 8px;
     }
 
     #settings {
         font-size: 19px;
     }
 
+    .setBut {
+        height: 50px;
+        font-size: 17px;
+    }
+
     .status {
+        margin-top: 8px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 380px) {
+    .container {
+        width: calc(100% - 18px);
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    #title {
+        font-size: 27px;
+    }
+
+    #level,
+    #chances {
+        height: 52px;
+        font-size: 16px;
+    }
+
+    #hintArea {
+        min-height: 90px;
+        font-size: 18px;
+    }
+
+    #inputWord {
+        height: 55px;
+    }
+
+    .btn-primary {
+        width: 250px;
+        height: 56px;
+    }
+
+    .setBut {
+        height: 48px;
         font-size: 16px;
     }
 }
 
-
-/* =========================================================
-   DESKTOP / LAPTOP
-========================================================= */
-
 @media (min-width: 700px) {
-
     body {
-        padding: 20px 0;
+        padding-top: 30px;
     }
 
     .container {
-        width: min(90vw, 850px);
-
-        min-height: calc(100dvh - 40px);
-
-        padding: 28px 35px 20px;
-
-        gap: 16px;
-
-        border-radius: 27px;
+        width: 680px;
+        padding: 28px 30px 18px;
     }
 
     #title {
         font-size: 38px;
     }
 
-    .info {
-        width: 470px;
-
-        gap: 18px;
-    }
-
-    #level,
-    #chances {
-        height: 62px;
-
-        font-size: 20px;
-    }
-
     #hintArea {
-        width: 620px;
-
-        max-width: 100%;
-
-        min-height: 120px;
-
-        font-size: 23px;
-    }
-
-    #inputWord {
-        width: 620px;
-
-        max-width: 100%;
-
-        height: 66px;
-    }
-
-    .btn-primary {
-        width: 300px;
-
-        height: 66px;
-    }
-
-    .settings {
-        width: 450px;
-
-        max-width: 100%;
-    }
-
-    .setBut {
-        height: 57px;
+        min-height: 135px;
+        font-size: 26px;
     }
 }
 
-
-/* =========================================================
-   VERY LARGE SCREEN
-========================================================= */
-
-@media (min-width: 1100px) {
-
-    .container {
-        width: 850px;
-    }
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
 }
 
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid rgba(52, 152, 219, .35);
-
-    outline-offset: 2px;
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        transition: none !important;
-    }
+button,
+input {
+    max-width: 100%;
 }

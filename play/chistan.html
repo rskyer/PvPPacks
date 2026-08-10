@@ -1,218 +1,11 @@
-
-<!--- کپی کنی حرومت پاره شدم ---!> 
-
-
-
-
-
-
+<!-- COPY = GAY * FUMBOY--!>
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <title>Guess The Word</title>
-  <style>
-    @font-face {
-      font-family: "parsi";
-      src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
-    }
-    
-    * {
-      font-family: "parsi", 'Iran-sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      text-align: center;
-      background: linear-gradient(135deg, skyblue 0%, #126899 100%);
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 100px;
-      max-width: 1600px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    
-    #title {
-      color: #2c3e50;
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    
-    .info {
-      display: flex;
-      justify-content: space-around;
-      margin: 15px 0;
-    }
-    
-    #level, #chances {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 16px;
-    }
-    
-    #chances {
-      background: #e74c3c;
-    }
-    
-    hr {
-      border: 1px dashed #bdc3c7;
-      margin: 15px 0;
-    }
-    
-    #hintArea {
-      font-size: 28px;
-      color: #e74c3c;
-      background: #fef9e7;
-      padding: 25px;
-      border-radius: 15px;
-      display: inline-block;
-      min-width: 250px;
-      min-height: 80px;
-      border: 3px dashed #3498db;
-      margin: 15px 0;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    
-    #hintArea.win {
-      border-color: #2ecc71;
-      color: #27ae60;
-      background: #eafaf1;
-    }
-    
-    #inputWord {
-      padding: 12px 20px;
-      font-size: 20px;
-      border: 2px solid #3498db;
-      border-radius: 10px;
-      width: 80%;
-      margin: 10px 0;
-      transition: all 0.3s;
-      text-align: center;
-    }
-    
-    #inputWord:focus {
-      outline: none;
-      border-color: #2ecc71;
-      box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
-    }
-    
-    .btn-primary {
-      padding: 12px 40px;
-      font-size: 20px;
-      background: #2ecc71;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin: 5px;
-    }
-    
-    .btn-primary:hover {
-      background: #27ae60;
-      transform: scale(1.05);
-    }
-    
-    .btn-primary:active {
-      transform: scale(0.95);
-    }
-    
-    .settings {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 2px solid #ecf0f1;
-    }
-    
-    #settings {
-      color: #7f8c8d;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    
-    .setBut {
-      padding: 20px 25px;
-      margin: 5px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: all 0.3s;
-    }
-    
-    .setBut:hover {
-      background: #2980b9;
-      transform: scale(1.05);
-    }
-    
-    .setBut.danger {
-      background: #e74c3c;
-    }
-    
-    .setBut.danger:hover {
-      background: #c0392b;
-    }
-    
-    .setBut.success {
-      background: #f39c12;
-    }
-    
-    .setBut.success:hover {
-      background: #e67e22;
-    }
-    
-    .status {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #95a5a6;
-    }
-    
-    @media (max-width: 500px) {
-      .container {
-        padding: 20px;
-      }
-      #title {
-        font-size: 1.8em;
-      }
-      #inputWord {
-        width: 100%;
-        font-size: 16px;
-      }
-      #hintArea {
-        font-size: 22px;
-        min-width: 150px;
-        min-height: 60px;
-        padding: 15px;
-      }
-    }
-  version {
-    font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    color: #666;
-    font-size: 11px;
-    font-weight: 300;
-    opacity: 0.6;
-    letter-spacing: 0.3px;
-    margin-top: 25px;
-    text-align: center;
-}
-  </style>
+  <link rel="stylesheet" href="public/word.css">
 </head>
 <body>
 
@@ -282,7 +75,17 @@ let targetWordHint = "";
     8: "سکوت",
     9: "قول",
     
-    10: "روشنایی"
+    10: "روشنایی",
+    11: "آب",
+12: "تاریکی",
+13: "دندان",
+14: "بادکنک",
+15: "سن",
+16: "نقطه",
+17: "سوزن",
+18: "گورخر",
+19: "کره",
+20: "خواهر"
   };
   let hints = {
     1: "بنویس بارون!",
@@ -295,6 +98,16 @@ let targetWordHint = "";
     8: "اون چیه که وقتی می‌گیش شکسته میشه!؟",
     9: "وقتی شکسته میشه دیگه مثل قبل نمیشه...:(",
     10: "وقتی میاد، تاریکی میره...:)",
+    11: " مایه حیات",
+12: "شب میاد و روز میره....",
+13: "چیه که هرچی میخندی بیشتر دیده میشه؟",
+14: "هرچی بیشتر فوت کنی بزرگ‌تر میشه",
+15: "ماله توعه! میره بالا ولی پایین نمیاد..!",
+16: "صرفا... 'دارا' آن را ندارد اما 'ندار' آن را دارد؟",
+17: "اون چیه که یدونه چشم داره اما هیچ وقت نمی‌بینه...!؟",
+18: "اون  کدوم حیوانه که داخل فیلم های سیاه سفید هم رنگ اصلی خودشو حفظ میکنه؟",
+19: "اون کدوم کشوره که داخل چشم خودمون هم پیداش میکنیم؟",
+20: "تو برادرِ من هستی، ولی من  برادر تو نیستم! من کیم؟   "
   }
 function changeColor() {
     let con = document.getElementById("container")
@@ -352,9 +165,10 @@ function applyColors() {
         alert(":/شانس‌ات تموم شد! بازی ریست میشه.");
         reset();
         return;
-    } else if(userLevel > 12) {
-      userLevel = 11
-      update(11, 10)
+    } else if(userLevel > 21) {
+      userLevel = 20
+      chances = 10
+      update(19, 10)
     }
     
     playsound(clickS)

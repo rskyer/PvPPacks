@@ -1,6 +1,6 @@
 @font-face {
     font-family: "parsi";
-    src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf");
+    src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -10,63 +10,61 @@
     padding: 0;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
-
 html {
-    overflow-x: hidden;
+    font-size: 18px;
     -webkit-text-size-adjust: 100%;
 }
 
 body {
+    min-height: 100vh;
     min-height: 100dvh;
-    padding: 28px 0 40px;
-    background: linear-gradient(135deg, #87ceeb, #3198c5, #19749e);
-    font-family: "parsi", sans-serif;
+    padding: 24px 16px;
+    font-family: "parsi", Tahoma, sans-serif;
+    background: linear-gradient(135deg, #87ceeb, #2980b9);
+    color: #263238;
     overflow-x: hidden;
 }
 
 .container {
-    width: min(94vw, 850px);
+    width: 100%;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 30px 34px 20px;
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 28px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+    padding: 28px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
 }
 
 #title {
-    width: 100%;
-    margin-bottom: 20px;
-    color: #263746;
-    font-size: clamp(30px, 5vw, 42px);
+    margin-bottom: 22px;
+    font-size: 34px;
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.3;
     text-align: center;
+    color: #263746;
 }
 
 .info {
-    width: 75%;
-    margin: 0 auto 22px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 #level,
 #chances {
-    height: 70px;
+    min-width: 150px;
+    min-height: 52px;
+    padding: 10px 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 38px;
-    color: white;
-    font-size: 22px;
-    font-weight: 800;
-    white-space: nowrap;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
 }
 
 #level {
@@ -74,30 +72,29 @@ body {
 }
 
 #chances {
-    background: #ed4b3e;
+    background: #e74c3c;
 }
 
 hr {
-    width: 100%;
-    height: 2px;
-    margin: 0 0 24px;
+    height: 1px;
+    margin-bottom: 20px;
     border: 0;
-    background: #dfe3e5;
+    background: #e5e7e9;
 }
 
 #hintArea {
     width: 100%;
-    min-height: 170px;
-    margin-bottom: 22px;
-    padding: 20px 30px;
+    min-height: 105px;
+    margin-bottom: 16px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 5px dashed #3b9bd0;
-    border-radius: 25px;
+    border: 2px dashed #3498db;
+    border-radius: 16px;
     background: #fffbea;
-    color: #d94d40;
-    font-size: clamp(23px, 4vw, 31px);
+    color: #d35445;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -110,94 +107,108 @@ hr {
     color: #27ae60;
 }
 
-.container > div {
+.container > div:not(.settings) {
     width: 100%;
 }
 
 #inputWord {
     display: block;
     width: 100%;
-    height: 76px;
-    margin-bottom: 18px;
-    padding: 10px 22px;
-    border: 3px solid #3b9bd0;
-    border-radius: 20px;
-    background: white;
-    color: #333;
+    height: 56px;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    border: 2px solid #3498db;
+    border-radius: 13px;
+    background: #fff;
+    color: #263238;
     font-family: inherit;
-    font-size: 23px;
+    font-size: 18px;
     text-align: center;
     outline: none;
 }
 
 #inputWord::placeholder {
-    color: #999;
+    color: #888;
     font-family: inherit;
-    font-size: 21px;
+    font-size: 17px;
 }
 
 #inputWord:focus {
     border-color: #2ecc71;
-    box-shadow: 0 0 0 4px rgba(46, 204, 113, .12);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.12);
 }
 
 .btn-primary {
     display: flex;
-    width: 310px;
-    height: 72px;
+    width: 220px;
+    height: 56px;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
     border: 0;
-    border-radius: 19px;
-    background: #2dcc70;
-    color: white;
+    border-radius: 13px;
+    background: #2ecc71;
+    color: #fff;
     font-family: inherit;
-    font-size: 27px;
-    font-weight: 800;
+    font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
     touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s, filter 0.15s;
+}
+
+.btn-primary:hover {
+    filter: brightness(0.96);
 }
 
 .btn-primary:active {
-    transform: scale(.97);
+    transform: scale(0.97);
 }
 
 .settings {
     width: 100%;
-    margin-top: 30px;
-    padding-top: 20px;
+    margin-top: 24px;
+    padding-top: 18px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px 16px;
-    border-top: 2px solid #e4e7e9;
+    gap: 10px;
+    border-top: 1px solid #e5e7e9;
 }
 
 #settings {
     grid-column: 1 / -1;
-    margin-bottom: 5px;
-    color: #7d878b;
-    font-size: 25px;
+    margin-bottom: 2px;
+    color: #6f7b80;
+    font-size: 19px;
     font-weight: 700;
     text-align: center;
 }
 
 .setBut {
     width: 100%;
-    height: 65px;
+    min-height: 50px;
+    padding: 8px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 0;
-    border-radius: 16px;
+    border-radius: 11px;
     background: #3498db;
-    color: white;
+    color: #fff;
     font-family: inherit;
-    font-size: 21px;
+    font-size: 17px;
     font-weight: 700;
     cursor: pointer;
     touch-action: manipulation;
+    transition: transform 0.1s, filter 0.15s;
+}
+
+.setBut:hover {
+    filter: brightness(0.96);
+}
+
+.setBut:active {
+    transform: scale(0.97);
 }
 
 .setBut.success {
@@ -208,190 +219,182 @@ hr {
     background: #e74c3c;
 }
 
-.setBut:active {
-    transform: scale(.97);
-}
-
 version {
     grid-column: 1 / -1;
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
     color: #999;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
-    opacity: .75;
 }
 
 .status {
     width: 100%;
-    margin-top: 12px;
-    padding: 11px 12px;
-    border-radius: 11px;
-    background: #f4f5f6;
+    margin-top: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: #f5f6f7;
     color: #607d8b;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .color-panel {
     width: 100% !important;
-    margin: 15px 0 !important;
-    padding: 18px !important;
+    margin: 14px 0 0 !important;
+    padding: 16px !important;
     background: #f8f9fa !important;
-    border: 2px solid #ddd !important;
-    border-radius: 18px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 14px !important;
 }
 
 .color-panel h4 {
     margin-bottom: 10px;
-    font-size: 22px;
+    font-size: 19px;
     text-align: center;
 }
 
 .color-panel label {
-    font-size: 19px;
+    display: block;
+    margin: 5px 0;
+    font-size: 17px;
 }
 
 .color-panel input[type="color"] {
     width: 100%;
-    height: 55px;
-    border-radius: 10px;
+    height: 48px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
 }
 
 @media (max-width: 600px) {
-
     body {
-        padding: 12px 0 24px;
+        padding: 10px 8px 20px;
     }
 
     .container {
-        width: calc(100% - 18px);
-        padding: 22px 10px 16px;
-        border-radius: 23px;
+        width: 100%;
+        padding: 20px 12px 14px;
+        border-radius: 18px;
     }
 
     #title {
-        margin-bottom: 16px;
-        font-size: 30px;
+        margin-bottom: 17px;
+        font-size: 28px;
     }
 
     .info {
-        width: 100%;
         gap: 8px;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
     }
 
     #level,
     #chances {
-        height: 60px;
-        font-size: 19px;
+        min-width: 0;
+        width: 100%;
+        min-height: 50px;
+        padding: 8px 10px;
+        font-size: 17px;
     }
 
     hr {
-        margin-bottom: 18px;
+        margin-bottom: 16px;
     }
 
     #hintArea {
-        min-height: 145px;
-        margin-bottom: 16px;
-        padding: 16px;
-        border-width: 4px;
-        border-radius: 20px;
-        font-size: 21px;
-        line-height: 1.55;
+        min-height: 92px;
+        margin-bottom: 12px;
+        padding: 12px;
+        border-radius: 14px;
+        font-size: 18px;
     }
 
     #inputWord {
-        height: 64px;
-        margin-bottom: 14px;
-        font-size: 19px;
+        height: 54px;
+        margin-bottom: 9px;
+        font-size: 18px;
     }
 
     #inputWord::placeholder {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .btn-primary {
-        width: 290px;
-        max-width: 90%;
-        height: 64px;
-        font-size: 23px;
+        width: 220px;
+        max-width: 75%;
+        height: 54px;
+        font-size: 19px;
     }
 
     .settings {
-        margin-top: 22px;
-        padding-top: 16px;
-        gap: 9px;
+        margin-top: 20px;
+        padding-top: 14px;
+        gap: 8px;
     }
 
     #settings {
-        margin-bottom: 2px;
-        font-size: 21px;
-    }
-
-    .setBut {
-        height: 56px;
         font-size: 18px;
     }
 
-    version {
-        font-size: 14px;
+    .setBut {
+        min-height: 50px;
+        font-size: 17px;
     }
 
     .status {
-        font-size: 16px;
+        font-size: 15px;
     }
 }
 
 @media (max-width: 380px) {
+    body {
+        padding: 7px 6px 15px;
+    }
 
     .container {
-        width: calc(100% - 12px);
-        padding-left: 8px;
-        padding-right: 8px;
+        padding: 17px 9px 12px;
     }
 
     #title {
-        font-size: 27px;
+        font-size: 26px;
     }
 
     #level,
     #chances {
-        height: 55px;
-        font-size: 17px;
+        min-height: 48px;
+        font-size: 16px;
     }
 
     #hintArea {
-        min-height: 125px;
-        font-size: 18px;
+        min-height: 86px;
+        font-size: 17px;
     }
 
     #inputWord {
-        height: 58px;
+        height: 52px;
     }
 
     .btn-primary {
-        width: 260px;
-        height: 58px;
-        font-size: 21px;
+        width: 210px;
+        height: 52px;
+        font-size: 18px;
     }
 
     .setBut {
-        height: 52px;
-        font-size: 17px;
+        min-height: 48px;
+        font-size: 16px;
     }
 }
 
-@media (min-width: 700px) {
-
+@media (min-width: 900px) {
     body {
-        padding-top: 30px;
+        padding-top: 40px;
     }
 
     .container {
-        width: min(92vw, 850px);
-        padding: 32px 38px 22px;
+        padding: 32px;
     }
 }

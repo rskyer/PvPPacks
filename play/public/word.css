@@ -1,444 +1,812 @@
-/* =========================================================
-   FULLY FITTED CSS - EXACTLY LIKE REFERENCE
-   - Grid layout, full-width buttons, no extra gaps
-   - All class names & fonts preserved
-   - Container fits screen perfectly
-   ========================================================= */
-
 @font-face {
-  font-family: "parsi";
-  src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+    font-family: "parsi";
+    src: url("https://rskyer.github.io/AI_everywhere/o/pelak.ttf")
+        format("truetype");
 }
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  width: 100%;
-  min-height: 100%;
-  touch-action: manipulation;
-  -webkit-text-size-adjust: 100%;
+    width: 100%;
+    min-height: 100%;
+    font-size: 18px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    touch-action: manipulation;
 }
 
 body {
-  width: 100%;
-  max-width: 680px; /* limited on large screens, full on mobile */
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 8px;
-  display: grid;
-  grid-template-columns: 1fr; /* single column, full width */
-  grid-template-rows: auto auto auto auto auto auto auto auto auto;
-  gap: 8px;
-  align-content: start;
-  font-family: "parsi", 'Iran-sans', sans-serif;
-  background: linear-gradient(135deg, skyblue 0%, #126899 100%);
-  background-attachment: fixed;
-  overflow-x: hidden;
-  transition: background 0.3s ease;
-  touch-action: manipulation;
-  overscroll-behavior: none;
+    width: 100%;
+    min-height: 100dvh;
+
+    padding:
+        max(10px, env(safe-area-inset-top))
+        max(10px, env(safe-area-inset-right))
+        max(10px, env(safe-area-inset-bottom))
+        max(10px, env(safe-area-inset-left));
+
+    font-family: "parsi", "Tahoma", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+
+    background: linear-gradient(
+        135deg,
+        skyblue 0%,
+        #126899 100%
+    );
+
+    background-attachment: fixed;
+
+    overflow-x: hidden;
+
+    color: #263238;
 }
+
 
 /* =========================================================
-   MAIN CARD - full width, no extra padding
-   ========================================================= */
+   MAIN GAME CARD
+========================================================= */
 
 .container {
-  grid-column: 1 / -1;
-  width: 100%;
-  padding: 16px 12px;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+    width: 100%;
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    padding: 18px 14px 16px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    overflow: hidden;
 }
+
 
 /* =========================================================
    TITLE
-   ========================================================= */
+========================================================= */
 
 #title {
-  grid-column: 1 / -1;
-  width: 100%;
-  padding: 2px 4px;
-  font-size: clamp(1.45rem, 6vw, 2.3rem);
-  line-height: 1.25;
-  font-weight: 700;
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 4px;
+    width: 100%;
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size: clamp(26px, 7vw, 34px);
+    line-height: 1.35;
+
+    font-weight: 800;
+
+    color: #263238;
+
+    overflow-wrap: anywhere;
 }
 
+
 /* =========================================================
-   INFO BADGES
-   ========================================================= */
+   LEVEL / CHANCES
+========================================================= */
 
 .info {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 4px 0;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
 }
 
 #level,
 #chances {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  min-width: 80px;
-  padding: 8px 16px;
-  background: #3498db;
-  color: white;
-  border-radius: 20px;
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  line-height: 1.2;
-  font-weight: 700;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+
+    margin: 0;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    text-align: center;
+
+    color: white;
+
+    white-space: nowrap;
+}
+
+#level {
+    background: #3498db;
 }
 
 #chances {
-  background: #e74c3c;
+    background: #e74c3c;
 }
 
+
 /* =========================================================
-   DIVIDER - hidden (like reference)
-   ========================================================= */
+   HR
+========================================================= */
 
 hr {
-  display: none;
+    width: 100%;
+
+    height: 1px;
+
+    border: 0;
+
+    background: #e0e0e0;
+
+    margin: 0;
 }
+
 
 /* =========================================================
-   HINT AREA
-   ========================================================= */
+   HINT
+========================================================= */
 
 #hintArea {
-  grid-column: 1 / -1;
-  width: 100%;
-  min-height: 56px;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: #fef9e7;
-  color: #e74c3c;
-  font-size: clamp(0.95rem, 4vw, 1.15rem);
-  font-weight: 600;
-  line-height: 1.4;
-  text-align: center;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+    width: 100%;
+    min-height: 64px;
+
+    margin: 0;
+
+    padding: 12px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px dashed #3498db;
+    border-radius: 16px;
+
+    background: #fef9e7;
+
+    color: #d84315;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
 
+
+/* وقتی جواب درست است */
+
 #hintArea.win {
-  border-color: #2ecc71;
-  color: #27ae60;
-  background: #eafaf1;
+    background: #eafaf1;
+
+    border-color: #2ecc71;
+
+    color: #219653;
 }
+
 
 /* =========================================================
    INPUT
-   ========================================================= */
+========================================================= */
 
 #inputWord {
-  grid-column: 1 / -1;
-  width: 100%;
-  min-height: 56px;
-  padding: 8px 16px;
-  font-size: clamp(1rem, 4.5vw, 1.3rem);
-  line-height: 1.4;
-  border: 2px solid #3498db;
-  border-radius: 18px;
-  text-align: center;
-  -webkit-appearance: none;
-  appearance: none;
-  background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
+    display: block;
 
-#inputWord:focus {
-  outline: none;
-  border-color: #2ecc71;
-  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.15);
+    width: 100%;
+    min-width: 0;
+
+    min-height: 54px;
+
+    margin: 0;
+
+    padding: 10px 14px;
+
+    border: 2px solid #3498db;
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    color: #263238;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    outline: none;
+
+    -webkit-appearance: none;
+    appearance: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 #inputWord::placeholder {
-  font-size: 0.9rem;
-  opacity: 0.7;
+    color: #777;
+
+    font-size: 18px;
+
+    opacity: 0.75;
 }
 
+#inputWord:focus {
+    border-color: #2ecc71;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(46, 204, 113, 0.14);
+}
+
+
 /* =========================================================
-   PRIMARY BUTTON - full width
-   ========================================================= */
+   MAIN BUTTON
+========================================================= */
 
 .btn-primary {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 72px;
-  padding: 8px 16px;
-  font-size: clamp(1.2rem, 5vw, 1.6rem);
-  line-height: 1.2;
-  background: #2ecc71;
-  color: white;
-  border: none;
-  border-radius: 18px;
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  font-weight: 700;
-  transition: background 0.2s, transform 0.1s;
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+    display: flex;
+
+    width: 100%;
+    min-width: 0;
+
+    min-height: 56px;
+
+    margin: 0;
+
+    padding: 10px 16px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 15px;
+
+    background: #2ecc71;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color: transparent;
+
+    box-shadow:
+        0 4px 10px rgba(46, 204, 113, 0.25);
+
+    transition:
+        transform 0.1s ease,
+        filter 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+/* hover فقط برای دستگاه‌هایی که hover دارند */
+
+@media (hover: hover) {
+    .btn-primary:hover {
+        filter: brightness(0.96);
+
+        box-shadow:
+            0 6px 14px rgba(46, 204, 113, 0.3);
+    }
 }
 
 .btn-primary:active {
-  transform: scale(0.96);
+    transform: scale(0.98);
+
+    box-shadow:
+        0 2px 6px rgba(46, 204, 113, 0.2);
 }
+
 
 /* =========================================================
-   SETTINGS SECTION
-   ========================================================= */
+   REMOVE THE <br> SPACING
+========================================================= */
+
+.container br {
+    display: none;
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 .settings {
-  grid-column: 1 / -1;
-  margin-top: 4px;
-  padding-top: 12px;
-  border-top: 2px solid #ecf0f1;
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin: 2px 0 0;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #e0e0e0;
 }
+
+
+/* عنوان تنظیمات */
 
 #settings {
-  color: #7f8c8d;
-  margin-bottom: 8px;
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  line-height: 1.4;
-  font-weight: 600;
-  text-align: center;
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin: 0 0 2px;
+
+    color: #546e7a;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    text-align: center;
 }
 
-/* Settings buttons - grid for 2 columns */
-.settings {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
 
-#settings {
-  grid-column: 1 / -1;
-}
+/* =========================================================
+   SETTINGS BUTTONS
+========================================================= */
 
 .setBut {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 60px;
-  padding: 8px 12px;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-  line-height: 1.3;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  font-weight: 600;
-  transition: background 0.2s, transform 0.1s;
+    width: 100%;
+    min-width: 0;
+
+    min-height: 50px;
+
+    padding: 8px 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 13px;
+
+    background: #3498db;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition:
+        transform 0.1s ease,
+        filter 0.15s ease;
 }
 
 .setBut:active {
-  transform: scale(0.95);
+    transform: scale(0.97);
+}
+
+@media (hover: hover) {
+    .setBut:hover {
+        filter: brightness(0.94);
+    }
+}
+
+
+/* رنگ‌ها */
+
+.setBut.success {
+    background: #f39c12;
 }
 
 .setBut.danger {
-  background: #e74c3c;
+    background: #e74c3c;
 }
 
-.setBut.success {
-  background: #f39c12;
-}
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
-.status {
-  grid-column: 1 / -1;
-  margin-top: 4px;
-  padding: 8px 12px;
-  font-size: clamp(0.85rem, 3.5vw, 1rem);
-  line-height: 1.5;
-  color: #7f8c8d;
-  text-align: center;
-  overflow-wrap: anywhere;
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 12px;
-}
 
 /* =========================================================
    VERSION
-   ========================================================= */
+========================================================= */
 
 version {
-  grid-column: 1 / -1;
-  display: block;
-  font-family: 'Samsung One', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  color: #666;
-  font-size: 0.85rem;
-  font-weight: 300;
-  opacity: 0.6;
-  letter-spacing: 0.3px;
-  margin-top: 4px;
-  text-align: center;
+    grid-column: 1 / -1;
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: -2px;
+
+    color: #777;
+
+    font-family:
+        "Samsung One",
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    opacity: 0.7;
 }
 
+
 /* =========================================================
-   COLOR PANEL (dynamically added)
-   ========================================================= */
+   STATUS
+========================================================= */
+
+.status {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 9px 12px;
+
+    border-radius: 12px;
+
+    background: #f5f6f7;
+
+    color: #607d8b;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   COLOR PANEL
+========================================================= */
 
 .color-panel {
-  grid-column: 1 / -1;
-  background: #f8f9fa;
-  border-radius: 16px;
-  padding: 12px;
-  margin: 4px 0;
-  border: 2px solid #ddd;
+    width: 100%;
+
+    margin: 0 !important;
+
+    padding: 14px !important;
+
+    background: #f8f9fa !important;
+
+    border: 2px solid #ddd !important;
+
+    border-radius: 16px !important;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
 }
+
 .color-panel h4 {
-  margin-bottom: 8px;
-  color: #2c3e50;
-  font-size: 1rem;
+    margin: 0;
+
+    color: #263238;
+
+    font-size: 20px;
+
+    line-height: 1.4;
+
+    text-align: center;
 }
+
+.color-panel br {
+    display: none;
+}
+
 .color-panel label {
-  display: inline-block;
-  margin: 4px 8px;
-  font-size: 0.85rem;
-  color: #555;
+    display: block;
+
+    margin: 0;
+
+    color: #455a64;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    text-align: right;
 }
+
 .color-panel input[type="color"] {
-  width: 48px;
-  height: 40px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 2px;
-  vertical-align: middle;
+    display: block;
+
+    width: 100%;
+    height: 52px;
+
+    min-height: 48px;
+
+    padding: 3px;
+
+    border: 2px solid #ccc;
+
+    border-radius: 10px;
+
+    background: white;
+
+    cursor: pointer;
 }
+
 .color-panel .setBut {
-  min-height: 48px;
-  margin: 4px 0;
+    min-height: 50px;
+
+    margin: 0;
 }
 
-/* =========================================================
-   RESPONSIVE - SMALL PHONES
-   ========================================================= */
 
-@media (max-width: 380px) {
-  body {
-    padding: 6px;
-    gap: 6px;
-  }
-  .container {
-    padding: 12px 8px;
-    border-radius: 16px;
-  }
-  .btn-primary {
-    min-height: 64px;
-  }
-  .setBut {
-    min-height: 52px;
-    font-size: 0.85rem;
-  }
-  #level,
-  #chances {
-    min-height: 40px;
-    min-width: 60px;
-    padding: 4px 12px;
-    font-size: 0.9rem;
-  }
-  #hintArea {
-    min-height: 48px;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-  #inputWord {
-    min-height: 48px;
-    font-size: 1rem;
-  }
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding:
+            max(8px, env(safe-area-inset-top))
+            max(8px, env(safe-area-inset-right))
+            max(8px, env(safe-area-inset-bottom))
+            max(8px, env(safe-area-inset-left));
+    }
+
+    .container {
+        padding: 15px 11px 13px;
+
+        border-radius: 18px;
+
+        gap: 10px;
+
+        box-shadow:
+            0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    #title {
+        font-size: 27px;
+    }
+
+    .info {
+        gap: 7px;
+    }
+
+    #level,
+    #chances {
+        min-height: 48px;
+
+        padding: 7px 6px;
+
+        font-size: 18px;
+    }
+
+    #hintArea {
+        min-height: 62px;
+
+        padding: 10px 11px;
+
+        font-size: 18px;
+    }
+
+    #inputWord {
+        min-height: 54px;
+
+        font-size: 18px;
+    }
+
+    #inputWord::placeholder {
+        font-size: 18px;
+    }
+
+    .btn-primary {
+        min-height: 56px;
+
+        font-size: 20px;
+    }
+
+    .settings {
+        gap: 7px;
+    }
+
+    .setBut {
+        min-height: 50px;
+
+        padding: 7px 5px;
+
+        font-size: 18px;
+    }
+
+    #settings {
+        font-size: 18px;
+    }
+
+    .status {
+        font-size: 18px;
+    }
 }
 
+
 /* =========================================================
-   RESPONSIVE - TABLETS & LARGER
-   ========================================================= */
+   VERY SMALL PHONES
+   IMPORTANT:
+   DON'T SHRINK TEXT OR BUTTONS
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+    #level,
+    #chances {
+        min-height: 48px;
+    }
+
+    .settings {
+        grid-template-columns: 1fr;
+    }
+
+    #settings,
+    version {
+        grid-column: 1;
+    }
+
+    .setBut {
+        min-height: 50px;
+    }
+}
+
+
+/* =========================================================
+   TABLETS / DESKTOP
+========================================================= */
 
 @media (min-width: 700px) {
-  body {
-    padding: 16px;
-    gap: 12px;
-  }
-  .container {
-    padding: 24px 20px;
-    border-radius: 28px;
-  }
-  .btn-primary {
-    min-height: 80px;
-    font-size: 1.6rem;
-  }
-  .setBut {
-    min-height: 68px;
-    font-size: 1.1rem;
-  }
-  #level,
-  #chances {
-    min-height: 56px;
-    min-width: 100px;
-    font-size: 1.3rem;
-  }
-  #hintArea {
-    min-height: 64px;
-    font-size: 1.2rem;
-    padding: 12px 20px;
-  }
-  #inputWord {
-    min-height: 64px;
-    font-size: 1.3rem;
-  }
+
+    body {
+        padding: 24px 16px;
+    }
+
+    .container {
+        padding: 24px 20px 20px;
+
+        border-radius: 24px;
+
+        gap: 14px;
+    }
+
+    #title {
+        font-size: 34px;
+    }
+
+    #level,
+    #chances {
+        min-height: 52px;
+
+        font-size: 19px;
+    }
+
+    #hintArea {
+        min-height: 70px;
+
+        font-size: 19px;
+    }
+
+    #inputWord {
+        min-height: 56px;
+
+        font-size: 19px;
+    }
+
+    .btn-primary {
+        min-height: 58px;
+
+        font-size: 21px;
+    }
+
+    .setBut {
+        min-height: 52px;
+
+        font-size: 18px;
+    }
 }
+
 
 /* =========================================================
    ACCESSIBILITY
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-img,
-video,
-canvas,
-svg {
-  max-width: 100%;
-  height: auto;
-}
+========================================================= */
 
 button,
 input {
-  max-width: 100%;
+    max-width: 100%;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(52, 152, 219, 0.35);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }

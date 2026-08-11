@@ -19,32 +19,30 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px 12px;
+  padding: 16px 12px;
   color: #333;
   line-height: 1.6;
 }
 
-/* ===== Container ===== */
+/* ===== Container - Larger ===== */
 .container {
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;          /* bigger on laptop */
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-  padding: 28px 22px 20px;
-  margin-top: 10px;
+  padding: 28px 24px 22px;
+  margin: 10px auto;
   position: relative;
-  overflow: hidden;
 }
 
 /* ===== Title ===== */
 #title {
-  font-size: 1.7rem;
+  font-size: 1.75rem;
   font-weight: 700;
   text-align: center;
   color: #4a3f8c;
-  margin-bottom: 18px;
-  letter-spacing: -0.5px;
+  margin-bottom: 20px;
 }
 
 /* ===== Info (Level & Chances) ===== */
@@ -61,7 +59,7 @@ body {
   color: #4a3f8c;
   font-size: 1rem;
   font-weight: 600;
-  padding: 10px 12px;
+  padding: 11px 12px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(102, 126, 234, 0.12);
@@ -82,9 +80,9 @@ hr {
   border-radius: 14px;
   padding: 16px;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: #4338ca;
-  min-height: 60px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +112,6 @@ hr {
 
 #inputWord::placeholder {
   color: #94a3b8;
-  font-size: 0.95rem;
 }
 
 .btn-primary {
@@ -141,26 +138,27 @@ hr {
   transform: translateY(0);
 }
 
-/* ===== Settings Section ===== */
+/* ===== Settings Section - Centered Buttons ===== */
 .settings {
   margin-top: 28px;
   padding-top: 18px;
   border-top: 1px solid #e2e8f0;
+  text-align: center;          /* centers the buttons */
 }
 
 #settings {
   font-size: 1rem;
   color: #64748b;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   text-align: center;
 }
 
 .setBut {
   display: inline-block;
-  width: calc(50% - 6px);
-  margin: 0 3px 10px;
-  padding: 11px 8px;
-  font-size: 0.9rem;
+  width: 46%;                  /* two buttons per row */
+  margin: 0 2% 12px 2%;
+  padding: 12px 8px;
+  font-size: 0.92rem;
   font-weight: 500;
   border: none;
   border-radius: 12px;
@@ -168,6 +166,7 @@ hr {
   transition: all 0.2s;
   background: #e2e8f0;
   color: #334155;
+  text-align: center;
 }
 
 .setBut:hover {
@@ -199,56 +198,51 @@ version {
   text-align: center;
   font-size: 0.8rem;
   color: #94a3b8;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 /* ===== Status Bar ===== */
 .status {
   margin-top: 18px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   background: #f1f5f9;
   border-radius: 12px;
-  font-size: 0.85rem;
+  font-size: 0.87rem;
   color: #64748b;
   text-align: center;
   line-height: 1.4;
 }
 
-/* ===== Mobile Optimizations ===== */
-@media (max-width: 420px) {
+/* ===== Mobile ===== */
+@media (max-width: 520px) {
   body {
-    padding: 12px 8px;
+    padding: 12px 10px;
   }
 
   .container {
-    padding: 22px 16px 16px;
-    border-radius: 16px;
+    max-width: 100%;
+    padding: 24px 18px 18px;
+    border-radius: 18px;
   }
 
   #title {
-    font-size: 1.45rem;
+    font-size: 1.5rem;
   }
 
   .info h3 {
-    font-size: 0.92rem;
-    padding: 9px 8px;
-  }
-
-  #hintArea {
-    font-size: 0.98rem;
-    padding: 14px;
+    font-size: 0.95rem;
   }
 
   .setBut {
     width: 100%;
-    margin: 0 0 8px;
+    margin: 0 0 10px 0;
   }
 }
 
-/* Very small screens */
-@media (max-width: 340px) {
+/* Very small phones */
+@media (max-width: 360px) {
   #title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .info {
@@ -257,7 +251,7 @@ version {
   }
 }
 
-/* Optional: Smooth focus for accessibility */
+/* Optional accessibility */
 button:focus-visible,
 input:focus-visible {
   outline: 3px solid #667eea;

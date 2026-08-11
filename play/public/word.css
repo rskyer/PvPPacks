@@ -1,558 +1,774 @@
-/* ========================================
-   GUESS THE WORD - MODERN STYLES
-   Fully Responsive | RTL Support | Mobile First
-   ======================================== */
+/* =========================================================
+   GUESS THE WORD — Modern Responsive CSS
+   No HTML changes required
+   ========================================================= */
 
-/* ---------- RESET & BASE ---------- */
+:root {
+  --bg: #f3f7ff;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #68758a;
+  --border: #e2e8f3;
+
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+
+  --success: #16a34a;
+  --success-hover: #15803d;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+
+  --shadow:
+    0 20px 50px rgba(30, 64, 175, 0.10),
+    0 4px 15px rgba(15, 23, 42, 0.05);
+
+  --radius: 18px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: "Vazir", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(145deg, #0b0e1a 0%, #1a1f35 40%, #0f1428 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin: 0;
-    color: #e8edf5;
-    line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #e7f0ff 0%,
+      var(--bg) 42%,
+      #eef3fa 100%
+    );
+
+  color: var(--text);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 28px 16px;
+
+  direction: rtl;
 }
 
-/* ---------- CONTAINER ---------- */
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
 .container {
-    max-width: 520px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 32px;
-    padding: 28px 24px 32px;
-    box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-        0 0 40px rgba(88, 130, 255, 0.08);
-    transition: all 0.3s ease;
-    animation: fadeUp 0.6s ease-out;
+  width: min(100%, 620px);
+
+  background: var(--card);
+
+  border: 1px solid rgba(226, 232, 243, 0.9);
+
+  border-radius: var(--radius);
+
+  padding: 32px;
+
+  box-shadow: var(--shadow);
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  animation: cardIn 0.45s ease-out;
 }
 
-@keyframes fadeUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.97);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+
+/* Small decorative line */
+
+.container::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #60a5fa,
+    #38bdf8
+  );
 }
 
-/* ---------- TITLE ---------- */
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
 #title {
-    font-size: 1.9rem;
-    font-weight: 800;
-    text-align: center;
-    margin: 0 0 6px 0;
-    background: linear-gradient(135deg, #f0e9ff 0%, #a8c8ff 50%, #7aa9ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.5px;
-    text-shadow: 0 0 40px rgba(100, 160, 255, 0.15);
-    word-break: break-word;
+  margin: 4px 0 24px;
+
+  font-size: clamp(26px, 5vw, 36px);
+
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+  color: #172554;
 }
 
-/* ---------- INFO (Level & Chances) ---------- */
+
+/* =========================================================
+   LEVEL + CHANCES
+   ========================================================= */
+
 .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 10px 18px;
-    margin: 12px 0 6px 0;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+
+  justify-content: center;
+
+  align-items: stretch;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
 }
 
 .info h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin: 0;
-    color: #c8d8f0;
-    letter-spacing: 0.3px;
+  flex: 1;
+
+  margin: 0;
+
+  min-height: 48px;
+
+  padding: 12px 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f7faff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: #334155;
 }
 
-#level {
-    color: #7ab7ff;
-}
 
-#level::before {
-    content: "🎯 ";
-    font-weight: 400;
-}
+/* =========================================================
+   HR
+   ========================================================= */
 
-#chances {
-    color: #ffb07a;
-}
-
-#chances::before {
-    content: "❤️ ";
-    font-weight: 400;
-}
-
-/* ---------- SEPARATOR ---------- */
 hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
-    margin: 14px 0 16px 0;
+  border: 0;
+
+  height: 1px;
+
+  background: var(--border);
+
+  margin: 20px 0 24px;
 }
 
-/* ---------- HINT AREA ---------- */
+
+/* =========================================================
+   HINT
+   ========================================================= */
+
 #hintArea {
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 14px;
-    padding: 16px 18px;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #d6e4ff;
-    min-height: 62px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed rgba(255, 255, 255, 0.10);
-    margin-bottom: 18px;
-    transition: all 0.3s ease;
-    word-break: break-word;
+  margin: 0 0 24px;
+
+  padding: 18px 16px;
+
+  min-height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #f8fbff;
+
+  border: 1px solid #dbeafe;
+
+  border-radius: 14px;
+
+  color: #334155;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  font-weight: 600;
 }
 
-#hintArea:empty::before {
-    content: "✨ منتظر حدس شما...";
-    color: rgba(255, 255, 255, 0.35);
-    font-weight: 400;
-}
 
-/* ---------- INPUT & BUTTON (guess section) ---------- */
-.container>div:nth-of-type(2) {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 22px;
-}
+/* =========================================================
+   INPUT
+   ========================================================= */
 
 #inputWord {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 1.05rem;
-    font-family: inherit;
-    border: 2px solid rgba(255, 255, 255, 0.10);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.06);
-    color: #f0f5ff;
-    outline: none;
-    transition: all 0.3s ease;
-    direction: rtl;
-    text-align: right;
-    letter-spacing: 0.5px;
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 12px 16px;
+
+  border: 2px solid var(--border);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 17px;
+
+  text-align: center;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 #inputWord::placeholder {
-    color: rgba(255, 255, 255, 0.30);
-    font-weight: 400;
-    font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+#inputWord:hover {
+  border-color: #bfdbfe;
 }
 
 #inputWord:focus {
-    border-color: rgba(100, 180, 255, 0.50);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 4px rgba(100, 180, 255, 0.08), 0 8px 25px rgba(0, 0, 0, 0.20);
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 4px rgba(59, 130, 246, 0.12);
+
+  transform: translateY(-1px);
 }
 
-#inputWord:focus::placeholder {
-    color: rgba(255, 255, 255, 0.15);
-}
 
-#inputWord:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
 
-/* ---------- PRIMARY BUTTON (Check) ---------- */
 .btn-primary {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    font-family: inherit;
-    border: none;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #5b8cff, #7a5cff);
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 6px 20px rgba(90, 120, 255, 0.25);
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+
+  min-height: 52px;
+
+  margin-top: 12px;
+
+  padding: 12px 20px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 17px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 14px rgba(59, 130, 246, 0.22);
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
 }
 
-.btn-primary::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
-    pointer-events: none;
-    border-radius: 16px;
+.btn-primary:hover {
+  background: var(--primary-hover);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.27);
+
+  transform: translateY(-2px);
 }
 
-.btn-primary:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(90, 120, 255, 0.35);
+.btn-primary:active {
+  transform: translateY(0);
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.2);
 }
 
-.btn-primary:active:not(:disabled) {
-    transform: translateY(0px);
-    box-shadow: 0 4px 12px rgba(90, 120, 255, 0.20);
-}
 
-.btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
+/* =========================================================
+   SETTINGS
+   ========================================================= */
 
-/* ---------- SETTINGS SECTION ---------- */
 .settings {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 18px;
-    padding: 16px 14px 18px;
-    margin-top: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 28px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--border);
 }
 
 #settings {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #a0b8e0;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.5px;
-    text-align: center;
+  margin: 0 0 14px;
+
+  color: #475569;
+
+  font-size: 16px;
+
+  font-weight: 700;
 }
 
-#settings::before {
-    content: "⚙️ ";
-    font-weight: 400;
+
+/* =========================================================
+   SETTINGS BUTTONS
+   ========================================================= */
+
+.setBut {
+  min-height: 44px;
+
+  margin: 4px;
+
+  padding: 9px 15px;
+
+  border: 1px solid #dbe3ef;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  color: #334155;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
 }
 
-/* Settings buttons grid */
-.settings .setBut {
-    padding: 12px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    font-family: inherit;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.07);
-    color: #d0dcf0;
-    flex: 1 1 auto;
-    min-width: 80px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+.setBut:hover {
+  background: #eef4ff;
+
+  border-color: #bfdbfe;
+
+  color: #1d4ed8;
+
+  transform: translateY(-1px);
 }
 
-.settings .setBut:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.13);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+.setBut:active {
+  transform: translateY(0);
 }
 
-.settings .setBut:active {
-    transform: translateY(0px);
+
+/* =========================================================
+   SUCCESS BUTTON
+   ========================================================= */
+
+.setBut.success {
+  background: #f0fdf4;
+
+  border-color: #bbf7d0;
+
+  color: #15803d;
 }
 
-/* Success button (save level) */
-.settings .setBut.success {
-    background: linear-gradient(135deg, #2d9b5e, #1f8a4a);
-    color: #fff;
-    border-color: rgba(45, 155, 94, 0.3);
-    box-shadow: 0 4px 16px rgba(45, 155, 94, 0.20);
+.setBut.success:hover {
+  background: #dcfce7;
+
+  border-color: #86efac;
+
+  color: #166534;
 }
 
-.settings .setBut.success:hover {
-    background: linear-gradient(135deg, #35ad6a, #259a52);
-    box-shadow: 0 8px 24px rgba(45, 155, 94, 0.30);
+
+/* =========================================================
+   DANGER BUTTON
+   ========================================================= */
+
+.setBut.danger {
+  background: #fef2f2;
+
+  border-color: #fecaca;
+
+  color: #dc2626;
 }
 
-/* Danger button (reset local) */
-.settings .setBut.danger {
-    background: linear-gradient(135deg, #c73b4a, #a82a38);
-    color: #fff;
-    border-color: rgba(199, 59, 74, 0.3);
-    box-shadow: 0 4px 16px rgba(199, 59, 74, 0.20);
+.setBut.danger:hover {
+  background: #fee2e2;
+
+  border-color: #fca5a5;
+
+  color: #b91c1c;
 }
 
-.settings .setBut.danger:hover {
-    background: linear-gradient(135deg, #d94454, #b8303e);
-    box-shadow: 0 8px 24px rgba(199, 59, 74, 0.30);
+
+/* =========================================================
+   VERSION
+   ========================================================= */
+
+version {
+  display: block;
+
+  margin-top: 18px;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+
+  direction: ltr;
+
+  user-select: none;
 }
 
-/* Layout for settings buttons - wrap in a flex container */
-.settings {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+
+/* =========================================================
+   STATUS BAR
+   ========================================================= */
+
+.status {
+  margin-top: 20px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  border: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.6;
 }
 
-.settings>div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
+
+/* =========================================================
+   KEYBOARD ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.25);
+
+  outline-offset: 2px;
 }
 
-/* Since we can't change HTML, we use the existing structure.
-   The buttons are direct children of .settings, with <br> in between.
-   We'll use a different approach: target buttons directly and use flex-wrap. */
 
-/* Override: make .settings a flex column, but we need to handle the <br> tags */
-.settings {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
 }
 
-/* Hide the <br> tags inside .settings */
-.settings br {
-    display: none;
-}
 
-/* Make all buttons inside .settings (except the h4 and version) display inline-flex */
-.settings .setBut {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-}
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-/* Group the buttons using a wrapper via flex */
-.settings {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
+@media (max-width: 600px) {
 
-.settings h4 {
+  body {
+    padding: 14px 10px;
+
+    align-items: flex-start;
+  }
+
+  .container {
     width: 100%;
-    text-align: center;
-    margin-bottom: 2px;
+
+    margin-top: 8px;
+
+    padding: 25px 17px;
+
+    border-radius: 16px;
+  }
+
+  #title {
+    font-size: 27px;
+
+    margin-bottom: 20px;
+  }
+
+  .info {
+    gap: 8px;
+  }
+
+  .info h3 {
+    min-height: 48px;
+
+    padding: 10px 7px;
+
+    font-size: 15px;
+  }
+
+  #hintArea {
+    font-size: 17px;
+
+    padding: 15px 12px;
+  }
+
+  #inputWord {
+    min-height: 52px;
+
+    font-size: 17px;
+  }
+
+  .btn-primary {
+    min-height: 52px;
+
+    font-size: 17px;
+  }
+
+  .setBut {
+    min-height: 46px;
+
+    margin: 4px 2px;
+
+    padding: 9px 12px;
+
+    font-size: 14px;
+  }
+
+  .status {
+    font-size: 13px;
+  }
 }
 
-.settings .setBut {
-    flex: 1 1 calc(50% - 8px);
-    min-width: 100px;
-    max-width: 100%;
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  body {
+    padding: 8px;
+  }
+
+  .container {
+    padding: 22px 13px;
+  }
+
+  #title {
+    font-size: 24px;
+  }
+
+  .info h3 {
+    font-size: 14px;
+  }
+
+  .setBut {
+    padding-left: 9px;
+    padding-right: 9px;
+
+    font-size: 13px;
+  }
 }
 
-.settings .setBut.success,
-.settings .setBut.danger {
-    flex: 1 1 calc(50% - 8px);
+
+/* =========================================================
+   DARK MODE
+   Automatically follows the device/browser
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --bg: #0b1220;
+    --card: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --border: #263247;
+  }
+
+  body {
+    background:
+      radial-gradient(
+        circle at top,
+        #172554 0%,
+        #0b1220 45%,
+        #070c15 100%
+      );
+  }
+
+  .container {
+    border-color: #263247;
+
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.35);
+  }
+
+  #title {
+    color: #dbeafe;
+  }
+
+  .info h3 {
+    background: #172033;
+
+    border-color: #263247;
+
+    color: #cbd5e1;
+  }
+
+  #hintArea {
+    background: #111d31;
+
+    border-color: #263e63;
+
+    color: #cbd5e1;
+  }
+
+  #inputWord {
+    background: #0f172a;
+
+    border-color: #334155;
+
+    color: #e5e7eb;
+  }
+
+  #inputWord:hover {
+    border-color: #60a5fa;
+  }
+
+  .setBut {
+    background: #172033;
+
+    border-color: #334155;
+
+    color: #cbd5e1;
+  }
+
+  .setBut:hover {
+    background: #1e293b;
+
+    border-color: #60a5fa;
+
+    color: #93c5fd;
+  }
+
+  .setBut.success {
+    background: #0f2418;
+
+    border-color: #166534;
+
+    color: #86efac;
+  }
+
+  .setBut.success:hover {
+    background: #12351e;
+  }
+
+  .setBut.danger {
+    background: #2a1518;
+
+    border-color: #7f1d1d;
+
+    color: #fca5a5;
+  }
+
+  .setBut.danger:hover {
+    background: #3b171b;
+  }
+
+  .status {
+    background: #111827;
+
+    border-color: #263247;
+
+    color: #94a3b8;
+  }
+
+  #settings {
+    color: #cbd5e1;
+  }
+
+  version {
+    color: #64748b;
+  }
 }
 
-/* version tag */
-.settings version {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.20);
-    margin-top: 10px;
-    letter-spacing: 0.5px;
-    font-weight: 300;
-    padding-top: 6px;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-}
 
-/* ---------- STATUS BAR ---------- */
-#statusBar {
-    margin-top: 16px;
-    padding: 10px 16px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    transition: all 0.4s ease;
-    word-break: break-word;
-}
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
 
-#statusBar.has-message {
-    color: #b0ccff;
-    background: rgba(100, 160, 255, 0.06);
-    border-color: rgba(100, 160, 255, 0.10);
-}
+@media (prefers-reduced-motion: reduce) {
 
-/* ---------- RESPONSIVE ---------- */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
 
-/* Small phones */
-@media (max-width: 420px) {
-    .container {
-        padding: 20px 14px 24px;
-        border-radius: 24px;
-    }
+    animation-iteration-count: 1 !important;
 
-    #title {
-        font-size: 1.5rem;
-    }
-
-    .info {
-        padding: 8px 14px;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-
-    .info h3 {
-        font-size: 0.8rem;
-    }
-
-    #hintArea {
-        font-size: 0.95rem;
-        padding: 14px 14px;
-        min-height: 52px;
-    }
-
-    #inputWord {
-        font-size: 0.95rem;
-        padding: 14px 16px;
-    }
-
-    .btn-primary {
-        font-size: 1rem;
-        padding: 14px 16px;
-    }
-
-    .settings .setBut {
-        font-size: 0.75rem;
-        padding: 10px 12px;
-        min-width: 70px;
-        flex: 1 1 calc(50% - 6px);
-    }
-
-    #statusBar {
-        font-size: 0.7rem;
-        padding: 8px 12px;
-    }
-}
-
-/* Medium phones & small tablets */
-@media (min-width: 421px) and (max-width: 600px) {
-    .container {
-        padding: 24px 20px 28px;
-    }
-
-    #title {
-        font-size: 1.7rem;
-    }
-
-    .settings .setBut {
-        flex: 1 1 calc(50% - 8px);
-    }
-}
-
-/* Tablets & larger */
-@media (min-width: 601px) and (max-width: 900px) {
-    .container {
-        max-width: 480px;
-        padding: 32px 28px 36px;
-    }
-
-    #title {
-        font-size: 2rem;
-    }
-
-    .settings .setBut {
-        flex: 1 1 calc(33.33% - 8px);
-    }
-}
-
-/* Desktops */
-@media (min-width: 901px) {
-    .container {
-        max-width: 500px;
-        padding: 36px 32px 40px;
-        border-radius: 40px;
-    }
-
-    #title {
-        font-size: 2.1rem;
-    }
-
-    .settings .setBut {
-        flex: 1 1 calc(33.33% - 8px);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px);
-    }
-
-    .settings .setBut:hover {
-        transform: translateY(-3px);
-    }
-}
-
-/* ---------- UTILITY: dark mode friendly scrollbar ---------- */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-/* ---------- SELECTION ---------- */
-::selection {
-    background: rgba(100, 160, 255, 0.30);
-    color: #fff;
-}
-
-/* ---------- FOCUS VISIBLE (accessibility) ---------- */
-:focus-visible {
-    outline: 2px solid rgba(100, 180, 255, 0.6);
-    outline-offset: 2px;
-}
-
-/* ---------- TOUCH TARGETS (mobile friendly) ---------- */
-@media (pointer: coarse) {
-    .btn-primary,
-    .settings .setBut {
-        min-height: 48px;
-    }
-
-    #inputWord {
-        min-height: 50px;
-    }
+    transition-duration: 0.01ms !important;
+  }
 }

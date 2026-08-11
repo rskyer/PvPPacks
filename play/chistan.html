@@ -1,126 +1,157 @@
-<!-- COPY = GAY * FUMBOY--!>
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  
+  
+  <meta property="og:title" content="Guess The Word - حدس بزن من چیم...">
+  <meta property="og:description" content="بازی حدس کلمه - کلمه رو حدس بزن و مراحل رو پشت سر بذار!">
+  <meta property="og:type" content="website">
+
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fa_IR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guess The Word - حدس بزن من چیم...">
+  <meta name="twitter:description" content="بازی حدس کلمه - کلمه رو حدس بزن و مراحل رو پشت سر بذار!">
+  
   <title>Guess The Word</title>
   <link rel="stylesheet" href="public/word.css">
 </head>
 <body>
 
-<div class="container" id="container">
-  <h1 id="title"> حدس بزن من چیم...</h1>
-  
-  <div class="info">
-    <h3 id="level">مرحله: 1</h3>   
-    <h3 id="chances">شانس‌ها: 20</h3>
-  </div>
-  
-  <hr>
-  
-  <p id="hintArea">درحال راه‌اندازی...</p>
-  
-  <div>
-    <input type="text" id="inputWord" placeholder="کلمه حدسی رو بنویس...">
-    <br>
-    <button class="btn-primary" onclick="check()">چک کردن</button>
-  </div>
-  
-  <div class="settings">
-    <h4 id="settings"> تنظیمات بیشتر:</h4>
-    <button class="setBut success" onclick="saveLevel()">ذخیره مرحله</button>
-    <button class="setBut" onclick="reset()"> ریست بازی</button>
-    <button class="setBut danger" onclick="resetLocal()"> حذف اطلاعات</button>
-    <button class="setBut" onclick="changeColor()">تنظیم رنگ</button><br>
-    <version>Guess the word - v26.1</version>
-  </div>
-  
-  <div class="status" id="statusBar">اطلاعات در لوکال استورج ذخیره میشه</div>
-</div>
+  <div class="container" id="container">
+    
+   
+    <header>
+      <h1 id="title">حدس بزن من چیم...</h1>
+    </header>
 
-<script>
-  let clickS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/click.ogg");
-  let winS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/win.ogg");
+    
+    <section class="info" aria-label="اطلاعات بازی">
+      <div id="level">مرحله: 1</div>
+      <div id="chances">شانس‌ها: 20</div>
+    </section>
+
+    <hr>
+
+   
+    <section id="hintArea" aria-label="راهنما">
+      درحال راه‌اندازی...
+    </section>
+
+    
+    <section class="input-section" aria-label="ورودی کلمه">
+      <input type="text" id="inputWord" placeholder="کلمه حدسی رو بنویس...">
+      <button class="btn-primary" onclick="check()">چک کردن</button>
+    </section>
+    <section class="settings" aria-label="تنظیمات">
+      <h4 id="settings">تنظیمات بیشتر:</h4>
+      <div class="settings-buttons">
+        <button class="setBut success" onclick="saveLevel()">ذخیره مرحله</button>
+        <button class="setBut" onclick="reset()">ریست بازی</button>
+        <button class="setBut danger" onclick="resetLocal()">حذف اطلاعات</button>
+        <button class="setBut" onclick="changeColor()">تنظیم رنگ</button>
+      </div>
+    </section>
+
+    
+    <footer>
+      <div class="status" id="statusBar">اطلاعات در لوکال استورج ذخیره میشه</div>
+      <version>Guess the word - v26.1</version>
+    </footer>
+
+  </div>
+
+  <script>
+    let clickS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/click.ogg");
+    let winS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/win.ogg");
     let loseS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/lose.ogg");
     let nextLevS = new Audio("https://rskyer.github.io/PvPPacks/play/guessNumber/sounds/reload.ogg");
-  function playsound(sound) {
-    sound.play().catch(error => {
+
+    function playsound(sound) {
+      sound.play().catch(error => {
         console.log('Error playing sound:', error)
-    })
-  }
-  let title = document.getElementById("title");
-  let levelHTML = document.getElementById("level");
-  let chancesHTML = document.getElementById("chances");
-  let hintArea = document.getElementById("hintArea");
-  let statusBar = document.getElementById("statusBar");
-let textArea = document.getElementById("inputWord");
-  function setText(text) {
-    textArea.placeholder = text
-  }
-  let userLevel = localStorage.getItem("userLevel") ? parseInt(localStorage.getItem("userLevel")) : 1;
-  let hint = "";
-  let chances = 20;
-  let targetWord = "";
-let targetWordHint = "";
-  
-  let words = {
-    1: "بارون",
-    2: "حوله",
-    3: "فردا",
-    4: "آینده",
-    5: "چاله",
-    6: "اسم",
-    7: "صابون",
-    8: "سکوت",
-    9: "قول",
-    
-    10: "روشنایی",
-    11: "آب",
-12: "تاریکی",
-13: "دندان",
-14: "بادکنک",
-15: "سن",
-16: "نقطه",
-17: "سوزن",
-18: "گورخر",
-19: "کره",
-20: "خواهر"
-  };
-  let hints = {
-    1: "بنویس بارون!",
-    2: "اون چیه که هرچقدر خیس‌تر میشه، بیشتر خشک میکنه؟",
-    3: "اون چیه که همیشه داره میاد اما هیچ‌وقت نمی‌رسه؟",
-    4: "همیشه جلوی توعم و هیچ وقت بهم نمی‌رسی!",
-    5: "اون چیه که هرچقدر ازش برداری بزرگ‌تر میشه؟",
-    6: "اون چیه که ماله شماست ولی بقیه معمولا ازش بیشتر استفاده میکنن؟",
-    7: "هرچقدر ازش استفاده بکنی، کوچک‌تر میشه؟",
-    8: "اون چیه که وقتی می‌گیش شکسته میشه!؟",
-    9: "وقتی شکسته میشه دیگه مثل قبل نمیشه...:(",
-    10: "وقتی میاد، تاریکی میره...:)",
-    11: " مایه حیات",
-12: "شب میاد و روز میره....",
-13: "چیه که هرچی میخندی بیشتر دیده میشه؟",
-14: "هرچی بیشتر فوت کنی بزرگ‌تر میشه",
-15: "ماله توعه! میره بالا ولی پایین نمیاد..!",
-16: "صرفا... 'دارا' آن را ندارد اما 'ندار' آن را دارد؟",
-17: "اون چیه که یدونه چشم داره اما هیچ وقت نمی‌بینه...!؟",
-18: "اون  کدوم حیوانه که داخل فیلم های سیاه سفید هم رنگ اصلی خودشو حفظ میکنه؟",
-19: "اون کدوم کشوره که داخل چشم خودمون هم پیداش میکنیم؟",
-20: "تو برادرِ من هستی، ولی من  برادر تو نیستم! من کیم؟   "
-  }
-function changeColor() {
-    let con = document.getElementById("container")
-    let existingPanel = document.getElementById("colorPanel")
-    if (existingPanel) {
+      })
+    }
+
+    let title = document.getElementById("title");
+    let levelHTML = document.getElementById("level");
+    let chancesHTML = document.getElementById("chances");
+    let hintArea = document.getElementById("hintArea");
+    let statusBar = document.getElementById("statusBar");
+    let textArea = document.getElementById("inputWord");
+
+    function setText(text) {
+      textArea.placeholder = text
+    }
+
+    let userLevel = localStorage.getItem("userLevel") ? parseInt(localStorage.getItem("userLevel")) : 1;
+    let hint = "";
+    let chances = 20;
+    let targetWord = "";
+    let targetWordHint = "";
+
+    let words = {
+      1: "بارون",
+      2: "حوله",
+      3: "فردا",
+      4: "آینده",
+      5: "چاله",
+      6: "اسم",
+      7: "صابون",
+      8: "سکوت",
+      9: "قول",
+      10: "روشنایی",
+      11: "آب",
+      12: "تاریکی",
+      13: "دندان",
+      14: "بادکنک",
+      15: "سن",
+      16: "نقطه",
+      17: "سوزن",
+      18: "گورخر",
+      19: "کره",
+      20: "خواهر"
+    };
+
+    let hints = {
+      1: "بنویس بارون!",
+      2: "اون چیه که هرچقدر خیس‌تر میشه، بیشتر خشک میکنه؟",
+      3: "اون چیه که همیشه داره میاد اما هیچ‌وقت نمی‌رسه؟",
+      4: "همیشه جلوی توعم و هیچ وقت بهم نمی‌رسی!",
+      5: "اون چیه که هرچقدر ازش برداری بزرگ‌تر میشه؟",
+      6: "اون چیه که ماله شماست ولی بقیه معمولا ازش بیشتر استفاده میکنن؟",
+      7: "هرچقدر ازش استفاده بکنی، کوچک‌تر میشه؟",
+      8: "اون چیه که وقتی می‌گیش شکسته میشه!؟",
+      9: "وقتی شکسته میشه دیگه مثل قبل نمیشه...:(",
+      10: "وقتی میاد، تاریکی میره...:)",
+      11: " مایه حیات",
+      12: "شب میاد و روز میره....",
+      13: "چیه که هرچی میخندی بیشتر دیده میشه؟",
+      14: "هرچی بیشتر فوت کنی بزرگ‌تر میشه",
+      15: "ماله توعه! میره بالا ولی پایین نمیاد..!",
+      16: "صرفا... 'دارا' آن را ندارد اما 'ندار' آن را دارد؟",
+      17: "اون چیه که یدونه چشم داره اما هیچ وقت نمی‌بینه...!؟",
+      18: "اون  کدوم حیوانه که داخل فیلم های سیاه سفید هم رنگ اصلی خودشو حفظ میکنه؟",
+      19: "اون کدوم کشوره که داخل چشم خودمون هم پیداش میکنیم؟",
+      20: "تو برادرِ من هستی، ولی من  برادر تو نیستم! من کیم؟   "
+    }
+
+    function changeColor() {
+      let con = document.getElementById("container")
+      let existingPanel = document.getElementById("colorPanel")
+      if (existingPanel) {
         existingPanel.remove()
         return
-    }
-    let panel = document.createElement("div")
-    panel.id = "colorPanel"
-    panel.className = "color-panel"
-    panel.style.cssText = "padding:20px; margin:10px 0; background:#f8f9fa; border-radius:10px; border:2px solid #ddd;"
-    panel.innerHTML = `
+      }
+      let panel = document.createElement("div")
+      panel.id = "colorPanel"
+      panel.className = "color-panel"
+      panel.style.cssText = "padding:20px; margin:10px 0; background:#f8f9fa; border-radius:10px; border:2px solid #ddd;"
+      panel.innerHTML = `
         <h4>🎨 رنگ هارو انتخاب کن:</h4>
         <br>
         <label>رنگ پشت‌زمینه ۱</label>
@@ -131,135 +162,135 @@ function changeColor() {
         <br><br>
         <button onclick="applyColors()" class="setBut success">✔ اعمال</button>
         <button onclick="cancelChangeColor()" class="setBut danger">× کنسل</button>
-    `
-    con.appendChild(panel)
-}
+      `
+      con.appendChild(panel)
+    }
 
-function cancelChangeColor() {
-    let panel = document.getElementById("colorPanel")
-    if (panel) panel.remove()
-}
+    function cancelChangeColor() {
+      let panel = document.getElementById("colorPanel")
+      if (panel) panel.remove()
+    }
 
-function applyColors() {
-    let color1 = document.getElementById("bgcolor").value
-    let color2 = document.getElementById("bgcolor2").value
-    document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`
-    localStorage.setItem("bgColor1", color1)
-    localStorage.setItem("bgColor2", color2)
-    cancelChangeColor()
-}
-  function setHint(hinttext) {
-    hint = hinttext;
-    hintArea.textContent = hint;
-    hintArea.classList.remove("win");
-  }
+    function applyColors() {
+      let color1 = document.getElementById("bgcolor").value
+      let color2 = document.getElementById("bgcolor2").value
+      document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`
+      localStorage.setItem("bgColor1", color1)
+      localStorage.setItem("bgColor2", color2)
+      cancelChangeColor()
+    }
 
-  function update(level, chans) {
-    levelHTML.textContent = "مرحله: " + level;
-    chancesHTML.textContent = "شانس‌ها: " + chans;
-  }
+    function setHint(hinttext) {
+      hint = hinttext;
+      hintArea.textContent = hint;
+      hintArea.classList.remove("win");
+    }
 
-  function check() {
-        if (chances <= 0) {
+    function update(level, chans) {
+      levelHTML.textContent = "مرحله: " + level;
+      chancesHTML.textContent = "شانس‌ها: " + chans;
+    }
+
+    function check() {
+      if (chances <= 0) {
         playsound(loseS);
         alert(":/شانس‌ات تموم شد! بازی ریست میشه.");
         reset();
         return;
-    } else if(userLevel > 21) {
-      userLevel = 20
-      chances = 10
-      update(19, 10)
-    }
-    
-    playsound(clickS)
-    let userInput = document.getElementById("inputWord").value.trim();
-    
-    if (userInput === "") {
-      setText(" هیچ‌چیزی وارد نکردی!");
-      return;
-    
-    }
-    
-    chances -= 1;
-    update(userLevel, chances);
-    
-    if (userInput === targetWord) {
-      hintArea.classList.add("win");
-      playsound(winS)
-   
-      setText(" برنده شدی! به مرحله " + (userLevel + 1) + " صعود کردی!")
-      userLevel += 1;
-      chances = 20;
-      localStorage.setItem("userLevel", userLevel);
-      statusBar.textContent = "  ذخیره شد: مرحله " + userLevel;
-      
-      if (words[userLevel]) {
-        targetWord = words[userLevel];
-        targetWordHint = hints[userLevel];
-        setHint("💡 " + targetWordHint || "تموم");
-      } else {
-        playsound(winS);
-        setHint("🀠آفرین! همه مراحل رو تموم کردی!");
-        statusBar.textContent = "شما قبلا بازی رو تموم کردین.";
+      } else if (userLevel > 21) {
+        userLevel = 20
+        chances = 10
+        update(19, 10)
+      }
+
+      playsound(clickS)
+      let userInput = document.getElementById("inputWord").value.trim();
+
+      if (userInput === "") {
+        setText(" هیچ‌چیزی وارد نکردی!");
         return;
       }
-      
+
+      chances -= 1;
       update(userLevel, chances);
-      document.getElementById("inputWord").value = "";
-    } else {
-      alert(" اشتباه بود! دوباره تلاش کن. شانس باقی‌مونده: " + chances);
-      if (chances <= 0) {
-        playsound(loseS);
-        title.style.color = "red"
-        title.textContent = ":/شانس‌ات تموم شد! بازی ریست میشه."
-        reset();
+
+      if (userInput === targetWord) {
+        hintArea.classList.add("win");
+        playsound(winS)
+
+        setText(" برنده شدی! به مرحله " + (userLevel + 1) + " صعود کردی!")
+        userLevel += 1;
+        chances = 20;
+        localStorage.setItem("userLevel", userLevel);
+        statusBar.textContent = "  ذخیره شد: مرحله " + userLevel;
+
+        if (words[userLevel]) {
+          targetWord = words[userLevel];
+          targetWordHint = hints[userLevel];
+          setHint("💡 " + targetWordHint || "تموم");
+        } else {
+          playsound(winS);
+          setHint("🀠آفرین! همه مراحل رو تموم کردی!");
+          statusBar.textContent = "شما قبلا بازی رو تموم کردین.";
+          return;
+        }
+
+        update(userLevel, chances);
+        document.getElementById("inputWord").value = "";
+      } else {
+        alert(" اشتباه بود! دوباره تلاش کن. شانس باقی‌مونده: " + chances);
+        if (chances <= 0) {
+          playsound(loseS);
+          title.style.color = "red"
+          title.textContent = ":/شانس‌ات تموم شد! بازی ریست میشه."
+          reset();
+        }
       }
     }
-  }
 
-  function saveLevel() {
-    localStorage.setItem("userLevel", userLevel);
-    statusBar.textContent = " مرحله " + userLevel + " ذخیره شد!";
-    alert("مرحله " + userLevel + " ذخیره شد!");
-  }
-
-  function reset() {
-    if (confirm("مطمئنی میخوای بازی رو از اول شروع کنی؟")) {
-      localStorage.removeItem("userLevel");
-      location.reload();
+    function saveLevel() {
+      localStorage.setItem("userLevel", userLevel);
+      statusBar.textContent = " مرحله " + userLevel + " ذخیره شد!";
+      alert("مرحله " + userLevel + " ذخیره شد!");
     }
-  }
 
-  function resetLocal() {
-    if (confirm("همه اطلاعات ذخیره شده رو حذف کنم؟")) {
-      localStorage.clear();
-      statusBar.textContent = "همه اطلاعات پاک شد!";
-      location.reload();
+    function reset() {
+      if (confirm("مطمئنی میخوای بازی رو از اول شروع کنی؟")) {
+        localStorage.removeItem("userLevel");
+        location.reload();
+      }
     }
-  }
 
-  if (words[userLevel]) {
-    targetWord = words[userLevel];
-    targetWordHint = hints[userLevel];
-    setHint("💡 " + targetWordHint);
-  } else {
-    setHint("تبریک! همه مراحل رو تموم کردی!");
-    statusBar.textContent = "بازی کامل شد!";
-  }
-
-  update(userLevel, chances);
-  statusBar.textContent = "مرحله فعلی: " + userLevel + " | ";
-  
-  document.getElementById("inputWord").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-      check();
+    function resetLocal() {
+      if (confirm("همه اطلاعات ذخیره شده رو حذف کنم؟")) {
+        localStorage.clear();
+        statusBar.textContent = "همه اطلاعات پاک شد!";
+        location.reload();
+      }
     }
-  });
 
-  console.log("game start");
-  console.log("مرحله کاربر:", userLevel);
-  console.log("کلمه هدف:", targetWord);
-</script>
+    if (words[userLevel]) {
+      targetWord = words[userLevel];
+      targetWordHint = hints[userLevel];
+      setHint("💡 " + targetWordHint);
+    } else {
+      setHint("تبریک! همه مراحل رو تموم کردی!");
+      statusBar.textContent = "بازی کامل شد!";
+    }
+
+    update(userLevel, chances);
+    statusBar.textContent = "مرحله فعلی: " + userLevel + " | ";
+
+    document.getElementById("inputWord").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        check();
+      }
+    });
+
+    console.log("game start");
+    console.log("مرحله کاربر:", userLevel);
+    console.log("کلمه هدف:", targetWord);
+  </script>
 
 </body>
 </html>

@@ -1,559 +1,241 @@
-/* =========================================================
-   GUESS THE WORD — Modern Responsive CSS
-   No HTML changes required
-   ========================================================= */
-
 :root {
-  --bg: #f3f7ff;
-  --card: #ffffff;
-  --text: #172033;
-  --muted: #68758a;
-  --border: #e2e8f3;
-
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-
-  --success: #16a34a;
-  --success-hover: #15803d;
-
+  --primary: #2196f3;
+  --primary-hover: #1976d2;
+  --primary-light: #e3f2fd;
+  --success: #22c55e;
+  --success-hover: #16a34a;
   --danger: #ef4444;
   --danger-hover: #dc2626;
-
-  --shadow:
-    0 20px 50px rgba(30, 64, 175, 0.10),
-    0 4px 15px rgba(15, 23, 42, 0.05);
-
-  --radius: 18px;
+  --bg: #f4f9ff;
+  --card: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --border: #dbe7f5;
+  --shadow: 0 8px 25px rgba(33, 150, 243, 0.12);
+  --radius: 14px;
 }
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  min-height: 100%;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Tahoma,
-    Arial,
-    sans-serif;
-
-  background:
-    radial-gradient(
-      circle at top,
-      #e7f0ff 0%,
-      var(--bg) 42%,
-      #eef3fa 100%
-    );
-
-  color: var(--text);
-
+  padding: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  padding: 28px 16px;
-
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, "Segoe UI", Tahoma, sans-serif;
   direction: rtl;
 }
 
-
-/* =========================================================
-   MAIN CARD
-   ========================================================= */
-
 .container {
-  width: min(100%, 620px);
-
+  width: 100%;
+  max-width: 600px;
+  padding: 28px;
   background: var(--card);
-
-  border: 1px solid rgba(226, 232, 243, 0.9);
-
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-
-  padding: 32px;
-
   box-shadow: var(--shadow);
-
   text-align: center;
-
-  position: relative;
-
-  overflow: hidden;
-
-  animation: cardIn 0.45s ease-out;
 }
-
-
-/* Small decorative line */
-
-.container::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 0;
-  right: 0;
-
-  height: 4px;
-
-  background: linear-gradient(
-    90deg,
-    #2563eb,
-    #60a5fa,
-    #38bdf8
-  );
-}
-
-
-/* =========================================================
-   TITLE
-   ========================================================= */
 
 #title {
-  margin: 4px 0 24px;
-
-  font-size: clamp(26px, 5vw, 36px);
-
-  line-height: 1.3;
-
+  margin: 0 0 24px;
+  color: var(--primary);
+  font-size: 32px;
   font-weight: 800;
-
-  letter-spacing: -0.5px;
-
-  color: #172554;
+  line-height: 1.35;
 }
-
-
-/* =========================================================
-   LEVEL + CHANCES
-   ========================================================= */
 
 .info {
   display: flex;
-
-  justify-content: center;
-
-  align-items: stretch;
-
   gap: 12px;
-
-  margin-bottom: 22px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .info h3 {
   flex: 1;
-
+  min-width: 0;
   margin: 0;
-
-  min-height: 48px;
-
-  padding: 12px 16px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: #f7faff;
-
+  padding: 12px 10px;
   border: 1px solid var(--border);
-
-  border-radius: 12px;
-
-  font-size: 16px;
-
-  font-weight: 700;
-
+  border-radius: 10px;
+  background: #f8fbff;
   color: #334155;
+  font-size: 16px;
+  line-height: 1.4;
 }
-
-
-/* =========================================================
-   HR
-   ========================================================= */
 
 hr {
-  border: 0;
-
   height: 1px;
-
+  margin: 20px 0;
+  border: 0;
   background: var(--border);
-
-  margin: 20px 0 24px;
 }
-
-
-/* =========================================================
-   HINT
-   ========================================================= */
 
 #hintArea {
-  margin: 0 0 24px;
-
-  padding: 18px 16px;
-
-  min-height: 58px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: #f8fbff;
-
-  border: 1px solid #dbeafe;
-
-  border-radius: 14px;
-
-  color: #334155;
-
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid #cfe5ff;
+  border-radius: 10px;
+  background: var(--primary-light);
+  color: #1e40af;
   font-size: 18px;
-
-  line-height: 1.7;
-
   font-weight: 600;
+  line-height: 1.7;
 }
-
-
-/* =========================================================
-   INPUT
-   ========================================================= */
 
 #inputWord {
   width: 100%;
-
-  min-height: 52px;
-
-  padding: 12px 16px;
-
+  height: 50px;
+  padding: 0 15px;
   border: 2px solid var(--border);
-
-  border-radius: 12px;
-
+  border-radius: 10px;
   outline: none;
-
-  background: #ffffff;
-
+  background: #fff;
   color: var(--text);
-
   font-family: inherit;
-
   font-size: 17px;
-
   text-align: center;
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  transition: 0.2s ease;
 }
 
 #inputWord::placeholder {
   color: #94a3b8;
 }
 
-#inputWord:hover {
-  border-color: #bfdbfe;
-}
-
 #inputWord:focus {
   border-color: var(--primary);
-
-  box-shadow:
-    0 0 0 4px rgba(59, 130, 246, 0.12);
-
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.12);
 }
-
-
-/* =========================================================
-   PRIMARY BUTTON
-   ========================================================= */
 
 .btn-primary {
   width: 100%;
-
-  min-height: 52px;
-
-  margin-top: 12px;
-
-  padding: 12px 20px;
-
+  height: 50px;
+  margin-top: 10px;
+  padding: 0 18px;
   border: 0;
-
-  border-radius: 12px;
-
+  border-radius: 10px;
   background: var(--primary);
-
-  color: white;
-
+  color: #fff;
   font-family: inherit;
-
   font-size: 17px;
-
-  font-weight: 750;
-
+  font-weight: 700;
   cursor: pointer;
-
-  box-shadow:
-    0 6px 14px rgba(59, 130, 246, 0.22);
-
-  transition:
-    background 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
-
-  box-shadow:
-    0 8px 18px rgba(37, 99, 235, 0.27);
-
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-
-  box-shadow:
-    0 3px 8px rgba(37, 99, 235, 0.2);
 }
 
-
-/* =========================================================
-   SETTINGS
-   ========================================================= */
-
 .settings {
-  margin-top: 28px;
-
-  padding-top: 22px;
-
+  margin-top: 25px;
+  padding-top: 20px;
   border-top: 1px solid var(--border);
 }
 
 #settings {
-  margin: 0 0 14px;
-
-  color: #475569;
-
+  margin: 0 0 12px;
+  color: var(--text);
   font-size: 16px;
-
-  font-weight: 700;
 }
-
-
-/* =========================================================
-   SETTINGS BUTTONS
-   ========================================================= */
 
 .setBut {
   min-height: 44px;
-
-  margin: 4px;
-
-  padding: 9px 15px;
-
-  border: 1px solid #dbe3ef;
-
-  border-radius: 10px;
-
-  background: #f8fafc;
-
+  margin: 4px 2px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #f8fbff;
   color: #334155;
-
   font-family: inherit;
-
   font-size: 15px;
-
-  font-weight: 650;
-
+  font-weight: 600;
   cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
+  transition: 0.2s ease;
 }
 
 .setBut:hover {
-  background: #eef4ff;
-
-  border-color: #bfdbfe;
-
-  color: #1d4ed8;
-
-  transform: translateY(-1px);
+  border-color: #90caf9;
+  background: #eaf4ff;
+  color: var(--primary-hover);
 }
-
-.setBut:active {
-  transform: translateY(0);
-}
-
-
-/* =========================================================
-   SUCCESS BUTTON
-   ========================================================= */
 
 .setBut.success {
-  background: #f0fdf4;
-
   border-color: #bbf7d0;
-
-  color: #15803d;
+  background: #f0fdf4;
+  color: var(--success-hover);
 }
 
 .setBut.success:hover {
   background: #dcfce7;
-
-  border-color: #86efac;
-
-  color: #166534;
 }
 
-
-/* =========================================================
-   DANGER BUTTON
-   ========================================================= */
-
 .setBut.danger {
-  background: #fef2f2;
-
   border-color: #fecaca;
-
-  color: #dc2626;
+  background: #fef2f2;
+  color: var(--danger);
 }
 
 .setBut.danger:hover {
   background: #fee2e2;
-
-  border-color: #fca5a5;
-
-  color: #b91c1c;
+  color: var(--danger-hover);
 }
-
-
-/* =========================================================
-   VERSION
-   ========================================================= */
 
 version {
   display: block;
-
-  margin-top: 18px;
-
+  margin-top: 14px;
   color: #94a3b8;
-
-  font-size: 13px;
-
+  font-size: 12px;
   direction: ltr;
-
-  user-select: none;
 }
 
-
-/* =========================================================
-   STATUS BAR
-   ========================================================= */
-
 .status {
-  margin-top: 20px;
-
-  padding: 12px 14px;
-
-  border-radius: 10px;
-
-  background: #f8fafc;
-
+  margin-top: 18px;
+  padding: 11px 14px;
   border: 1px solid var(--border);
-
+  border-radius: 9px;
+  background: #f8fbff;
   color: var(--muted);
-
-  font-size: 14px;
-
+  font-size: 13px;
   line-height: 1.6;
 }
 
-
-/* =========================================================
-   KEYBOARD ACCESSIBILITY
-   ========================================================= */
-
 button:focus-visible,
 input:focus-visible {
-  outline: 3px solid rgba(59, 130, 246, 0.25);
-
+  outline: 3px solid rgba(33, 150, 243, 0.2);
   outline-offset: 2px;
 }
 
-
-/* =========================================================
-   ANIMATION
-   ========================================================= */
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(12px)
-      scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media (max-width: 600px) {
-
   body {
-    padding: 14px 10px;
-
+    padding: 12px;
     align-items: flex-start;
   }
 
   .container {
-    width: 100%;
-
-    margin-top: 8px;
-
-    padding: 25px 17px;
-
-    border-radius: 16px;
+    margin-top: 5px;
+    padding: 22px 16px;
+    border-radius: 12px;
   }
 
   #title {
     font-size: 27px;
-
     margin-bottom: 20px;
   }
 
@@ -562,59 +244,34 @@ input:focus-visible {
   }
 
   .info h3 {
-    min-height: 48px;
-
-    padding: 10px 7px;
-
+    padding: 11px 6px;
     font-size: 15px;
   }
 
   #hintArea {
-    font-size: 17px;
-
-    padding: 15px 12px;
-  }
-
-  #inputWord {
-    min-height: 52px;
-
+    padding: 14px 12px;
     font-size: 17px;
   }
 
+  #inputWord,
   .btn-primary {
-    min-height: 52px;
-
-    font-size: 17px;
+    height: 50px;
   }
 
   .setBut {
-    min-height: 46px;
-
-    margin: 4px 2px;
-
-    padding: 9px 12px;
-
+    min-height: 44px;
+    padding: 8px 11px;
     font-size: 14px;
-  }
-
-  .status {
-    font-size: 13px;
   }
 }
 
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 360px) {
-
+@media (max-width: 380px) {
   body {
     padding: 8px;
   }
 
   .container {
-    padding: 22px 13px;
+    padding: 20px 12px;
   }
 
   #title {
@@ -626,149 +283,70 @@ input:focus-visible {
   }
 
   .setBut {
-    padding-left: 9px;
-    padding-right: 9px;
-
+    padding: 8px 9px;
     font-size: 13px;
   }
 }
 
-
-/* =========================================================
-   DARK MODE
-   Automatically follows the device/browser
-   ========================================================= */
-
 @media (prefers-color-scheme: dark) {
-
   :root {
     --bg: #0b1220;
     --card: #111827;
     --text: #e5e7eb;
     --muted: #94a3b8;
-    --border: #263247;
+    --border: #26364d;
   }
 
   body {
-    background:
-      radial-gradient(
-        circle at top,
-        #172554 0%,
-        #0b1220 45%,
-        #070c15 100%
-      );
+    background: var(--bg);
   }
 
   .container {
-    border-color: #263247;
-
-    box-shadow:
-      0 20px 50px rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    border-color: var(--border);
   }
 
   #title {
-    color: #dbeafe;
+    color: #64b5f6;
   }
 
   .info h3 {
-    background: #172033;
-
-    border-color: #263247;
-
+    background: #172235;
+    border-color: var(--border);
     color: #cbd5e1;
   }
 
   #hintArea {
-    background: #111d31;
-
-    border-color: #263e63;
-
-    color: #cbd5e1;
+    background: #10233b;
+    border-color: #1e4974;
+    color: #90caf9;
   }
 
   #inputWord {
     background: #0f172a;
-
     border-color: #334155;
-
     color: #e5e7eb;
   }
 
-  #inputWord:hover {
-    border-color: #60a5fa;
-  }
-
   .setBut {
-    background: #172033;
-
+    background: #172235;
     border-color: #334155;
-
     color: #cbd5e1;
   }
 
   .setBut:hover {
-    background: #1e293b;
-
-    border-color: #60a5fa;
-
-    color: #93c5fd;
-  }
-
-  .setBut.success {
-    background: #0f2418;
-
-    border-color: #166534;
-
-    color: #86efac;
-  }
-
-  .setBut.success:hover {
-    background: #12351e;
-  }
-
-  .setBut.danger {
-    background: #2a1518;
-
-    border-color: #7f1d1d;
-
-    color: #fca5a5;
-  }
-
-  .setBut.danger:hover {
-    background: #3b171b;
+    background: #1e3048;
+    border-color: #64b5f6;
+    color: #90caf9;
   }
 
   .status {
-    background: #111827;
-
-    border-color: #263247;
-
+    background: #172235;
+    border-color: var(--border);
     color: #94a3b8;
   }
 
   #settings {
     color: #cbd5e1;
-  }
-
-  version {
-    color: #64748b;
-  }
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
   }
 }

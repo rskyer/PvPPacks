@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff5500">
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Mehr/Mehr.css" rel="stylesheet">
+    <meta property="og:title" content="PvPPacks">
+    <meta property="og:description" content="این ریسورس پک زیبا را در وبگاه PvPPacks دانلود کنید.">
+    <meta property="og:image" content="https://rskyer.github.io/PvPPacks/image/pack.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PvPPacks">
+    <meta property="og:locale" content="fa_IR">
+    <link href="./pack.css" rel="stylesheet">
+    <title>@PvPPacks</title>
+</head>
+<body>
+    <header class="header">
+        <div id="pp-user-mini"></div>
+        <script src="../PvPPacks/r.js"></script>
+        <div class="header-text" dir="ltr">@PvPPacks</div>
+    </header>
+
+    <section class="diagonal-section">
+        <div class="content">
+            <div class="pack-info" id="packInfo">
+                <img src="" alt="آیکون پک" class="pack-icon" id="packIcon" onclick="showAlert()">
+                <div class="pack-details">
+                    <h2 id="packName">PVP PACK</h2>
+                    <p><strong>✅ نام ریسورس:</strong> <span id="packTitle"></span></p>
+                    <p><strong>💥 توضیحات:</strong> <span id="packDesc"></span></p>
+                    <p><strong>📊 سازگاری:</strong> <span id="packVersion"></span></p>
+                    <a href="#" class="download-btn" id="btn1">دانلود 📥</a>
+                    <a href="#" class="download-btn" id="btn2">دانلود 📥</a>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <button class="creator-btn" onclick="showAlert()">@PvPPacks</button>
+        <p class="support-note">پشتیبانی: @iLegisus in Telegram.</p>
+    </footer>
+
+    <script src="./packsDATA.js"></script>
+    <script>
+        function showAlert() {
+            alert('ساخته شده توسط تیم PvPPacks');
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const packId = params.get('get');
+        const container = document.getElementById('packInfo');
+
+        if (!packId) {
+            container.innerHTML = '<div style="color:#f85149;text-align:center;padding:40px 0;">هیچ پکی مشخص نشده. از ?get=نام‌پک استفاده کنید.</div>';
+        } else if (typeof packsData === 'undefined') {
+            container.innerHTML = '<div style="color:#f85149;text-align:center;padding:40px 0;">فایل packsDATA.js بارگذاری نشد.</div>';
+        } else {
+            const pack = packsData[packId];
+            if (!pack) {
+                container.innerHTML = `
+                    <div style="text-align:center;padding:40px 0;">
+                        <h2 style="color:#f85149;">پک مورد نظر پیدا نشد</h2>
+                        <p style="color:#8b949e;">PACK DATA REMOVED OR MOVED!</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('packIcon').src = pack.imageURL || '../image/';
+                document.getElementById('packName').textContent = pack.name || packId;
+                document.getElementById('packTitle').textContent = pack.name || packId;
+                document.getElementById('packDesc').textContent = pack.description || 'بدون توضیحات';
+                document.getElementById('packVersion').textContent = pack.version || '1.16+';
+                document.getElementById('btn1').href = pack.downloadLink || '#';
+                document.getElementById('btn2').href = pack.downloadLink || '#';
+            }
+        }
+    </script>
+</body>
+</html>

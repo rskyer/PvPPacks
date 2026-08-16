@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff5500">
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Mehr/Mehr.css" rel="stylesheet">
+    <meta property="og:title" content="PvPPacks">
+    <meta property="og:description" content="این ریسورس پک را در وبگاه PvPPacks دانلود کنید.">
+    <meta property="og:image" content="https://rskyer.github.io/PvPPacks/image/pack.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PvPPacks">
+    <meta property="og:locale" content="fa_IR">
+    <link href="./pack.css" rel="stylesheet">
+    <title>@PvPPacks</title>
+</head>
+<body>
+    <header class="header">
+        <div id="pp-user-mini"></div>
+        <script src="../PvPPacks/r.js"></script>
+        <div class="header-text" dir="ltr">@PvPPacks</div>
+    </header>
+
+    <section class="diagonal-section">
+        <div class="content">
+            <div class="pack-info" id="packInfo">
+                <img src="" alt="آیکون پک" class="pack-icon" id="packIcon" onclick="showAlert()">
+                <div class="pack-details">
+                    <h2 id="packName">PVP PACK</h2>
+                    <p><strong>✅ نام ریسورس:</strong> <span id="packTitle"></span></p>
+                    <p><strong>💥 توضیحات:</strong> <span id="packDesc"></span></p>
+                    <p><strong>📊 سازگاری:</strong> ماینکرافت 1.16 تا آخرین ورژن</p>
+                    <a href="#" class="download-btn" id="btn1">دانلود 📥</a>
+                  
+                    <br><br><br><br>
+                </div>
+            </div>
+
+            <!-- بخش هشدار و اشتراک‌گذاری -->
+            <div style="margin-top: 30px; padding: 20px; background: #1c2128; border-radius: 12px; border: 1px solid #30363d;">
+                <p style="color: #f0883e; font-weight: bold; font-size: 16px;">
+                    این لینک ممکن است توسط سازندگان ساخته نشده باشد.
+                </p>
+                <p style="color: #8b949e; font-size: 14px; line-height: 1.8;">
+                    پیشنهاد میکنیم اگر این لینک را از جایی بجز کانال روبیکا با آدرس rubika.ir/Packs_bedrockjava یا کانال تلگرام با آدرس t.me/PvPPacks_786 دریافت نکرده‌اید، لطفا روی دکمه ها کلیک نکنید، در غیر این صورت دکمه ها کاملا امن هستند.
+                    <br>
+                    اجزای این صفحه (این صفحه که این توضیحات داخلش هست) کاملا توسط هرشخصی قابل تغییره ، پس اگر لینک شما منبعش از سمت کانال های ما نیست، لطفا از لینک خارج شوید.
+                </p>
+                <div style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    <a href="../index.html" style="display: inline-block; background: #21262d; color: #c9d1d9; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid #30363d;">بازگشت به صفحه اصلی</a>
+                    <span style="color: #8b949e; font-size: 14px;">لینک اشتراک‌گذاری این صفحه:</span>
+                    <input type="text" id="shareLink" readonly style="flex:1; background: #0d1117; border: 1px solid #30363d; color: #c9d1d9; padding: 8px 12px; border-radius: 6px; font-size: 14px; min-width: 200px;" onclick="this.select(); document.execCommand('copy'); alert('لینک کپی شد!');">
+                </div>
+                <p style="color: #8b949e; font-size: 12px; margin-top: 15px; border-top: 1px solid #21262d; padding-top: 15px;">
+                    * صفحاتی که از packs/q هستند توسط هرشخصی قابل تغییراند، اعتبارسنجی کنید.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <button class="creator-btn" onclick="showAlert()">@PvPPacks</button>
+        <p class="support-note">پشتیبانی: @iLegisus in Telegram.</p>
+    </footer>
+
+    <script>
+        function showAlert() {
+            alert('ساخته شده توسط تیم PvPPacks');
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('n');
+        const desc = params.get('des');
+        const downloadUrl = params.get('url');
+        const imageUrl = params.get('img');
+
+        
+        if (name) {
+            document.getElementById('packName').textContent = name;
+            document.getElementById('packTitle').textContent = name;
+        } else {
+            document.getElementById('packTitle').textContent = 'نامشخص';
+        }
+        document.getElementById('packDesc').textContent = desc || 'بدون توضیحات';
+        if (imageUrl) {
+            document.getElementById('packIcon').src = imageUrl;
+        } else {
+            document.getElementById('packIcon').src = '../image/'; // fallback
+        }
+        if (downloadUrl) {
+            document.getElementById('btn1').href = downloadUrl;
+            
+        } else {
+            document.getElementById('btn1').href = '#';
+            
+        }
+
+        
+        document.getElementById('shareLink').value = window.location.href;
+    </script>
+</body>
+</html>

@@ -84,9 +84,9 @@
         }
         document.getElementById('packDesc').textContent = desc || 'بدون توضیحات';
         if (imageUrl) {
-            document.getElementById('packIcon').src = imageUrl || "../image/pack.png";
+            document.getElementById('packIcon').src = imageUrl;
         } else {
-            document.getElementById('packIcon').src = '../image/'; // fallback
+            document.getElementById('packIcon').src = '../image/pack.png'; 
         }
         if (downloadUrl) {
             document.getElementById('btn1').href = downloadUrl;

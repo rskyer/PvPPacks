@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ساخت لینک پک</title>
+    <style>
+        @font-face {
+            font-family: 'Pelak';
+            src: url('https://rskyer.github.io/AI_everywhere/o/pelak.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pelak', 'Vazirmatn', 'IRANSans', Tahoma, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            background: #1a0e00;
+            color: #ffd9b3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(40, 25, 5, 0.9);
+            padding: 30px 25px;
+            border-radius: 28px;
+            border: 1px solid #ff8c1a;
+            box-shadow: 0 20px 50px rgba(255, 100, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff9f3d;
+            text-shadow: 0 0 20px rgba(255, 120, 0, 0.3);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ffb870;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            border-bottom: 2px dashed #ff7b00;
+            padding-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin: 18px 0 6px 0;
+            color: #ffb870;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 5px 0 3px 0;
+            background: #2a1a08;
+            color: #ffddbb;
+            border: 1.5px solid #b15300;
+            border-radius: 14px;
+            font-family: 'Pelak', 'Vazirmatn', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ff8c1a;
+            box-shadow: 0 0 0 4px rgba(255, 120, 0, 0.2), inset 0 2px 6px #000;
+            background: #331f0a;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        button {
+            background: linear-gradient(145deg, #ff7b00, #e06600);
+            color: #1f0f00;
+            padding: 16px 28px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-weight: 800;
+            font-family: 'Pelak', 'Vazirmatn', sans-serif;
+            width: 100%;
+            margin: 25px 0 10px 0;
+            box-shadow: 0 6px 0 #994400;
+            transition: transform 0.1s ease;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(255, 200, 100, 0.3);
+        }
+
+        button:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 #994400;
+        }
+
+        .result {
+            background: #1f1205;
+            padding: 20px 18px;
+            border-radius: 20px;
+            margin-top: 30px;
+            border: 1px solid #b15300;
+            box-shadow: inset 0 0 20px rgba(180, 70, 0, 0.1);
+            word-break: break-word;
+        }
+
+        .result p {
+            margin-bottom: 12px;
+            color: #ffb870;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .result input[readonly] {
+            background: #0f0802;
+            border: 1.5px solid #884400;
+            color: #ffd9b3;
+            font-family: 'Pelak', 'Vazirmatn', monospace;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .result input[readonly]:hover {
+            border-color: #ff9f3d;
+            background: #1c0f03;
+        }
+
+        .result a {
+            display: inline-block;
+            margin-top: 18px;
+            background: #ff7b00;
+            color: #1a0d00;
+            padding: 12px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 0 #994400;
+            transition: transform 0.1s ease;
+            text-align: center;
+        }
+
+        .result a:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 #994400;
+        }
+
+        .link-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .link-wrapper input {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .error-border {
+            border-color: #ff4444 !important;
+            box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.2) !important;
+        }
+
+        .error-msg {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        @media (max-width: 550px) {
+            .container { padding: 20px 16px; }
+            h2 { font-size: 1.7rem; }
+            button { font-size: 1.1rem; padding: 14px; }
+            .result input[readonly] { font-size: 0.85rem; padding: 12px; }
+        }
+
+        @media (max-width: 400px) {
+            body { padding: 10px; }
+            .container { padding: 15px 12px; border-radius: 20px; }
+            h2 { font-size: 1.4rem; }
+            label { font-size: 0.95rem; }
+            input, textarea { padding: 12px; font-size: 0.95rem; }
+            .result { padding: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔥 گذاشتن پک در سایت</h2>
+        <div class="subtitle">Packs/q Method</div>
+
+        <label>نام پک:</label>
+        <input type="text" id="name" placeholder="مثال: Skyer" value="پک من">
+
+        <label>📝 توضیحات:</label>
+        <textarea id="desc" rows="3" placeholder="پک من برای بدوارز ساخته شده..."></textarea>
+
+        <label>🔗 لینک دانلود:</label>
+        <input type="text" id="url" dir="ltr" placeholder="https://example.com/pack.zip" value="">
+
+        <label>🖼️ آدرس تصویر:</label>
+        <input type="text" id="img" dir="ltr" placeholder="https://example.com/image.png" value="">
+
+        <div id="errorMsg" class="error-msg"></div>
+
+        <button onclick="makeLink()">ساخت لینک</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function makeLink() {
+            const name = document.getElementById('name').value.trim();
+            const desc = document.getElementById('desc').value.trim();
+            const url = document.getElementById('url').value.trim();
+            const img = document.getElementById('img').value.trim();
+
+            document.querySelectorAll('.error-border').forEach(el => el.classList.remove('error-border'));
+            document.getElementById('errorMsg').classList.remove('show');
+            document.getElementById('errorMsg').textContent = '';
+
+            let hasError = false;
+
+            if (!name) {
+                document.getElementById('name').classList.add('error-border');
+                hasError = true;
+            }
+
+            if (!desc) {
+                document.getElementById('desc').classList.add('error-border');
+                hasError = true;
+            }
+
+            if (!url) {
+                document.getElementById('url').classList.add('error-border');
+                hasError = true;
+            } else if (!url.startsWith('https://')) {
+                document.getElementById('url').classList.add('error-border');
+                document.getElementById('errorMsg').textContent = '⚠️ لینک دانلود باید با https:// شروع شود';
+                document.getElementById('errorMsg').classList.add('show');
+                hasError = true;
+            } else {
+                try {
+                    const urlObj = new URL(url);
+                    const hostname = urlObj.hostname;
+                    const dangerousDomains = [
+                        'example.com', 'test.com', 'localhost', '127.0.0.1',
+                        'bad-site.com', 'malware.com', 'phishing.com'
+                    ];
+                    if (dangerousDomains.some(domain => hostname.includes(domain) || hostname === domain)) {
+                        document.getElementById('url').classList.add('error-border');
+                        document.getElementById('errorMsg').textContent = '⚠️ این دامنه مجاز نیست';
+                        document.getElementById('errorMsg').classList.add('show');
+                        hasError = true;
+                    }
+                } catch (e) {
+                    document.getElementById('url').classList.add('error-border');
+                    document.getElementById('errorMsg').textContent = '⚠️ لینک دانلود نامعتبر است';
+                    document.getElementById('errorMsg').classList.add('show');
+                    hasError = true;
+                }
+            }
+
+            if (!img) {
+                document.getElementById('img').classList.add('error-border');
+                hasError = true;
+            } else if (!img.startsWith('https://')) {
+                document.getElementById('img').classList.add('error-border');
+                document.getElementById('errorMsg').textContent = '⚠️ آدرس تصویر باید با https:// شروع شود';
+                document.getElementById('errorMsg').classList.add('show');
+                hasError = true;
+            } else {
+                const imgExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.svg', '.ico'];
+                const hasValidExtension = imgExtensions.some(ext => img.toLowerCase().endsWith(ext));
+                if (!hasValidExtension) {
+                    document.getElementById('img').classList.add('error-border');
+                    document.getElementById('errorMsg').textContent = '⚠️ فرمت تصویر پشتیبانی نمی‌شود (png, jpg, jpeg, gif, webp, bmp, svg, ico)';
+                    document.getElementById('errorMsg').classList.add('show');
+                    hasError = true;
+                }
+            }
+
+            if (hasError) {
+                if (!document.getElementById('errorMsg').textContent) {
+                    document.getElementById('errorMsg').textContent = '⚠️ لطفاً تمام فیلدها را به درستی پر کنید';
+                    document.getElementById('errorMsg').classList.add('show');
+                }
+                return;
+            }
+
+            const base = 'https://rskyer.github.io/PvPPacks/packs/q?';
+            const params = new URLSearchParams();
+            
+            if (name) params.set('n', name);
+            if (desc) params.set('des', desc);
+            if (url) params.set('url', url);
+            if (img) params.set('img', img);
+
+            const finalLink = base + params.toString();
+
+            document.getElementById('result').innerHTML = `
+                <p>✅ <strong>لینک ساخته شد</strong></p>
+                <div class="link-wrapper" dir="ltr">
+                    <input type="text" value="${finalLink}" readonly onclick="this.select(); navigator.clipboard?.writeText(this.value).then(() => alert('📋 کپی شد!')) || document.execCommand('copy')">
+                </div>
+                <br>
+                <a href="${finalLink}" target="_blank">🚀 باز کردن لینک</a>
+            `;
+        }
+
+        window.onload = function() {
+            makeLink();
+        };
+    </script>
+</body>
+</html>

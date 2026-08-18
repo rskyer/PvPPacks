@@ -7,15 +7,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
 <style>
 *{font-family:'Vazirmatn',sans-serif;box-sizing:border-box}
-body{background:linear-gradient(135deg,#fff5e6 0%,#ffe8cc 100%);color:#5a3714;margin:0;padding:20px}
-.container{max-width:800px;margin:30px auto;background:#fff;border-radius:16px;padding:30px;border:1px solid #ffcc80}
+body{background:linear-gradient(135deg,#fff5e6 0%,#ffe8cc 100%);color:#5a3714;margin:0;padding:20px;min-height:100vh;display:flex;flex-direction:column}
+.container{max-width:800px;margin:30px auto;background:#fff;border-radius:16px;padding:30px;border:1px solid #ffcc80;flex:1}
 .header{text-align:center;border-bottom:2px dashed #ff9800;margin-bottom:20px}
 input[type=text],input[type=number],textarea{width:100%;padding:12px;border:2px solid #ffcc80;border-radius:10px;background:#fffaf0}
 .uuid-section,.subpack-section{background:#fff3e0;padding:20px;border-radius:10px;margin:20px 0;border:1px solid #ffcc80}
-.button{padding:12px 20px;border:none;border-radius:10px;cursor:pointer}
+.button{padding:12px 20px;border:none;border-radius:10px;cursor:pointer;transition:all 0.3s}
+.button:hover{transform:scale(1.02);opacity:0.9}
 .button-primary{background:#ff9800;color:#fff}
 .button-secondary{background:#ffcc80}
 .subpack-card{background:#fff8f0;border:1px solid #ffcc80;padding:15px;border-radius:10px;margin-top:10px}
+.footer{text-align:center;padding:20px;margin-top:20px;background:linear-gradient(135deg,#ff9800,#ff6f00);border-radius:12px;color:#fff;box-shadow:0 4px 15px rgba(255,152,0,0.3)}
+.footer a{color:#fff;text-decoration:none;font-weight:bold;border-bottom:2px solid #fff}
+.footer a:hover{border-bottom-color:#ffcc80}
+.footer .social-icons{margin:10px 0}
+.footer .social-icons span{display:inline-block;margin:0 10px;font-size:24px}
 </style>
 </head>
 <body>
@@ -54,6 +60,24 @@ input[type=text],input[type=number],textarea{width:100%;padding:12px;border:2px 
 <button class="button button-primary" onclick="generateManifest()">دانلود manifest.json</button>
 </div>
 
+<!-- فوتر جدید -->
+<div class="footer">
+    <div class="social-icons">
+        <span>📱</span>
+        <span>🎮</span>
+        <span>⚡</span>
+    </div>
+    <p style="margin:5px 0;font-size:18px;font-weight:bold">
+        ساخت منی‌فست حرفه‌ای برای ریسورس پک‌های ماینکرفت
+    </p>
+    <p style="margin:5px 0;font-size:14px;opacity:0.9">
+        توسط <a href="#" onclick="return false">اسکایر</a> | نسخه 2.0
+    </p>
+    <p style="margin:5px 0;font-size:12px;opacity:0.7">
+        📌 تمامی حقوق محفوظ است • 2026
+    </p>
+</div>
+
 <script>
 function generateRandomUUID(){
 return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
@@ -79,6 +103,8 @@ c.innerHTML+=`
 <input type="text" class="subpack-folder">
 <label>Display Name ${i}</label>
 <input type="text" class="subpack-name">
+<label>توضیحات ${i}</label>
+<input type="text" class="subpack-description">
 </div>`;
 }
 }
@@ -88,7 +114,7 @@ subpacksContainer.style.display=e.target.checked?'block':'none';
 if(e.target.checked) createSubpackFields();
 });
 
-document.getElementById('subpackCount').addEventListener('input',createSubpackFields);
+document.getElementById('subpackCount').addEventListener('input', createSubpackFields);
 
 function generateManifest(){
 const manifest={
@@ -110,14 +136,19 @@ version:[1,0,0]
 if(enableSubpacks.checked){
 const folders=document.querySelectorAll('.subpack-folder');
 const names=document.querySelectorAll('.subpack-name');
+const descriptions=document.querySelectorAll('.subpack-description');
 const subs=[];
 for(let i=0;i<folders.length;i++){
-if(folders[i].value.trim()&&names[i].value.trim()){
-subs.push({
+if(folders[i].value.trim() && names[i].value.trim()){
+let subpackObj = {
 folder_name:folders[i].value.trim(),
 name:names[i].value.trim(),
 memory_tier:0
-});
+};
+if(descriptions[i] && descriptions[i].value.trim()){
+subpackObj.description = descriptions[i].value.trim();
+}
+subs.push(subpackObj);
 }
 }
 if(subs.length<2){
@@ -137,4 +168,4 @@ a.click();
 genBoth();
 </script>
 </body>
-    </html>
+</html>

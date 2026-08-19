@@ -78,6 +78,4 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
   setTimeout(function() {
     document.body.insertAdjacentHTML('beforeend', AdPopUp1);
   }, 2000);
-  </script>
-</body>
-</html>
+  

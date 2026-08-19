@@ -9,7 +9,7 @@
 
 document.body.insertAdjacentHTML('beforeend', keyframeStyle);
   const AdPopUp1 = `
-    <a style="
+    <a target="_blank" style="
         position: fixed;
         bottom: 20px;
         left: 50%;
@@ -65,10 +65,10 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
                     <strong style="color: #e94560;">
   بازی چیستان
   </strong> 
-  ۴۰ مرحله+
+  +۴۰ مرحله
                 </div>
                 <div style="font-size: 0.9rem; color: #555; line-height: 1.4; word-break: break-word;">
-               کلیک کنید و بازیو شروع کنید!
+              ! کلیک کنید و بازیو شروع کنید
                 </div>
             </div>
         </div>

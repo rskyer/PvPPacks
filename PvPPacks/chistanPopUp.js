@@ -61,7 +61,7 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
             </div>
 
             <div style="flex: 1; min-width: 0;">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; line-height: 1.3;">
+                <div style="font-size: 1rem; font-weight: 60p; color: #1a1a2e; margin-bottom: 4px; line-height: 1.2;">
                     <strong style="color: #e94560;">
   اس‌تی آباد
   </strong> 

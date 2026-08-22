@@ -25,7 +25,7 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
         text-decoration: none;
         font-family: sans-serif;
         cursor: pointer;
-    " href="https://rskyer.github.io/PvPPacks/play/chistan" target="_blank">
+    " href="https://stabad.ir" target="_blank">
        
         <div style="
             height: 6px;
@@ -51,7 +51,7 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
                 justify-content: center;
                 overflow: hidden;
             ">
-                <img src="https://rskyer.github.io/PvPPacks/image/chistanLOGO.png" alt="Chistan Logo" style="
+                <img src="https://rskyer.github.io/PvPPacks/image/stabad.server.logo.png" alt="Chistan Logo" style="
                     width: 80px;
                     height: 80px;
                     object-fit: contain;
@@ -63,12 +63,12 @@ document.body.insertAdjacentHTML('beforeend', keyframeStyle);
             <div style="flex: 1; min-width: 0;">
                 <div style="font-size: 1.15rem; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; line-height: 1.3;">
                     <strong style="color: #e94560;">
-  بازی چیستان
+  اس‌تی آباد
   </strong> 
-  +۴۰ مرحله
+  - سرور ماینکرفت 
                 </div>
                 <div style="font-size: 0.9rem; color: #555; line-height: 1.4; word-break: break-word;">
-              ! کلیک کنید و بازیو شروع کنید
+              یه سرور ماینکرافت  که فرق داره!
                 </div>
             </div>
         </div>

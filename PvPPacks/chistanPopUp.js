@@ -191,7 +191,7 @@ const AdPopUp1 = `
           -webkit-text-fill-color: transparent;
           background-clip: text;
         ">
-          یه سرور ماینکرافت که فرق داره!
+          ✨ یه سرور ماینکرافت که فرق داره!
         </div>
 
         <div class="ad-cta" style="
@@ -210,7 +210,7 @@ const AdPopUp1 = `
           font-family: 'Vazir', 'IRANSans', 'Tahoma', 'Arial', sans-serif;
           text-align: center;
         ">
-          بریم ماینکرافت!
+          🚀 بزن بریم
         </div>
       </div>
     </div>
